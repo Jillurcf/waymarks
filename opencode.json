@@ -1,0 +1,37 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "skills": {
+    "paths": [".skill"]
+  },
+  "command": {
+    "dev": {
+      "description": "Start the Waymark dev server and smoke-test the app.",
+      "template": "Read and execute the workflow in .command/dev.md. $ARGUMENTS"
+    },
+    "build": {
+      "description": "Typecheck, lint, and produce the static export.",
+      "template": "Read and execute the workflow in .command/build.md. $ARGUMENTS"
+    },
+    "scaffold": {
+      "description": "Scaffold a new page or section following repo conventions.",
+      "template": "Read and execute the workflow in .command/scaffold.md. $ARGUMENTS"
+    },
+    "design": {
+      "description": "Build UI work following the Waymark brand skill and design system.",
+      "template": "Read and execute the workflow in .command/design.md. $ARGUMENTS"
+    },
+    "content": {
+      "description": "Add or update site content (services, case studies, copy).",
+      "template": "Read and execute the workflow in .command/content.md. $ARGUMENTS"
+    },
+    "ship": {
+      "description": "Full verification then a clean, conventional commit.",
+      "template": "Read and execute the workflow in .command/ship.md. $ARGUMENTS"
+    },
+    "deploy": {
+      "description": "Deploy the static export to the configured host.",
+      "template": "Read and execute the workflow in .command/deploy.md. $ARGUMENTS"
+    }
+  }
+}

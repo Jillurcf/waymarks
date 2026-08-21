@@ -10,9 +10,10 @@ Update content for the Waymark site without touching layout logic.
 1. Map the requested change ($ARGUMENTS) to the sitemap/Section of
    `docs/content-guide.md`.
 2. Locate the content source — content lives in typed data modules under
-   `src/lib/` (e.g. `src/lib/services.ts`, `src/lib/case-studies.ts`) or as
-   local `*.md[x]` content collections if the blog uses them. Never bury copy
-   deep inside JSX components.
+   `src/lib/content/` (e.g. `src/lib/content/services.ts`,
+   `src/lib/content/case-studies.ts`) or as local `*.md[x]` content
+   collections if the blog uses them. Never bury copy deep inside JSX
+   components.
 3. Follow the tone-of-voice and copy rules in `docs/content-guide.md`:
    - Convert action, no jargon; keep paragraphs short.
    - Every case study needs title, client, sector, services, year, outcome,

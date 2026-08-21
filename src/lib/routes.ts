@@ -68,3 +68,29 @@ export function allRoutes(): Route[] {
 export function findRoute(path: string): Route | undefined {
   return allRoutes().find((route) => route.path === path);
 }
+
+function prettifySegment(segment: string): string {
+  return segment
+    .split("-")
+    .map((word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : word))
+    .join(" ");
+}
+
+/**
+ * Breadcrumb trail for a pathname, resolved against the route map
+ * (implementation plan C1.3). Unmapped segments fall back to a prettified
+ * label so deep links never break the trail.
+ */
+export function breadcrumbTrail(pathname: string): Route[] {
+  const trail: Route[] = [{ path: "/", title: "Home" }];
+  let accumulated = "";
+  for (const segment of pathname.split("/").filter(Boolean)) {
+    accumulated += `/${segment}`;
+    const route = findRoute(accumulated);
+    trail.push({
+      path: accumulated,
+      title: route?.title ?? prettifySegment(segment),
+    });
+  }
+  return trail;
+}

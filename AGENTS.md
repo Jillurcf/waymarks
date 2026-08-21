@@ -8,8 +8,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 - **Stack:** Next.js 16 (App Router) · React 19 · TypeScript 5 · Tailwind CSS v4 · shadcn/ui · lucide-react · `ogl`.
 - **Static export:** `next.config.ts` sets `output: "export"` + `trailingSlash`. No server runtime, no API routes, no server actions. Builds emit to `out/`.
+- **Design source:** the site converts `html_version/` (Artistic HTML template) structure into this app milestone-wise per `docs/implementation-plan.md`. The template is a read-only reference: never import, link, or ship its code, copy, or assets; its jQuery-era patterns map to React/shadcn equivalents (plan §3).
+- **Brand skill:** `.skill/waymark-ui-ux/` governs every visual and copy decision; run its quality gates before calling UI done.
 - **Verification:** before finishing any change run `npx tsc --noEmit`, `npm run lint`, `npm run build` (or `npm run verify` for all three).
-- **Content as data:** copy lives in typed modules under `src/lib/content/*.ts`; components consume types, never inline copy. Mark seed/placeholder values `SEED` in comments.
+- **Content as data:** copy lives in typed modules under `src/lib/content/*.ts`; components consume types, never inline copy. Mark seed/placeholder values `SEED` in comments. Template placeholder strings must never ship.
 - **Route map:** every URL is registered in `src/lib/routes.ts` — nav, footer, sitemap, and breadcrumbs read from it. Add routes there first.
 - **Design tokens:** use only tokens from `src/app/globals.css` `@theme` (per `.skill/waymark-ui-ux/design-system.md`). Zero raw hex values in components.
 - **Components:** page sections in `src/components/site/`, shared primitives in `src/components/ui/`. Server Components by default; add `"use client"` only for interactivity.

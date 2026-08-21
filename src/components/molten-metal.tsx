@@ -108,7 +108,7 @@ void main() {
 }
 `;
 
-interface MoltenMetalProps {
+export interface MoltenMetalProps {
   color1?: string;
   color2?: string;
   color3?: string;
@@ -165,13 +165,39 @@ export default function MoltenMetal({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({
-      webgl: 2,
-      alpha: true,
-      premultipliedAlpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
-    });
+    // Quality gate C: feature-detect WebGL. If unsupported, leave the
+    // container empty so the hero's static fallback stays visible.
+    try {
+      const probe = document.createElement("canvas");
+      if (
+        !probe.getContext("webgl2") &&
+        !probe.getContext("webgl") &&
+        !probe.getContext("experimental-webgl")
+      ) {
+        return;
+      }
+    } catch {
+      return;
+    }
+
+    // Quality gate B: under prefers-reduced-motion the shader renders a
+    // single static frame instead of animating.
+    const reducedMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let renderer: Renderer;
+    try {
+      renderer = new Renderer({
+        webgl: 2,
+        alpha: true,
+        premultipliedAlpha: true,
+        antialias: false,
+        dpr: Math.min(window.devicePixelRatio || 1, 2),
+      });
+    } catch {
+      return;
+    }
 
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
@@ -240,8 +266,10 @@ export default function MoltenMetal({
       targetMouse[0] = 0.5;
       targetMouse[1] = 0.5;
     };
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
+    if (!reducedMotion) {
+      canvas.addEventListener("mousemove", handleMouseMove);
+      canvas.addEventListener("mouseleave", handleMouseLeave);
+    }
 
     let raf = 0;
     let isVisible = true;
@@ -259,6 +287,7 @@ export default function MoltenMetal({
     };
 
     const tryStart = () => {
+      if (reducedMotion) return;
       if (isVisible && isPageVisible && raf === 0) {
         raf = requestAnimationFrame(loop);
       }

@@ -9,7 +9,8 @@ Implement or refine UI work for the Waymark site, strictly on brand.
 
 1. Load `.skill/waymark-ui-ux/SKILL.md` and follow it: it encodes the brand
    derived from the logo (palette, liquid-metal accent, typography, tone).
-2. Read `docs/design-system.md` for tokens and component conventions.
+2. Read `.skill/waymark-ui-ux/design-system.md` for tokens and component
+   conventions.
 3. Read `docs/architecture.md` for where components live and how they are
    exported.
 

@@ -5,43 +5,90 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* ========================================
+     Waymarks Brand Colors
+     ======================================== */
+
+  --color-waymarks-primary: var(--waymarks-primary);
+  --color-waymarks-secondary: var(--waymarks-secondary);
+  --color-waymarks-accent: var(--waymarks-accent);
+  --color-waymarks-dark: var(--waymarks-dark);
+  --color-waymarks-light: var(--waymarks-light);
+
+  /* CTA Gradient */
+  --background-image-waymarks-cta:
+    linear-gradient(
+      90deg,
+      var(--waymarks-primary) 0%,
+      var(--waymarks-accent) 100%
+    );
+
+  /* ========================================
+     Application Colors
+     ======================================== */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* ========================================
+     Typography
+     ======================================== */
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-geist-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
+
+  /* ========================================
+     Charts
+     ======================================== */
+
   --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-waymark-primary: var(--waymark-primary);
-  --color-waymark-mid: var(--waymark-mid);
-  --color-waymark-deep: var(--waymark-deep);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* ========================================
+     Sidebar
+     ======================================== */
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ========================================
+     Radius
+     ======================================== */
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -49,83 +96,356 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ========================================
+     Shadows
+     ======================================== */
+
   --shadow-card: var(--card-shadow);
   --shadow-card-hover: var(--card-shadow-hover);
+
+  /* ========================================
+     Motion
+     ======================================== */
+
+  /*
+   * Accordion open/close (shadcn primitive). Keyframes ship with
+   * shadcn/tailwind.css and read --radix-accordion-content-height.
+   */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  /*
+   * Client-logo ticker (C1.4): duplicated track translates by half its
+   * width for a seamless loop. Paused under prefers-reduced-motion via
+   * the base-layer guard below.
+   */
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /*
+   * Decorative waymark ring (M2 why-choose-us): slow ambient rotation.
+   * Paused under prefers-reduced-motion via the base-layer guard below.
+   */
+  --animate-spin-slow: spin-slow 32s linear infinite;
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /*
+   * Hero entrance — headline character reveal (template text-anime-style-2:
+   * GSAP SplitText chars, x 20px, stagger 30ms, duration 1s, ease-out).
+   * Per-character delay is applied via inline style; the utility only sets
+   * the shared timeline. Hidden state comes from the keyframe's from-frame,
+   * so reduced-motion users simply see static text (guard below).
+   */
+  --animate-char-in: char-in 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+
+  @keyframes char-in {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Hero entrance — content blocks (template wow fadeInUp). */
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /*
+   * Hero explore badge (template exploremorerotate): continuous slow spin
+   * of the circular label. Paused under prefers-reduced-motion.
+   */
+  --animate-explore-spin: explore-spin 25s linear infinite;
+
+  @keyframes explore-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /*
+   * Hero floating tag (template herotagmove): side-to-side drift,
+   * 40px travel over 3s, alternating. Paused under prefers-reduced-motion.
+   */
+  --animate-hero-tag-move: hero-tag-move 3s linear infinite alternate;
+
+  @keyframes hero-tag-move {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(40px);
+    }
+  }
 }
 
 :root {
-  --waymark-primary: #1ab26b;
-  --waymark-mid: #8fe0b5;
-  --waymark-deep: #0b6c3e;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  /* ========================================
+     Waymarks Brand Palette
+     ======================================== */
+
+  /*
+   * Primary
+   * #BDD631
+   * RGB: 189, 214, 49
+   *
+   * Core identity color.
+   * Use for logo marks, key highlights,
+   * section markers and brand-first moments.
+   */
+  --waymarks-primary: #bdd631;
+
+  /*
+   * Secondary
+   * #006543
+   * RGB: 0, 101, 67
+   *
+   * Supporting brand color.
+   * Use for body text on light backgrounds,
+   * secondary buttons, icons and supporting UI.
+   */
+  --waymarks-secondary: #006543;
+
+  /*
+   * Accent
+   * #22C448
+   * RGB: 34, 196, 72
+   *
+   * Action color.
+   * Use for links, active states, icons
+   * and interactive highlights.
+   */
+  --waymarks-accent: #22c448;
+
+  /*
+   * Dark Background
+   * #00051D
+   * RGB: 0, 5, 29
+   *
+   * Use for hero sections, footers
+   * and high-contrast brand moments.
+   */
+  --waymarks-dark: #00051d;
+
+  /*
+   * Light Background
+   * #FFFFFF
+   * RGB: 255, 255, 255
+   *
+   * Default page and content background.
+   */
+  --waymarks-light: #ffffff;
+
+  /* ========================================
+     Application Theme
+     ======================================== */
+
+  --background: var(--waymarks-light);
+  --foreground: var(--waymarks-secondary);
+
+  --card: #ffffff;
+  --card-foreground: var(--waymarks-secondary);
+
+  --popover: #ffffff;
+  --popover-foreground: var(--waymarks-secondary);
+
+  /*
+   * Application primary maps to Waymarks Primary.
+   */
+  --primary: var(--waymarks-primary);
+  --primary-foreground: var(--waymarks-dark);
+
+  /*
+   * Application secondary maps to Waymarks Secondary.
+   */
+  --secondary: var(--waymarks-secondary);
+  --secondary-foreground: #ffffff;
+
+  /*
+   * Muted surfaces remain neutral.
+   */
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+
+  /*
+   * Application accent maps to Waymarks Accent.
+   */
+  --accent: var(--waymarks-accent);
+  --accent-foreground: #ffffff;
+
   --destructive: oklch(0.577 0.245 27.325);
+
+  /*
+   * Neutral borders and inputs.
+   */
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+
+  /*
+   * Brand-aware focus ring.
+   */
+  --ring: var(--waymarks-accent);
+
+  /* ========================================
+     Charts
+     ======================================== */
+
+  --chart-1: var(--waymarks-primary);
+  --chart-2: var(--waymarks-accent);
+  --chart-3: var(--waymarks-secondary);
+  --chart-4: var(--waymarks-dark);
+  --chart-5: oklch(0.556 0 0);
+
+  /* ========================================
+     Radius
+     ======================================== */
+
   --radius: 0.625rem;
-  --card-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.04);
-  --card-shadow-hover: 0 1px 2px rgb(0 0 0 / 0.05), 0 12px 32px rgb(0 0 0 / 0.1);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
+
+  /* ========================================
+     Shadows
+     ======================================== */
+
+  --card-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 4px 12px rgb(0 0 0 / 0.04);
+
+  --card-shadow-hover:
+    0 1px 2px rgb(0 0 0 / 0.05),
+    0 12px 32px rgb(0 0 0 / 0.1);
+
+  /* ========================================
+     Sidebar
+     ======================================== */
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--waymarks-secondary);
+
+  --sidebar-primary: var(--waymarks-primary);
+  --sidebar-primary-foreground: var(--waymarks-dark);
+
+  --sidebar-accent: var(--waymarks-accent);
+  --sidebar-accent-foreground: #ffffff;
+
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: var(--waymarks-accent);
 }
 
+/* ==========================================
+   Dark Theme
+   ========================================== */
+
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /*
+   * Waymarks dark sections use the official
+   * #00051D brand background.
+   */
+
+  --background: var(--waymarks-dark);
+  --foreground: #ffffff;
+
+  --card: #00051d;
+  --card-foreground: #ffffff;
+
+  --popover: #00051d;
+  --popover-foreground: #ffffff;
+
+  /*
+   * Primary remains the Waymarks identity green.
+   */
+  --primary: var(--waymarks-primary);
+  --primary-foreground: var(--waymarks-dark);
+
+  /*
+   * Secondary remains the supporting green.
+   */
+  --secondary: var(--waymarks-secondary);
+  --secondary-foreground: #ffffff;
+
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.75 0 0);
+
+  /*
+   * Accent remains the action color.
+   */
+  --accent: var(--waymarks-accent);
+  --accent-foreground: #ffffff;
+
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+
+  --ring: var(--waymarks-accent);
+
+  /* Charts */
+  --chart-1: var(--waymarks-primary);
+  --chart-2: var(--waymarks-accent);
+  --chart-3: var(--waymarks-secondary);
+  --chart-4: #ffffff;
+  --chart-5: oklch(0.556 0 0);
+
+  /* Sidebar */
+  --sidebar: var(--waymarks-dark);
+  --sidebar-foreground: #ffffff;
+
+  --sidebar-primary: var(--waymarks-primary);
+  --sidebar-primary-foreground: var(--waymarks-dark);
+
+  --sidebar-accent: var(--waymarks-accent);
+  --sidebar-accent-foreground: #ffffff;
+
+  --sidebar-border: rgb(255 255 255 / 10%);
+  --sidebar-ring: var(--waymarks-accent);
 }
+
+/* ==========================================
+   Waymarks CTA Gradient
+   ========================================== */
+
+.waymarks-cta-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--waymarks-primary) 0%,
+    var(--waymarks-accent) 100%
+  );
+}
+
+/* ==========================================
+   Molten Metal Container
+   ========================================== */
 
 .molten-metal-container {
   position: relative;
@@ -134,14 +454,48 @@
   overflow: hidden;
 }
 
+/* ==========================================
+   Base Styles
+   ========================================== */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
+  }
+
+  /*
+   * Reduced-motion guard for theme animations (quality gate B). The ticker
+   * freezes in place; accordion height motion collapses to an instant state
+   * change. Component-level transitions handle their own guards.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-spin-slow,
+    .animate-explore-spin,
+    .animate-hero-tag-move {
+      animation-play-state: paused;
+    }
+
+    /*
+     * Entrance animations (hero chars, fade-up) hide via their from-frame;
+     * removing the animation leaves content in its natural visible state.
+     */
+    .animate-char-in,
+    .animate-fade-up {
+      animation: none;
+    }
+
+    [data-slot="accordion-content"] {
+      animation-duration: 0.01ms;
+      animation-iteration-count: 1;
+    }
   }
 }

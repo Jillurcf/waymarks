@@ -1,16 +1,24 @@
-// Home page copy and data that is specific to the conversion-optimised layout.
-// Sections 2–16 of the spec (see docs/implementation-plan.md).
+// Home page content (M2). Sections follow the template's index.html order —
+// see docs/implementation-plan.md §4 M2. Copy rules: .skill/waymark-ui-ux/
+// content.md (calm, concrete, ≤ 3-sentence paragraphs, ≤ 10-word headlines).
 
+// Block 1 — Hero.
 export const hero = {
   eyebrow: "Digital product studio",
-  headline: "We Design and Build Digital Products That Turn Users Into Customers",
+  headlineLead: "We turn complex ideas into",
+  headlineAccent: "clear digital products",
   subhead:
     "Waymark partners with startups and growing businesses on strategy, UI/UX design, and development — turning ideas into products people actually want to use.",
-  primaryCta: "Book a Free Strategy Call",
-  secondaryCta: "See Our Work",
+  primaryCta: "Get started",
+  phoneBoxLabel: "Prefer to talk?",
+  // Floating service pill over the hero visual (template .hero-tag).
+  tag: "UI/UX design", // SEED: swap for the service you want spotlighted
+  // Rotating circular badge linking to the contact page (template
+  // .explore-more-circle). The text repeats around the ring.
+  exploreLabel: "Explore more",
 };
 
-// Section 4 — Client Logo Bar.
+// Block 2 — Client logo ticker.
 // SEED CONTENT: only include logos Waymark can actually show. If the roster is
 // small, delete entries — a thin logo bar hurts more than none. This doubles
 // as the fallback: text wordmarks rendered from real client names.
@@ -23,23 +31,60 @@ export const clientLogos: string[] = [
 
 export const logoBarLabel = "Trusted by teams building with us";
 
-// Section 6 — What We Do heading.
+// Block 3 — About intro.
+export const aboutIntro = {
+  eyebrow: "About us",
+  title: "Small studio, senior hands",
+  description:
+    "Waymark is a compact product studio. You work directly with the people designing and building your product — no layers in between.",
+  features: [
+    {
+      icon: "UserCheck",
+      title: "Senior-only team",
+      body: "The people who scope your project are the people who deliver it — no junior handoffs.",
+    },
+    {
+      icon: "Target",
+      title: "Built for outcomes",
+      body: "Every project starts from the metric it must move: signups, checkout completion, retention.",
+    },
+  ],
+  cta: { label: "More about Waymark", href: "/about" },
+};
+
+// Block 4 — Services rows.
+export const servicesSection = {
+  eyebrow: "Services",
+  title: "Six ways we take products forward",
+  description:
+    "From first sketch to shipped product — pick one service or the whole journey.",
+  closingBar: {
+    highlight: "Free",
+    text: "discovery call — tell us what you're building and we'll scope it with you.",
+    ctaLabel: "Book a discovery call",
+  },
+};
+
+// Block 5 — What we do.
 export const whatWeDo = {
   eyebrow: "What we do",
-  title: "Capabilities under one roof",
+  title: "From problem to polished product",
   description:
-    "Strategy, design, and development — one connected team, no handoffs.",
+    "One connected team covers the whole journey — so nothing gets lost between strategy, design, and code.",
+  items: [
+    {
+      title: "Strategy & UX research",
+      body: "Interviews, journey mapping, and prototypes tested with real users — so we build the right thing before building the thing right.",
+    },
+    {
+      title: "Interface design & build",
+      body: "Design systems and production-ready front-end code, so what ships matches what was designed.",
+    },
+  ],
+  cta: { label: "More about our approach", href: "/about" },
 };
 
-// Section 7 — Featured work heading.
-export const featuredWorkHeading = {
-  eyebrow: "Selected work",
-  title: "Proof before promises",
-  description:
-    "A few of the projects that show how we think, scope, and ship.",
-};
-
-// Section 8 — Why Waymarks.
+// Block 6 — Why Waymarks.
 export const whyHeading = {
   eyebrow: "Why Waymarks",
   title: "One team, start to finish",
@@ -66,45 +111,69 @@ export const differentiators = [
     description:
       "Smaller, focused teams mean faster decisions and shorter timelines than most traditional agencies.",
   },
+  {
+    icon: "FileCheck",
+    title: "Fixed Quotes, Written Scope",
+    description:
+      "You approve scope and price before work starts — no hourly drift, no surprise invoices.",
+  },
 ];
 
-// Section 9 — How we work.
+// Block 7 — Featured work heading.
+export const featuredWorkHeading = {
+  eyebrow: "Selected work",
+  title: "Proof before promises",
+  description:
+    "A few of the projects that show how we think, scope, and ship.",
+  viewAll: { label: "See all work", href: "/work" },
+};
+
+// Block 8 — How we work.
 export const processHeading = {
   eyebrow: "How we work",
   title: "No black box",
   description:
-    "What actually happens after you fill out the form — so there are no surprises.",
+    "Three steps from first call to launch — you always know where things stand.",
 };
 
-export const processSteps = [
+export interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+  bullets: string[];
+}
+
+export const processSteps: ProcessStep[] = [
   {
-    step: "1",
-    title: "Discovery Call",
+    step: "01",
+    title: "Discovery call",
     description:
-      "We learn about your business, goals, and constraints. No obligation.",
+      "A free call to understand your goals, constraints, and whether we're the right fit.",
+    bullets: ["Goals & constraints", "Audience & scope", "Success metrics"],
   },
   {
-    step: "2",
-    title: "Proposal & Scope",
+    step: "02",
+    title: "Proposal & scope",
     description:
-      "You get a clear plan: deliverables, timeline, and cost, in writing.",
+      "You get a clear plan in writing before any work starts.",
+    bullets: ["Fixed price & timeline", "Deliverables list", "Milestone schedule"],
   },
   {
-    step: "3",
-    title: "Design & Build",
+    step: "03",
+    title: "Design & build",
     description:
-      "Regular check-ins, not a black box — you see progress every step.",
-  },
-  {
-    step: "4",
-    title: "Launch & Support",
-    description:
-      "We stay involved post-launch to make sure it performs.",
+      "Weekly demos while we design and build — and support after launch.",
+    bullets: [
+      "Usability-tested prototypes",
+      "Weekly check-ins",
+      "Launch & post-launch support",
+    ],
   },
 ];
 
-// Section 12 — Pricing transparency. Ranges are fine; exact numbers are not
-// required. Replace each "From $[X]" with a real starting figure when known.
+// Block 10 — Pricing teaser. Tier/benefit data lives in pricing.ts (the
+// pricing page owns it); only the home-specific heading and teaser CTA
+// remain here.
 export const pricingHeading = {
   eyebrow: "Pricing",
   title: "What does a project cost?",
@@ -112,14 +181,10 @@ export const pricingHeading = {
     "No hidden quotes. Every project starts with a free discovery call to scope exact requirements and give you a fixed price — no surprises.",
 };
 
-export const pricingRows = [
-  { label: "Website Design & Development", from: "From $[X]" },
-  { label: "UI/UX Design", from: "From $[X]" },
-  { label: "MVP Development", from: "From $[X]" },
-  { label: "SaaS Product Design", from: "From $[X]" },
-];
+// Teaser CTA — every tier card links to the full pricing page.
+export const pricingTeaserCta = { label: "Compare tiers", href: "/pricing" };
 
-// Section 13 — FAQ (objection handling). Keep answers 1–2 sentences. The
+// Block 12 — FAQ (objection handling). Keep answers 1–2 sentences. The
 // visible text below is also emitted as FAQPage JSON-LD verbatim.
 export const faqHeading = {
   eyebrow: "FAQ",
@@ -152,7 +217,7 @@ export const faqs: Faq[] = [
   {
     question: "How long does a typical project take?",
     answer:
-      "A focused website or design project typically takes [X-Y weeks]; larger SaaS or app projects can take [X-Y months]. You'll get a specific timeline after the discovery call.",
+      "A typical website or design project runs six to ten weeks from kickoff to launch; larger products take longer. You'll get a specific timeline after the discovery call.",
   },
   {
     question: "What happens after launch?",
@@ -161,7 +226,21 @@ export const faqs: Faq[] = [
   },
 ];
 
-// Section 14 — Final CTA + lead form.
+// Block 13 — Blog teaser.
+export const blogTeaser = {
+  eyebrow: "From the blog",
+  title: "Notes from real projects",
+  viewAll: { label: "Visit the blog", href: "/blog" },
+  readMore: "Read article",
+  emptyState: {
+    title: "First articles are in the works",
+    body: "We're writing up what we've learned from recent projects. Got a question you'd like answered?",
+    ctaLabel: "Ask us directly",
+  },
+};
+
+// Final CTA + lead form (used by the contact flow; the home page ends at the
+// blog teaser per the M2 block list — the footer carries the closing CTA).
 export const finalCta = {
   eyebrow: "Start the conversation",
   title: "Have an Idea? Let's Make It Real.",

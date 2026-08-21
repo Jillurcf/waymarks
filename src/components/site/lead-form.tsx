@@ -232,7 +232,7 @@ export function LeadForm() {
         {status === "success" ? (
           <p
             role="status"
-            className="rounded-lg border border-waymark-primary/40 bg-waymark-primary/10 px-4 py-3 text-sm text-waymark-deep"
+            className="rounded-lg border border-waymarks-primary/40 bg-waymarks-primary/10 px-4 py-3 text-sm text-waymarks-secondary"
           >
             <strong>{finalCta.successTitle}</strong> {finalCta.successBody}
           </p>
@@ -256,7 +256,7 @@ export function LeadForm() {
         <Button
           type="submit"
           size="lg"
-          className="w-full bg-waymark-primary text-foreground hover:bg-waymark-primary/85 sm:w-auto"
+          className="w-full bg-waymarks-primary text-foreground hover:bg-waymarks-primary/85 sm:w-auto"
           disabled={status === "submitting"}
         >
           {status === "submitting" ? "Sending…" : finalCta.submitLabel}

@@ -1,9 +1,9 @@
 import { clientLogos, logoBarLabel } from "@/lib/content/home";
 
-// Section 4 — Client Logo Bar.
-// Renders only the logos actually available. The data module is the source of
-// truth: if the roster is small, entries are removed there and this section
-// collapses to nothing rather than showing a half-empty bar.
+// Client-logo ticker (C1.4), ported from the template's .our-scrolling-ticker.
+// Pure CSS marquee: a duplicated track translating by -50% for a seamless
+// loop (token: --animate-marquee). The duplicate copy is aria-hidden, the
+// animation pauses on hover and under prefers-reduced-motion (globals.css).
 export function LogoStrip() {
   if (clientLogos.length === 0) return null;
 
@@ -18,16 +18,26 @@ export function LogoStrip() {
       >
         {logoBarLabel}
       </p>
-      <ul className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-6 px-4">
-        {clientLogos.map((name) => (
-          <li
-            key={name}
-            className="text-base font-semibold uppercase tracking-widest text-muted-foreground/70"
-          >
-            {name}
-          </li>
-        ))}
-      </ul>
+      <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          {[0, 1].map((copy) => (
+            <ul
+              key={copy}
+              aria-hidden={copy === 1 || undefined}
+              className="flex shrink-0 items-center gap-x-14 pe-14"
+            >
+              {clientLogos.map((name) => (
+                <li
+                  key={name}
+                  className="whitespace-nowrap text-base font-semibold uppercase tracking-widest text-muted-foreground/70"
+                >
+                  {name}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

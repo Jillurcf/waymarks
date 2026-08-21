@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Read-only design reference (html_version/): never linted, never shipped.
+    "html_version/**",
   ]),
 ]);
 

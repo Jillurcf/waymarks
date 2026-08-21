@@ -7,6 +7,7 @@ export function SectionHeading({
   align = "center",
   id,
   tone = "default",
+  className,
 }: {
   eyebrow: string;
   title: string;
@@ -14,6 +15,7 @@ export function SectionHeading({
   align?: "left" | "center";
   id?: string;
   tone?: "default" | "inverse";
+  className?: string;
 }) {
   const inverse = tone === "inverse";
   return (
@@ -21,12 +23,13 @@ export function SectionHeading({
       className={cn(
         "mb-12 sm:mb-16 max-w-2xl",
         align === "center" && "mx-auto text-center",
+        className,
       )}
     >
       <p
         className={cn(
           "mb-3 text-xs font-medium uppercase tracking-widest",
-          inverse ? "text-waymark-mid" : "text-waymark-deep",
+          inverse ? "text-waymarks-accent" : "text-waymarks-secondary",
         )}
       >
         {eyebrow}

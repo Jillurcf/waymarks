@@ -1,38 +1,24 @@
 import { SectionHeading } from "@/components/site/section-heading";
-import { pricingHeading, pricingRows } from "@/lib/content/home";
+import { PricingTiers } from "@/components/site/pricing-tiers";
+import {
+  pricingHeading,
+  pricingTeaserCta,
+} from "@/lib/content/home";
 
+// Block 10 — Pricing teaser (template .our-pricing): home heading plus the
+// shared tier cards + benefit row from pricing-tiers.tsx. Figures are ranges
+// from pricing.ts — never the template's dummy $29/$39/$49 (plan §5).
 export function PricingBlock() {
   return (
-    <section id="pricing" className="py-20 sm:py-32">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <section id="pricing" aria-labelledby="pricing-title" className="py-20 sm:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={pricingHeading.eyebrow}
           title={pricingHeading.title}
           description={pricingHeading.description}
+          id="pricing-title"
         />
-        <ul className="divide-y divide-border rounded-xl border border-border bg-card">
-          {pricingRows.map((row) => (
-            <li
-              key={row.label}
-              className="flex items-center justify-between gap-4 px-6 py-5"
-            >
-              <span className="text-base font-medium tracking-tight">
-                {row.label}
-              </span>
-              <span className="text-sm font-semibold tabular-nums text-waymark-deep">
-                {row.from}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-8 text-center">
-          <a
-            href="/pricing"
-            className="inline-flex items-center gap-1 text-sm font-medium text-waymark-deep underline-offset-4 hover:underline"
-          >
-            See full pricing
-          </a>
-        </p>
+        <PricingTiers cta={pricingTeaserCta} />
       </div>
     </section>
   );

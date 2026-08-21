@@ -12,6 +12,14 @@ export interface Testimonial {
   source: string;
 }
 
+// Section heading copy for the shared testimonial block (used on home,
+// /about, /services per implementation plan §2).
+export const testimonialsSection = {
+  eyebrow: "Testimonials",
+  title: "What clients say after launch",
+  description: "Specific results, from the people who paid for them.",
+};
+
 export const testimonials: Testimonial[] = [
   {
     quote:

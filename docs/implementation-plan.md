@@ -1,219 +1,213 @@
-# Waymark — Implementation Plan (Full Project Build)
+# Waymark — Implementation Plan (HTML Template → Next.js Conversion)
 
-- **Version:** 1.0
+- **Version:** 2.0
 - **Project:** Waymark company website (static Next.js app)
-- **Horizon:** 90 days from kickoff (BRD: B1)
-- **Entry point:** existing "coming soon" static export; assets: logo lockup,
-  green liquid-metal palette, shadcn primitives, MoltenMetal shader.
-
-This plan turns `.spec/BRD.md` and `.spec/SRS.md` into shipped software.
-Phases are sequential where dependencies exist, parallelizable where green.
-Each phase defines tasks, owners, and a Definition of Done. Requirement IDs
-(`FR-x`, `NFR-x`) reference `.spec/SRS.md`.
-
----
-
-## Approach summary
-
-| Principle | How |
-| --------- | --- |
-| Static-first | All routes build to `out/`; no runtime server ever required. |
-| Design-first | Lock tokens/design system before page work (Phase 2 gates later phases). |
-| Content-as-data | Copy lives in typed modules; layout and content decouple. |
-| Incrementally shippable | Every phase ends in a deployable export that satisfies `/build`. |
-| Verified by machine | Every phase runs `tsc`, lint, and the static build automatically. |
+- **Source of design:** `html_version/` — the "Artistic" design-agency HTML
+  template (Awaiken Themes), 16 pages + 3 home variants, captured with HTTrack.
+- **Target:** the existing Next.js 16 App Router static export in `src/`.
+- **Brand authority:** `.skill/waymark-ui-ux/` (SKILL.md, design-system.md,
+  quality-gates.md, content.md). The template's look is **re-skinned** to the
+  Waymark identity — its structure and interactions are ported, its styling is
+  not.
+- **Execution model:** milestone-wise. Each milestone below is a
+  self-contained work package with its own Definition of Done; run `/build`
+  (`npx tsc --noEmit && npm run lint && npm run build`) at the end of every
+  milestone.
 
 ---
 
-## Phase 0 — Foundation & scaffolding (days 1–5)
+## 1. Conversion principles
 
-**Goal:** a reproducible, verifiable base the rest of the build stands on.
+| Principle | Rule |
+| --------- | ---- |
+| Structure from the template | Section order, page inventory, and interaction patterns come from `html_version/`. |
+| Styling from the skill | Every visual decision resolves to `@theme` tokens in `globals.css`; zero raw hex in components. |
+| No jQuery-era dependencies | Bootstrap, jQuery, SlickNav, Swiper, WOW.js, GSAP, Isotope, Magnific, counterUp, parallaxie are all replaced by React/Tailwind/shadcn equivalents (see §3). |
+| Copy from the content rules | The template's dummy copy ("$29/month", "25+ years", lorem-grade blurbs) never ships. All copy comes from typed modules under `src/lib/content/`, written per `.skill/waymark-ui-ux/content.md`, seeded values marked `SEED`. |
+| Static-export safe | No server runtime anywhere; forms/analytics/maps follow `docs/architecture.md` §Static export rules. |
+| Performance budget holds | ≤ 200 KB JS per route; no preloader; motion respects `prefers-reduced-motion`. |
 
-| Task | ID | SRS / FR | Effort |
-| ---- | -- | -------- | ------ |
-| Consolidate repo conventions (AGENTS.md, scripts, editor config) | P0.1 | NFR-5 | 4 h |
-| Lock design tokens in `src/app/globals.css` `@theme` (brand palette, spacing, radius, shadows) | P0.2 | FR-5, NFR-1 | 6 h |
-| Self-host fonts (vendor `woff2`, wire via `next/font/local`) to survive offline CI | P0.3 | FR-21, NFR-1 | 3 h |
-| Define typed content modules under `src/lib/content/*.ts` (Service, CaseStudy, Post, Testimonial, Stat) | P0.4 | §7 SRS, NFR-5 | 4 h |
-| Wire in CI: install → `tsc --noEmit` → lint → `npm run build` → artifact `out/` | P0.5 | NFR-7, NFR-8 | 4 h |
-| Add `sitemap.ts` + `robots.ts` driven by the route/content maps | P0.6 | FR-19 | 2 h |
+## 2. Page mapping (template → routes)
 
-**DoD (Phase 0):** clean build from scratch on CI; tokens visible on a smoke
-page; `/` still renders the placeholder.
+Routes already exist in `src/lib/routes.ts`; the conversion fills them.
 
----
+| Template page | Target route | Notes |
+| ------------- | ------------ | ----- |
+| `index.html` | `/` | Full section rebuild (M2). Home variants (`index-2/-image/-slider`) ignored — one canonical home. |
+| `about.html` | `/about` | Absorbs `team.html` grid as its team section (fold decision). |
+| `services.html` | `/services` | 6 service rows from `services.ts`. |
+| `service-single.html` | `/services/[slug]` | Two-column layout + sidebar CTA; `generateStaticParams`. |
+| `projects.html` | `/work` | Filterable grid replaces Isotope. |
+| `project-single.html` | `/work/[slug]` | Case-study layout + meta sidebar. |
+| `pricing.html` | `/pricing` | Engagement tiers (real figures or ranges — never template's $29/$39/$49). |
+| `blog.html` | `/blog` | Card grid; pagination deferred until >6 posts. |
+| `blog-single.html` | `/blog/[slug]` | Article layout + tags/share. |
+| `contact.html` | `/contact` | Info panel + form + lazy map embed. |
+| `faqs.html` | folded | Grouped accordion block reused on home/pricing/services. |
+| `team.html`, `team-single.html` | folded into `/about` | Team grid on About; no per-member pages in v1. |
+| `testimonial.html` | folded | Testimonial block shared by home/about/services. |
+| `image-gallery.html`, `video-gallery.html` | dropped (v1) | Out of scope; revisit post-launch if needed. |
+| `404.html` | `not-found.tsx` | On-brand 404. |
 
-## Phase 1 — Shell, layout & global instrumentation (days 5–15)
+## 3. Interaction mapping (template tech → Next.js implementation)
 
-**Tasks:** DO NOT build pages yet — build the shared frame.
+| Template pattern | Used in | Replacement |
+| ---------------- | ------- | ----------- |
+| Preloader | all pages | **Dropped** — hurts LCP; skill demands restraint. |
+| Sticky header + offcanvas contact panel | header | Existing `navbar.tsx` + shadcn `Sheet` for the contact offcanvas. |
+| SlickNav mobile menu | header | Existing mobile sheet menu. |
+| `.page-header` banner (parallaxie + SplitText H1 + breadcrumb) | inner pages | Shared `PageHeader` server component: eyebrow + animated-on-scroll title (CSS only) + breadcrumb from route map. No parallax library. |
+| Scrolling logo ticker | all pages | Existing `logo-strip.tsx` as CSS marquee, paused on reduced-motion. |
+| Hero background video | home hero | **Replaced by MoltenMetal** WebGL signature (brand rule), static gradient fallback, DPR-capped, observer-gated. |
+| WOW.js `fadeInUp` / image reveal | everywhere | One small `Reveal` client component (IntersectionObserver adds a class); CSS transitions 150–300 ms; disabled under reduced-motion. |
+| counterUp + waypoints counters | about/home facts | `CountUp` client component, `tabular-nums`, runs once when visible. |
+| Swiper testimonial slider | about/services/home | shadcn-style carousel (Radix) or scroll-snap row — decide in M0; no Swiper dependency. |
+| Bootstrap accordion FAQs | many pages | Add shadcn `accordion` primitive; content-driven groups. |
+| Isotope portfolio filter | projects | Client component: category state filters the card list (data-driven, no masonry lib). |
+| Magnific popups/galleries | galleries | Dropped with the gallery pages. |
+| bootstrap-validator + AJAX form | contact/team-single | Existing `lead-form.tsx` client validation → POST to static-compatible endpoint; honeypot; `aria-live` status; `mailto:` fallback. |
+| Google Maps iframe | contact | Lazy `<iframe>` (`loading="lazy"`) with title + consent-friendly note. |
+| Newsletter mini-form (footer) | footer | Single email field posting to the same form provider; hidden until an endpoint exists (FR-23). |
+| Magic cursor / SmoothScroll | all pages | **Dropped** — off-brand gimmicks; skill: motion is signature, not decoration. |
 
-| Task | ID | SRS / FR | Effort |
-| ---- | -- | -------- | ------ |
-| Root layout: metadata defaults, fonts, analytics loader, skip-to-content | P1.1 | FR-18, FR-22 | 4 h |
-| Navbar (desktop + mobile sheet) with active states and aria-current | P1.2 | FR-1, FR-2 | 8 h |
-| Footer: contact, quick links, socials, reviews, legal | P1.3 | FR-3 | 5 h |
-| Shared sections: SectionHeading, CTABand, StatBlock, Testimonial, Marquee/LogoStrip | P1.4 | FR-6, FR-9 | 8 h |
-| MoltenMetal hero component with fallback (gradient image), reduced-motion + WebGL detection, capped DPR, start/stop observer | P1.5 | FR-5, NFR-4 | 10 h |
-| 404 page styled on brand | P1.6 | FR-1, NFR-4 | 3 h |
-| Route map module (`src/lib/routes.ts`) used by nav, sitemap, breadcrumbs | P1.7 | FR-18, FR-19 | 3 h |
+## 4. Milestones
 
-**DoD (Phase 1):** shell renders on every route; header/footer identical across
-routes; keyboard navigation complete; hero shows animated or fallback variant.
+> Execute in order; each milestone ends with `/build` green and a deployable
+> `out/`. Task IDs (`C<milestone>.<n>`) are referenced by commits and QA.
 
----
+### M0 — Conversion foundations (½–1 day)
 
-## Phase 2 — Core marketing pages (days 10–35)
+Freeze decisions so later milestones never argue with the template again.
 
-**Rendering order:** Home → Services → Work → About → Pricing.
+| Task | ID | Output |
+| ---- | -- | ------ |
+| Read Next.js 16 bundled guides relevant to routing/static export (`node_modules/next/dist/docs/`) | C0.1 | No code; conventions confirmed |
+| Audit template assets worth keeping (client-logo SVGs, icon SVGs) vs replacing (all photos, hero video) | C0.2 | Asset checklist in PR description; copied assets land in `public/` with alt text planned |
+| Decide carousel approach (Radix carousel vs scroll-snap) and add shadcn `accordion` (+ `carousel` if chosen) | C0.3 | Primitives in `src/components/ui/` |
+| Verify tokens cover every template pattern (eyebrow label, ticker, step cards, sidebar CTA box); extend `@theme` only where a token is genuinely missing | C0.4 | `globals.css` updated, no raw hex anywhere |
+| Map every string of template dummy copy to its owning content module; mark replacements `SEED` | C0.5 | Annotated copy plan (this file §5 or content-guide) |
 
-### 2.1 Home (10–18)
+**DoD M0:** primitives exist, tokens extended, asset/copy decisions written down. Site still builds unchanged.
 
-The home page follows the conversion-optimised layout (reference:
-musemind.agency). Every section has one job — build trust, prove capability,
-or drive action — with multiple low-friction entry points (sticky CTA, hero
-CTAs, final form/call split) and objections answered in-page (process,
-pricing ranges, FAQ). Full section order and rationale are captured in the
-home page spec; the summary below is the build map.
+### M1 — Shell & shared blocks (1–2 days)
 
-| Task | ID | FR | Effort |
-| ---- | -- | -- | ------ |
-| Hero: headline, subhead, dual CTA, trust line (rating · projects · qualifier), MoltenMetal layer | P2.1 | FR-5 | 8 h |
-| Client logo bar (wordmarks) — data-driven; renders nothing if roster is empty | P2.2a | FR-6 | 3 h |
-| Proof strip "Design That Moves the Numbers" — 4 real metrics from delivered projects | P2.2b | FR-6, FR-9 | 4 h |
-| What We Do — 6-service card grid linking to service pages | P2.3 | FR-7 | 6 h |
-| Featured work — 3–6 case-study cards, each with one outcome metric/scope statement | P2.4 | FR-8 | 6 h |
-| Why Waymarks — differentiation (one team, direct access, speed) | P2.4a | FR-9 | 4 h |
-| How We Work — 4-step process (removes "black box" fear) | P2.4b | FR-9 | 4 h |
-| Testimonials + review badge, quotes leading with a result | P2.5 | FR-9 | 5 h |
-| Team snapshot (3–5 people, small; links to About) | P2.5a | FR-15 | 3 h |
-| Pricing transparency block — ranges, not exact; links to /pricing | P2.5b | FR-16 | 4 h |
-| FAQ (objection handling) + FAQPage JSON-LD matching visible text exactly | P2.5c | FR-18 | 5 h |
-| Closing CTA band: dual path — book-a-call link + lead form (two dropdowns with "Not sure yet" options, honeypot, mailto fallback) | P2.6 | FR-9, FR-4, FR-12 | 8 h |
-| ProfessionalService JSON-LD (name, URL, description, areaServed, aggregateRating) | P2.6a | FR-18 | 2 h |
+The frame every page hangs on. Port the template's global bands, on brand.
 
-**Conversion-critical content gates (block final copy, not layout):** the
-Proof Strip (P2.2b) and Pricing block (P2.5b) require **real figures** —
-ranges based on delivered projects are acceptable ("6–10 weeks"), invented
-precision is not. Client logos (P2.2a), testimonials (P2.5), and team
-photos (P2.5a) must be verified real sources before launch. Seed content
-lives in `src/lib/content/*.ts` and is marked `SEED`; the layout is done,
-copy swaps are one-file edits.
+| Task | ID | Source pattern | Target |
+| ---- | -- | -------------- | ------ |
+| Header: add offcanvas contact panel (phone/email/address + socials) via Sheet; keep active states + mobile sheet | C1.1 | `header.main-header` + `#offcanvasRight` | `navbar.tsx` |
+| Footer: "work together" CTA band above main footer; newsletter slot (hidden until FR-23 endpoint); copyright row | C1.2 | `footer.main-footer` | `footer.tsx` |
+| `PageHeader` shared banner: eyebrow, title, breadcrumb from route map | C1.3 | `.page-header` | new `site/page-header.tsx` |
+| Ticker: CSS marquee of client wordmarks, duplicated track, reduced-motion pause | C1.4 | `.our-scrolling-ticker` | rework `logo-strip.tsx` |
+| `Reveal` + `CountUp` primitives (observer-based, reduced-motion safe) | C1.5 | WOW.js + counterUp | new `site/reveal.tsx`, `site/count-up.tsx` |
+| Accordion-backed FAQ block (grouped variant for faqs-fold) | C1.6 | `.our-faqs` accordion | rework `faq.tsx` |
+| Sidebar CTA box (icon, pitch, phone button) for detail pages | C1.7 | `.sidebar-cta-box` | new `site/sidebar-cta.tsx` |
+| On-brand 404 | C1.8 | `404.html` | `not-found.tsx` |
 
-**DoD (Phase 2):** every core page builds, is on-brand per the skill gates,
-ends with a contact CTA (BR-2), and the home page emits
-ProfessionalService + FAQPage JSON-LD.
+**DoD M1:** shell matches template structure at 320/768/1280/1920 px; keyboard-complete; quality gates A–E pass; `/build` green.
 
-### 2.2 Services (18–27)
-| Task | ID | FR | Effort |
-| ---- | -- | -- | ------ |
-| Services overview page (grid of all services) | P2.7 | FR-10 | 6 h |
-| Service detail template + `generateStaticParams` for 6–8 services | P2.8 | FR-11 | 10 h |
-| Service FAQs + deliverable lists (content-driven) | P2.9 | FR-11 | 6 h |
+### M2 — Home page (2–3 days)
 
-### 2.3 Work / Case studies (22–31)
-| Task | ID | FR | Effort |
-| ---- | -- | -- | ------ |
-| Work overview with filters (service/sector) | P2.10 | FR-13 | 8 h |
-| Case study detail template (challenge/approach/result/gallery/related) | P2.11 | FR-14 | 12 h |
-| Seed 4–6 real case studies in content module + imagery from team | P2.12 | FR-14, BR-4 | 16 h |
+Rebuild `/` in the template's section order, Waymark voice throughout.
+Content module: `src/lib/content/home.ts` (+ existing modules).
 
-### 2.4 About & Pricing (30–35)
-| Task | ID | FR | Effort |
-| ---- | -- | -- | ------ |
-| About: story, values, process timeline, team, location, CTA | P2.13 | FR-15 | 8 h |
-| Pricing / engagement models: tiers + guidance + FAQs + CTA | P2.14 | FR-16 | 8 h |
+| # | Section (template class) | Component | Content source |
+| - | ------------------------ | --------- | -------------- |
+| 1 | Hero (`.hero`) — eyebrow, split-accent headline, subcopy, primary CTA + phone box; MoltenMetal backdrop instead of stock video | rework `hero.tsx` | `home.ts`, `site.ts` |
+| 2 | Logo ticker (`.our-scrolling-ticker`) | C1.4 output | `stats.ts`/roster |
+| 3 | About intro (`.about-us`) — client-image strip + happy-customers count, founder quote card w/ signature line, feature list, CTA | new `site/about-intro.tsx` | `team.ts`, `stats.ts` |
+| 4 | Services rows (`.our-services`) — 3–6 full-width rows: icon, linked title, blurb, hover image, read-more; closing quote bar | rework `services-grid.tsx` | `services.ts` |
+| 5 | What we do (`.what-we-do`) — copy + 2 feature items left, 3-image collage right | new `site/what-we-do.tsx` | `home.ts` |
+| 6 | Why choose us (`.why-choose-us`) — 4 icon boxes around central graphic | rework `why-waymarks.tsx` | `home.ts` |
+| 7 | Projects (`.our-projects`) — 3 case-study cards | rework `featured-work.tsx` | `case-studies.ts` |
+| 8 | How it works (`.how-it-work`) — 3 numbered step cards with bullet lists | rework `how-we-work.tsx` | `home.ts` |
+| 9 | Facts (`.our-facts`) — image + explore circle + 4 counters | rework `proof-strip.tsx` | `stats.ts` (real figures only) |
+| 10 | Pricing teaser (`.our-pricing`) — 3 tiers + benefit row, links to `/pricing` | rework `pricing-block.tsx` | `home.ts` (ranges ok, no invented precision) |
+| 11 | Testimonials slider (`.our-testimonials`) | rework `testimonials.tsx` | `testimonials.ts` |
+| 12 | FAQ (`.our-faqs`) — image/CTA aside + accordion | C1.6 output | `home.ts` |
+| 13 | Blog teaser (`.our-blog`) — heading + 3 post cards | new `site/blog-teaser.tsx` | `posts.ts` |
+| 14 | JSON-LD: ProfessionalService + FAQPage matching visible text | — | `page.tsx` |
 
-**DoD (Phase 2):** every core page builds, is on-brand per the skill gates, and
-ends with a contact CTA (BR-2).
+**DoD M2:** home renders all 14 blocks in order, on brand, responsive; Lighthouse perf ≥ 90 desktop; quality gates pass; `/build` green.
 
----
+### M3 — Core inner pages (3–4 days)
 
-## Phase 3 — Contact, Blog, Legal (days 33–50)
+Order: About → Services → Service detail → Work → Work detail → Pricing.
 
-| Task | ID | FR | Effort |
-| ---- | -- | -- | ------ |
-| Contact page + form (validation, aria-live, honeypot, success/error, mailto fallback, form-service endpoint) | P3.1 | FR-12, FR-3 | 12 h |
-| "Book a call" deep link (Calendly) integrated into CTAs | P3.2 | FR-4 | 3 h |
-| Blog index (cards: title, date, excerpt, reading time, tags) | P3.3 | FR-17 | 6 h |
-| Blog post template + MDX/local content so posts are just content files | P3.4 | FR-17, BR-7 | 8 h |
-| Publish 4–6 launch articles (content module/MDX), each SEO-optimized | P3.5 | FR-17, BR-8 | 12 h |
-| Privacy policy + Terms (accurate, reviewed legal copy) | P3.6 | FR-1 | 4 h |
-| Testimonials/badges verified against real sources  | P3.7 | FR-9 | 3 h |
-
-**DoD (Phase 3):** the full sitemap builds; contact flow verified end-to-end
-against the form service sandbox; blog articles render with metadata.
-
----
-
-## Phase 4 — Performance, a11y, SEO hardening (days 50–65)
-
-| Task | ID | FR/NFR | Effort |
+| Task | ID | Source | Target |
 | ---- | -- | ------ | ------ |
-| Lighthouse pass on all templates; fix LCP, CLS, TBT | P4.1 | NFR-1 | 8 h |
-| Full WCAG 2.1 AA audit (axe + manual): forms, menus, focus, contrast | P4.2 | NFR-2 | 8 h |
-| Metadata/OG/JSON-LD audit on every route + sitemap correctness | P4.3 | FR-18, FR-19 | 5 h |
-| Bundle audit: code-split route components, lazy-load hero shader, compress images | P4.4 | NFR-1, NFR-3 | 6 h |
-| Cross-browser pass (last 2 versions) + responsive breakpoints test | P4.5 | NFR-3 | 6 h |
-| Analytics events wired (page views + form/CTA conversions) with opt-out | P4.6 | FR-22 | 4 h |
+| About: founder/approach sections, benefits list, facts counters, team grid (absorbs `team.html`), testimonial slider, FAQ | C3.1 | `about.html` + `team.html` | `app/about/page.tsx` + section components |
+| Services overview: 6 rows + testimonials + FAQ reuse | C3.2 | `services.html` | `app/services/page.tsx` |
+| Service detail: entry copy, process steps, deliverables, FAQ, sidebar CTA; `generateStaticParams` for all services | C3.3 | `service-single.html` | `app/services/[slug]/page.tsx` |
+| Work overview: filter tabs (All + categories from data) filtering card grid | C3.4 | `projects.html` | `app/work/page.tsx` + filter client component |
+| Case-study detail: entry, challenge/approach/result, outcome metrics, meta sidebar, related work, FAQ | C3.5 | `project-single.html` | `app/work/[slug]/page.tsx` |
+| Pricing: tier cards (highlighted middle), benefit row, facts/benefits reuse, FAQ, CTA | C3.6 | `pricing.html` | `app/pricing/page.tsx` |
 
-**DoD (Phase 4):** Lighthouse ≥ 90 perf / ≥ 95 a11y on templates; LCP < 2.5 s;
-no a11y audit failures above "minor".
+**DoD M3:** every core route builds with metadata + breadcrumbs; each page ends in a contact CTA (BR-2); filters and accordions keyboard-operable; `/build` green.
 
----
+### M4 — Blog, contact, legal (2–3 days)
 
-## Phase 5 — Content completion & launch (days 65–90)
-
-| Task | ID | FR/NFR | Effort |
+| Task | ID | Source | Target |
 | ---- | -- | ------ | ------ |
-| Final copy pass on all pages (tone, accuracy, typography rules) | P5.1 | skill content.md | 8 h |
-| Final imagery: compress, resize, add alt text, verify with limit of 10% green coverage | P5.2 | FR-20, NFR-1 | 6 h |
-| Legal review + privacy/terms final | P5.3 | BR-10 | 4 h |
-| UAT: stakeholder walkthrough against acceptance criteria | P5.4 | SRS §9 | 8 h |
-| Release dry-run: clean CI build → deploy preview → smoke test | P5.5 | NFR-7, NFR-8 | 4 h |
+| Blog index: card grid (image, title, read-more), pagination stub | C4.1 | `blog.html` | `app/blog/page.tsx` |
+| Article template: featured image, rich body, tag chips, share links, Article JSON-LD | C4.2 | `blog-single.html` | `app/blog/[slug]/page.tsx` |
+| Contact: info panel (phone/email/address/socials) + validated lead form + lazy map embed | C4.3 | `contact.html` | `app/contact/page.tsx` |
+| Form endpoint wired (provider TBD — see Dependencies) with success/error/`aria-live`/mailto fallback | C4.4 | AJAX pattern | `lead-form.tsx` |
+| Privacy + Terms pages on PageHeader shell | C4.5 | — | `app/privacy/`, `app/terms/` |
+| Seed 4–6 posts + ≥4 case studies if not yet present (`SEED` where unverified) | C4.6 | — | content modules |
 
-**DoD (Phase 5):** release checklist across `docs/release-checklist.md`;
-production deploy is trivial (`/deploy`).
+**DoD M4:** full sitemap from `routes.ts` builds; contact flow proven against sandbox endpoint; articles emit metadata + JSON-LD; `/build` green.
 
----
+### M5 — Hardening & launch (2–3 days)
 
-## Milestones & schedule
+| Task | ID | Reference |
+| ---- | -- | --------- |
+| Lighthouse pass on every template type; fix LCP/CLS/TBT; confirm ≤ 200 KB JS/route | C5.1 | NFR-1 |
+| axe + manual WCAG 2.1 AA audit (forms, menus, accordions, filters, focus) | C5.2 | NFR-2 |
+| Metadata/OG/JSON-LD/sitemap audit on all routes | C5.3 | FR-18/19 |
+| Replace remaining `SEED` copy/figures with verified content; strip template leftovers | C5.4 | content.md |
+| Cross-browser + responsive matrix pass | C5.5 | NFR-3 |
+| Analytics events (page view, form submit, book-call click) with opt-out | C5.6 | FR-22 |
+| Release dry-run per `docs/release-checklist.md` | C5.7 | — |
 
-| Milestone | Target day | Entry exit criteria |
-| --------- | ---------- | ------------------- |
-| M0 Foundation ready | 5 | Phase 0 DoD |
-| M1 Shell integrated | 15 | Phase 1 DoD |
-| M2 Core pages complete | 35 | Phase 2 DoD |
-| M3 Site complete (all routes) | 50 | Phase 3 DoD |
-| M4 Hardened | 65 | Phase 4 DoD |
-| M5 Launch | 90 | Phase 5 DoD |
+**DoD M5:** release checklist fully green; production deploy trivial via `/deploy`.
 
-## Effort estimate (approx.)
+## 5. Copy replacement register (template dummy → owner)
 
-| Phase | Effort |
-| ----- | ------ |
-| P0 Foundation | ~23 h |
-| P1 Shell | ~41 h |
-| P2 Core pages | ~80 h |
-| P3 Contact/Blog/Legal | ~48 h |
-| P4 Hardening | ~37 h |
-| P5 Content/Launch | ~30 h |
-| **Total** | **~260 h** (~5–6 sprint-weeks of 2 people) |
+Every template string below is placeholder and must NOT ship. Owner modules:
 
-## Key dependencies & decision points
+| Template dummy | Appears in | Replaced by |
+| -------------- | ---------- | ----------- |
+| "$29/$39/$49 per month", "30 day free trial" | pricing | Real engagement ranges — founders/account (`home.ts`, pricing) `SEED` until provided |
+| "25+ years", "8k+ awards", "5k+ customers", "50+ projects", "15K+", "500+ Happy customer" | facts/about | Verified Waymark stats (`stats.ts`) `SEED` |
+| "sarah mitchell, CEO & founder" + signature | about/home | Real founder identity (`team.ts`) `SEED` |
+| "Crafting logos, color palettes guidelines…" (repeated blurb) | services rows | Per-service summaries (`services.ts`) |
+| "emily williams / emma johnson / mark johnson / devon lane" quotes | testimonials | Approved client quotes (`testimonials.ts`) `SEED` |
+| "+123 456 789", "info@domainname.com", "123 Creative Lane London" | header/footer/contact | `hello@waymarks.agency`, `+971 55 896 5353`, real address (`site.ts`) |
+| Stock photos (people/offices/projects) | everywhere | Brand-approved imagery or tasteful token-based graphics; never hotlink the scraped copies |
 
-1. **Form service choice (before P3.1):** Formspree vs Web3Forms vs vendor SMTP —
-   decide with the account owner; only a static-compatible endpoint required.
-2. **Real figures for the home page (before P2.2b/P2.5b final copy):** the Proof
-   Strip and Pricing Transparency Block need verified numbers (conversion lift,
-   weeks to launch, projects shipped, satisfaction score, starting prices).
-   Ranges OK ("6–10 weeks"); fabricated precision is not. Send figures once
-   available — copy swaps in `src/lib/content/*.ts`.
-3. **Content availability (gate for P2.12):** need ≥4 approved case studies and
-   brand-approved imagery before building the portfolio views in final form.
-3. **Analytics provider (P1.1/P4.6):** pick privacy-first provider; deploy opt-out.
-4. **Font licensing:** confirm Geist/local files can ship with the static site.
+## 6. Dependencies & decision points
 
-## Risks
+1. **Form provider** (blocks C4.4): Formspree vs Web3Forms vs other static-compatible endpoint — decide with account owner before M4.
+2. **Real figures** (block C5.4 final copy): proof-strip stats and pricing ranges need verified numbers; ranges acceptable, invented precision is not.
+3. **Carousel choice** (blocks C0.3): Radix/shadcn carousel vs CSS scroll-snap — pick lightest that meets a11y gates.
+4. **Imagery** (blocks M2/M3 polish): brand-approved replacements for all stock photos; the scraped template images must not ship.
+5. **Map embed** (blocks C4.3): Google Maps iframe vs static map image + link — privacy/perf trade-off, decide in M4.
 
-Same as BRD §11, with phase-gate owners assigned: portfolio content (marketing),
-WebGL performance (eng), brand consistency (design), form delivery (eng/ops).
+## 7. Risks
+
+| Risk | Mitigation |
+| ---- | ---------- |
+| Template look creeping in (orange accents, rounded-everything, glow) | Quality gate A on every PR: grep diffs for hex/rgb; skill tokens only |
+| Scraped assets carrying license risk | Never ship template photography/logos; rebuild or replace (C0.2 register) |
+| Motion/animation bloat (template ships 12 JS libs) | Only `Reveal`/`CountUp`/carousel allowed; budget check each milestone |
+| Scope creep via template pages (galleries, team singles) | Fold/drop decisions in §2 are final for v1; changes require a spec update first |
+| Dummy copy surviving to production | Copy register §5 audited at C5.4; grep for template strings in CI content lint |
+
+## 8. Traceability
+
+- Requirement IDs (`BR-x`, `FR-x`, `NFR-x`) keep their meaning from
+  `.spec/SRS.md` v1.1; the conversion changes *how* requirements are met, not
+  *which* requirements apply.
+- Testing per milestone maps to `docs/testing.md`; launch gate is
+  `docs/release-checklist.md`.

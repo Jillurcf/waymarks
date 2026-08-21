@@ -4,6 +4,9 @@
   shadcn/ui primitives (`radix-ui`) · `lucide-react` · `ogl` (WebGL hero).
 - **Build:** static export via `next.config.ts` (`output: "export"`,
   `trailingSlash: true`, `images.unoptimized`).
+- **Design source:** `html_version/` (Artistic template) supplies structure and
+  interaction patterns only. All styling resolves to the brand skill
+  (`.skill/waymark-ui-ux/design-system.md`) and `@theme` tokens.
 
 > Next.js 16 has breaking changes. Read the bundled guides under
 > `node_modules/next/dist/docs/` before writing app code (see `AGENTS.md`).
@@ -14,12 +17,16 @@
 ```
 ┌───────────────────────────────────────────────┐
 │ app/  (routes, layouts, dynamic render)       │
-│   ├── layout.tsx / page.tsx                   │
+│   ├── layout.tsx / page.tsx / not-found.tsx   │
 │   └── [slug]/ routes with generateStaticParams│
 ├───────────────────────────────────────────────┤
 │ components/                                   │
 │   ├── ui/         shadcn primitives           │
+│   │               (+ accordion, carousel)     │
 │   ├── site/       marketing sections/blocks   │
+│   │               incl. shared PageHeader,    │
+│   │               Reveal, CountUp, SidebarCta │
+│   ├── navbar.tsx  header + contact offcanvas  │
 │   └── molten-metal.tsx  signature WebGL hero  │
 ├───────────────────────────────────────────────┤
 │ lib/                                          │
@@ -30,7 +37,24 @@
 ├───────────────────────────────────────────────┤
 │ public/   images, og assets, favicon, logo    │
 └───────────────────────────────────────────────┘
+
+html_version/   read-only design reference — never imported, linked, or shipped
 ```
+
+## Conversion architecture (template → app)
+
+The HTML template's jQuery/Bootstrap stack maps onto the app as follows
+(full table in `docs/implementation-plan.md` §3):
+
+- **Layout bands** (header, ticker, page banner, footer CTA band) are shared
+  components rendered by `layout.tsx` / page files — never copied per page.
+- **Interactivity** is isolated in small client components (`Reveal`,
+  `CountUp`, work filter, lead form, accordions/carousels via shadcn).
+  Everything else stays a Server Component.
+- **Motion** = CSS transitions (150–300 ms) + IntersectionObserver class
+  toggles; all gated on `prefers-reduced-motion`. No animation libraries.
+- **Hero** = MoltenMetal WebGL with static fallback; the template's background
+  video is not ported.
 
 ## Conventions
 
@@ -38,6 +62,8 @@
   `metadata` (or `generateMetadata`). Dynamic collections (services, work,
   blog) use `generateStaticParams` + local content modules — all resolved at
   build time.
+- **Route registration** — every URL is added to `src/lib/routes.ts` first;
+  nav, footer, sitemap, and breadcrumbs read from it.
 - **Components** — page-specific blocks in `src/components/site/`; generic
   primitives in `src/components/ui/` (add with `npx shadcn@latest add`).
   Server Components by default; add `"use client"` only for interactivity.
@@ -47,7 +73,8 @@
 - **Styling** — Tailwind utility classes + `@theme` tokens. No raw hex inside
   JSX (only in token definitions). `cn()` for composition.
 - **Images** — `next/image` with explicit dimensions and `alt`; `unoptimized`
-  is on (static host), so serve optimized-size files directly.
+  is on (static host), so serve optimized-size files directly. Template stock
+  photos are never copied into `public/`.
 
 ## Static export rules that shape everything
 
@@ -62,8 +89,9 @@
 
 ## State & data flow
 
-- No global state library. Local React state for menus; uncontrolled forms with
-  client validation; content flows one-way from `lib/content` → props → view.
+- No global state library. Local React state for menus/filters; uncontrolled
+  forms with client validation; content flows one-way from `lib/content` →
+  props → view.
 - A single `src/lib/routes.ts` is the source for nav, footer, sitemap,
   breadcrumbs — add routes there first.
 
@@ -72,6 +100,8 @@
 - ≤ 200 KB JS (gzip) per route; hero WebGL deferred/lazy until in view
   (`IntersectionObserver`), DPR capped, disabled on `prefers-reduced-motion`.
 - Route-level code splitting by default; shared chunks kept minimal.
+- The conversion must not regress the budget: no preloader, no jQuery-era
+  libraries, galleries/lightboxes dropped.
 
 ## Environments & deployment
 
@@ -91,12 +121,13 @@ previous artifact (`NFR-8`). See `.command/deploy.md`.
   server-side or hosted elsewhere.
 - Honeypot + rate limiting on the form endpoint (provider-side).
 - CSP headers at host: `default-src 'self'`; allow `https:` for form/analytics/
-  booking origins only; `frame-src` for Calendly embed.
+  booking origins only; `frame-src` for the map embed (if kept) and Calendly.
 - Regular `npm audit`; keep lockfile current.
 
 ## TBD decision log
 
-1. Form-service provider → owner: engineering/ops (blocks P3.1).
-2. Analytics provider → owner: marketing/ops (blocks P1.1).
-3. Font vendoring plan → owner: design/eng (blocks P0.3).
-4. Content hosting for imagery (local vs CDN) → owner: marketing (blocks P2.12).
+1. Form-service provider → owner: engineering/ops (blocks C4.4).
+2. Analytics provider → owner: marketing/ops (blocks C5.6).
+3. Carousel approach (Radix vs scroll-snap) → owner: engineering (blocks C0.3).
+4. Map embed vs static map → owner: marketing/eng (blocks C4.3).
+5. Content hosting for imagery (local vs CDN) → owner: marketing (blocks M2/M3 polish).

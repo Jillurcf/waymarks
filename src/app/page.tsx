@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 
 import { Hero } from "@/components/site/hero";
 import { LogoStrip } from "@/components/site/logo-strip";
-import { ProofStrip } from "@/components/site/proof-strip";
+import { AboutIntro } from "@/components/site/about-intro";
 import { ServicesGrid } from "@/components/site/services-grid";
-import { FeaturedWork } from "@/components/site/featured-work";
+import { WhatWeDo } from "@/components/site/what-we-do";
 import { WhyWaymarks } from "@/components/site/why-waymarks";
+import { FeaturedWork } from "@/components/site/featured-work";
 import { HowWeWork } from "@/components/site/how-we-work";
-import { Testimonials } from "@/components/site/testimonials";
-import { TeamSnapshot } from "@/components/site/team-snapshot";
+import { ProofStrip } from "@/components/site/proof-strip";
 import { PricingBlock } from "@/components/site/pricing-block";
+import { Testimonials } from "@/components/site/testimonials";
 import { Faq } from "@/components/site/faq";
-import { FinalCta } from "@/components/site/final-cta";
+import { BlogTeaser } from "@/components/site/blog-teaser";
 import { site } from "@/lib/content/site";
-import { trustLine } from "@/lib/content/stats";
 
 export const metadata: Metadata = {
   title: "Waymark — Digital Product Design & Development",
@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Block 14 — ProfessionalService JSON-LD (M2). aggregateRating is omitted
+// until a verified review count exists (site.reviews is still SEED) —
+// placeholder values must not ship as structured data.
 const schema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -36,32 +39,33 @@ const schema = {
   telephone: site.phone,
   description: site.description,
   areaServed: "United Arab Emirates",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: trustLine.rating,
-    reviewCount: site.reviews,
-  },
 };
+
+// FAQPage JSON-LD matching the visible FAQ text is emitted by <Faq />.
 
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+        }}
       />
+      {/* M2 section order — docs/implementation-plan.md §4 */}
       <Hero />
       <LogoStrip />
-      <ProofStrip />
+      <AboutIntro />
       <ServicesGrid />
-      <FeaturedWork />
+      <WhatWeDo />
       <WhyWaymarks />
+      <FeaturedWork />
       <HowWeWork />
-      <Testimonials />
-      <TeamSnapshot />
+      <ProofStrip />
       <PricingBlock />
+      <Testimonials />
       <Faq />
-      <FinalCta />
+      <BlogTeaser />
     </>
   );
 }

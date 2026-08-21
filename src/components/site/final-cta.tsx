@@ -19,7 +19,7 @@ export function FinalCta() {
         <div className="mb-10 text-center">
           <a
             href={bookCallHref}
-            className="inline-flex h-11 items-center justify-center rounded-lg bg-waymark-primary px-6 text-base font-medium text-foreground transition-all hover:bg-waymark-primary/85"
+            className="inline-flex h-11 items-center justify-center rounded-lg bg-waymarks-primary px-6 text-base font-medium text-foreground transition-all hover:bg-waymarks-primary/85"
           >
             {finalCta.bookCallLabel}
           </a>

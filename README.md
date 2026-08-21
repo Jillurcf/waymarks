@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Waymark — Company Website
 
-## Getting Started
+Marketing site for Waymark, a UI/UX and digital product design studio.
+Built as a **static Next.js export** by converting the `html_version/`
+HTML template's structure into the existing app, re-skinned to the Waymark
+brand (green molten-metal identity, Geist type, editorial restraint).
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router) · React 19 · TypeScript 5
+- Tailwind CSS v4 with design tokens in `src/app/globals.css` (`@theme`)
+- shadcn/ui primitives + `lucide-react` icons
+- `ogl` WebGL hero ("MoltenMetal") with static fallback
+- Static export: `output: "export"`, trailing slashes, emits to `out/`
+
+## Quickstart
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Verification
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx tsc --noEmit   # types
+npm run lint       # eslint
+npm run build      # static export to out/
+# or all three:
+npm run verify
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Working on this repo
 
-## Learn More
+- **Milestones:** the build is organised milestone-wise in
+  [`docs/implementation-plan.md`](docs/implementation-plan.md) — pick a
+  milestone (M0–M5), work its tasks (`C<m>.<n>`), finish with `/build`.
+- **Brand rules:** [`.skill/waymark-ui-ux/`](.skill/waymark-ui-ux/SKILL.md)
+  is mandatory for any UI or copy change; quality gates there must pass.
+- **Content:** lives in typed modules under `src/lib/content/` — never inline
+  copy in components. Template placeholder strings never ship.
+- **Routes:** register every URL in `src/lib/routes.ts` first (nav, footer,
+  sitemap, breadcrumbs read from it).
+- **Next.js 16:** breaking changes vs older knowledge — read the bundled
+  guides in `node_modules/next/dist/docs/` before writing app code.
 
-To learn more about Next.js, take a look at the following resources:
+## Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Folder | Contents |
+| ------ | -------- |
+| `docs/` | Implementation plan, architecture, content guide, testing, release checklist |
+| `.spec/` | BRD + SRS (requirements with traceable IDs) |
+| `.command/` | Agent workflows: `/dev`, `/build`, `/scaffold`, `/design`, `/content`, `/ship`, `/deploy` |
+| `html_version/` | Read-only design reference (source template capture). Never imported or shipped. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site deploys as pure static files: `npm run build` → upload `out/` to any
+static host. See `.command/deploy.md` and `docs/architecture.md`.

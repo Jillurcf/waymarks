@@ -1,41 +1,46 @@
 # Waymark — Business Requirements Document (BRD)
 
-- **Version:** 1.0 (Draft)
+- **Version:** 1.1
 - **Project:** Waymark Company Website
-- **Date:** 2026-08-19
+- **Date:** 2026-08-21
 - **Prepared by:** Product / Account (with Engineering review)
-- **Basis:** Existing repository at `C:\waymark` (Next.js static export)
-- **Reference point:** Digital product & UI/UX agencies (e.g. Musemind,
-  https://musemind.agency/)
+- **Basis:** existing Next.js static export at `C:\waymarks`
+- **Design source:** `html_version/` — "Artistic" design-agency HTML template
+  (structure and interactions only; styling is re-skinned to the Waymark brand)
 
 ---
 
 ## 1. Executive summary
 
-Waymark is a UI/UX and digital product design studio. Today the company has no
-meaningful web presence — the repository contains only a "coming soon" page
-with the Waymark logo, email, and phone number on a static Next.js export.
+Waymark is a UI/UX and digital product design studio. The repository already
+contains a working static Next.js marketing site with a conversion-focused
+home page, typed content modules, and the brand's liquid-metal green identity.
 
-This initiative replaces that placeholder with a full marketing site that
-positions Waymark as a premium, conversion-focused UI/UX agency, mirrors the
-service breadth of leading peers (UI/UX, brand identity, web design &
-development, SaaS and mobile product design, MVP builds), and drives qualified
-inbound leads through a structured contact workflow.
+This initiative aligns the site's information architecture and page inventory
+with the purchased "Artistic" design-agency template (captured in
+`html_version/`): its section structure, page types, and interaction patterns
+are ported into the existing Next.js app milestone-wise, while every visual
+decision is re-skinned to the Waymark brand skill (green molten-metal accent,
+Geist typography, editorial restraint). The template's placeholder copy,
+stock imagery, and jQuery-era dependencies never ship.
 
-The primary business metric is **qualified leads generated** (contact-form
-submissions and booked discovery calls). The site must also build credibility
-through a high-craft portfolio, transparent engagement/pricing information, and
-a clean editorial design language that embodies the brand's "liquid metal" green
-identity.
+The primary business metric remains **qualified leads generated**
+(contact-form submissions and booked discovery calls). The site must build
+credibility through a high-craft portfolio, transparent engagement/pricing
+information, and a clean editorial design language that embodies the brand's
+"liquid metal" green identity.
 
 ## 2. Business context & background
 
-- **Current state:** A single static `src/app/page.tsx` rendering a centered
-  logo, "Coming soon", `hello@waymarks.agency`, and `+971558965353`. A `Navbar`
-  component and WebGL `MoltenMetal` shader component exist but are unused.
-  The brand logo (`public/Waymarks_Logo-01.png`, 2457×435 horizontal lockup) is
-  the only design asset.
-- **Why now:** A studio selling design cannot convert leads without a portfolio.
+- **Current state:** A functional Next.js 16 static export: home page with
+  hero (MoltenMetal WebGL), services/work/testimonials/pricing/FAQ sections,
+  typed content modules under `src/lib/content/`, route map, sitemap/robots.
+  Brand assets: logo lockup (`public/Waymarks_Logo-01.png`, 2457×435) and the
+  green palette encoded in `globals.css` tokens.
+- **Change driver:** The team acquired the Artistic template and wants its
+  proven agency-site structure (hero + ticker + about intro + service rows +
+  why-choose + projects + process + facts + pricing + testimonials + FAQ +
+  blog) as the site blueprint, executed in the existing stack.
 - **Operating environment:** Static hosting; the team targets fast, low-ops
   deployments.
 
@@ -45,7 +50,7 @@ identity.
 | ---- | -------------------------------------------------- | ----------------------------------------------------------------- | ------ |
 | B1   | Establish a credible agency presence               | Live site, complete service & portfolio sections                   | In 90 days |
 | B2   | Generate qualified inbound leads                   | Contact submissions / booked calls                                 | 10+/month at 6 months |
-| B3   | Position premium positioning ("Design that moves") | Brand consistency pass in every page review                        | 100%   |
+| B3   | Maintain premium positioning ("Design that moves") | Brand consistency pass in every page review                        | 100%   |
 | B4   | Support SEO discovery                              | indexed service & portfolio pages, Lighthouse SEO ≥ 90             | 12 weeks |
 | B5   | Enable low-effort content updates                  | Content editable from typed data modules without code shuffles     | By launch |
 
@@ -78,33 +83,34 @@ a distinctive liquid-metal visual identity, and honest engagement transparency.
 
 ## 7. Scope
 
-### In scope (v1)
+### In scope (v1.1 — template conversion)
 
-- Home page (hero with signature background, services summary, selected work,
-  stats/trust, testimonials, CTA).
-- Services overview + individual service pages
-  (UI/UX design, UX research/consulting, brand identity, web design &
-  development, SaaS/product design, mobile app design, MVP builds).
-- Work / Case studies overview + individual case-study pages.
-- About page (process, team, values, locations).
-- Pricing / engagement models page (transparent tiers or "project-based"
-  guidance).
-- Blog (category + article pages) to feed SEO; CMS-light via typed data or
-  MDX content.
-- Contact page with form + validation + form-service endpoint.
+- Home page rebuilt in the template's section order (hero with MoltenMetal
+  backdrop replacing the template video, logo ticker, about intro, service
+  rows, what-we-do, why-choose, projects, process steps, facts/counters,
+  pricing teaser, testimonials, FAQ, blog teaser).
+- Services overview + individual service pages (6 services).
+- Work / Case studies overview (filterable) + individual case-study pages.
+- About page absorbing the template's team grid (no per-member pages in v1).
+- Pricing / engagement models page (transparent tiers or ranges).
+- Blog index + article pages to feed SEO; CMS-light via typed data or MDX.
+- Contact page with form + validation + form-service endpoint (+ map embed).
+- FAQ blocks (grouped accordion) on home/pricing/services — the template's
+  dedicated FAQs page is folded into these.
 - Legal: Privacy policy, Terms & conditions.
-- Footer (contact, quick links, reviews badges, socials, legal).
-- Core SEO & social metadata (sitemap, robots, Open Graph).
-- Analytics (first-party where possible, e.g. Vercel/Plausible).
-- 404 page.
+- Footer (work-together CTA band, contact, quick links, socials, legal).
+- Core SEO & social metadata (sitemap, robots, Open Graph, JSON-LD).
+- Analytics (privacy-first).
+- On-brand 404.
 
-### Out of scope (v1, staged later)
+### Out of scope (v1.1, staged later)
 
+- Image/video gallery pages (template's `image-gallery.html`,
+  `video-gallery.html`) — revisit post-launch.
+- Team member single pages.
 - Multi-language/localized content.
 - E-commerce, payments, member login/portal.
-- Client dashboard or project management area.
 - Headless CMS migration (evaluated, not committed).
-- Native mobile apps / portfolio community portal.
 
 ## 8. Stakeholders
 
@@ -124,33 +130,34 @@ a distinctive liquid-metal visual identity, and honest engagement transparency.
 | BR-2 | Every service/work/about page must end in a contact call-to-action.       | High     | B2        |
 | BR-3 | Contact workflow must capture name, email, company, service, budget, message and reply within 24h. | High | B2, B1 |
 | BR-4 | Portfolio must show ≥ 6 case studies with outcomes at launch.            | High     | B1, B3    |
-| BR-5 | Design must strictly follow the Waymark brand skill (logo-derived identity: green liquid-metal accent, editorial layout). | High | B3 |
+| BR-5 | Design must strictly follow the Waymark brand skill; the HTML template contributes structure only — its colors, fonts, dummy copy, and stock assets never ship. | High | B3 |
 | BR-6 | Site must be statically exportable and deployable to any static host with zero server runtime. | High | B5/B6(ops) |
 | BR-7 | Content (services, case studies, blog) must be updatable without editing component code. | Medium | B5 |
 | BR-8 | Site must be findable: complete metadata, sitemap, robots, Open Graph on every page. | Medium | B4 |
-| BR-9 | Performance budget: LCP < 2.5s on 4G, ≤ 200 KB JS per route.              | Medium    | B4       |
+| BR-9 | Performance budget: LCP < 2.5s on 4G, ≤ 200 KB JS per route; the conversion must not regress it (no preloader, no jQuery-era libraries). | Medium | B4 |
 | BR-10 | Site must meet WCAG 2.1 AA (or A+ documented exception) for a11y.          | Medium    | B1, B3   |
 | BR-11 | Analytics must capture page views and conversion events without slowing pages. | Low | B2, B4 |
 
-## 10. Competitive benchmark (reference: Musemind)
+## 10. Competitive benchmark
 
-| Capability                    | Musemind                       | Waymark target (v1)                       |
+| Capability                    | Peer agencies                  | Waymark target (v1.1)                     |
 | ----------------------------- | ------------------------------ | ----------------------------------------- |
-| Service breadth               | UI/UX, brand, web, SaaS, app, MVP, motion | Same core set, smaller set of pages |
-| Trust signals                 | Clutch reviews, client logos, stats, testimonials | Stats, testimonials, case studies + logos |
-| Contact workflow              | Multi-field form + Calendly     | Equivalent: form + direct book-a-call     |
-| Design language               | Clean, premium, image-led       | Clean, premium, signature liquid-metal hero |
-| Transparency                  | Pricing page, engagement models | Pricing / engagement models page           |
+| Service breadth               | UI/UX, brand, web, SaaS, app, MVP | Same core set, one page per service     |
+| Trust signals                 | Clutch reviews, client logos, stats, testimonials | Stats, testimonials, case studies + ticker |
+| Contact workflow              | Multi-field form + Calendly    | Equivalent: form + direct book-a-call     |
+| Design language               | Clean, premium, image-led      | Template structure + signature liquid-metal identity |
+| Transparency                  | Pricing page, engagement models | Pricing / engagement models page         |
 
 ## 11. Risks & assumptions
 
 | Risk                                                            | Impact | Mitigation                                    |
 | --------------------------------------------------------------- | ------ | --------------------------------------------- |
-| No portfolio content ready at launch                            | High   | Reuse client work early; document template + obtain approvals; ship with minimum 4–6 studies |
+| Template look creeping in (off-brand accents, glow, rounded-everything) | High | Quality gate A per PR; skill tokens only; grep diffs for raw hex |
+| Scraped template assets carrying license risk                   | High   | Never ship template photography/logos; replacement register in implementation plan §5 |
+| No portfolio content ready at launch                            | High   | Ship with minimum 4–6 studies; seed values marked `SEED` until verified |
 | Static export blocks server-side form handling                  | Med    | Use a form-service endpoint (Formspree/Web3Forms) with clean fallback; see SRS FR-12 |
+| Motion/animation bloat (template ships 12 JS libraries)         | Med    | Only Reveal/CountUp/carousel primitives; bundle budget checked each milestone |
 | WebGL hero hurts performance on low-end devices                 | Med    | Feature-detect, cap DPR, fallback to static gradient image |
-| Team bandwidth / external copywriting                           | Med    | Phase copywriting into plan; keep copy in content modules |
-| Brand identity not fully documented (logo is the only asset)    | Med    | Lock palette/type/tone in the brand skill and design tokens before build |
 | Search rankings take months regardless of site quality          | Low    | Set expectation in KPI: impressions 90-day horizon |
 | Next.js 16 conventions differ from training assumptions         | Low    | All work reads `node_modules/next/dist/docs/` first (see AGENTS.md) |
 
@@ -167,4 +174,7 @@ a distinctive liquid-metal visual identity, and honest engagement transparency.
 
 ---
 
-*Traceability: BR-IDs above are referenced by FR-IDs in `.spec/SRS.md`.*
+*Traceability: BR-IDs above are referenced by FR-IDs in `.spec/SRS.md`.
+Changelog v1.1: design source changed from musemind reference to Artistic
+template conversion; galleries/team-singles moved out of scope; BR-5/BR-9
+amended for conversion guardrails.*

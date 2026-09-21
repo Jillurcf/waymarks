@@ -6,7 +6,8 @@ import { aboutLocations, aboutTeam } from "@/lib/content/about";
 import { team } from "@/lib/content/team";
 
 // Team grid on /about (C3.1), absorbing the template's team.html fold.
-// Initial avatars stand in until real portraits are available (team.ts SEED).
+// Real portraits come from team.ts; an initials plate stands in until a
+// member's photo is available.
 export function TeamGrid() {
   return (
     <section id="team" aria-labelledby="team-title" className="py-20 sm:py-32">
@@ -22,15 +23,26 @@ export function TeamGrid() {
             {team.map((member, i) => (
               <li
                 key={`${member.name}-${i}`}
-                className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center"
+                className="overflow-hidden rounded-xl border border-border bg-card text-center"
               >
-                <span
-                  className="flex size-20 items-center justify-center rounded-full bg-waymarks-secondary text-xl font-semibold text-white"
-                  aria-hidden="true"
-                >
-                  {member.initials}
-                </span>
-                <div>
+                {member.photo ? (
+                  <img
+                    src={member.photo}
+                    alt={`${member.name}, ${member.role}`}
+                    width={940}
+                    height={1080}
+                    loading="lazy"
+                    className="aspect-[47/54] w-full object-cover"
+                  />
+                ) : (
+                  <span
+                    className="flex aspect-[47/54] w-full items-center justify-center bg-waymarks-secondary text-2xl font-semibold text-white"
+                    aria-hidden="true"
+                  >
+                    {member.initials}
+                  </span>
+                )}
+                <div className="flex flex-col items-center gap-3 p-4 sm:p-6">
                   <p className="text-sm font-medium">{member.name}</p>
                   <p className="mt-0.5 text-xs text-muted-foreground">
                     {member.role}

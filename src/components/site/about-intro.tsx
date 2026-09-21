@@ -28,15 +28,27 @@ export function AboutIntro() {
           <Reveal>
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex -space-x-3">
-                {team.map((member) => (
-                  <span
-                    key={member.name}
-                    className="flex size-12 items-center justify-center rounded-full border-2 border-background bg-waymarks-secondary text-xs font-semibold text-white"
-                    aria-hidden="true"
-                  >
-                    {member.initials}
-                  </span>
-                ))}
+                {team.map((member) =>
+                  member.photo ? (
+                    <img
+                      key={member.name}
+                      src={member.photo}
+                      alt=""
+                      width={940}
+                      height={1080}
+                      loading="lazy"
+                      className="size-12 rounded-full border-2 border-background object-cover"
+                    />
+                  ) : (
+                    <span
+                      key={member.name}
+                      className="flex size-12 items-center justify-center rounded-full border-2 border-background bg-waymarks-secondary text-xs font-semibold text-white"
+                      aria-hidden="true"
+                    >
+                      {member.initials}
+                    </span>
+                  ),
+                )}
               </div>
               {satisfaction ? (
                 <p className="text-sm text-muted-foreground">

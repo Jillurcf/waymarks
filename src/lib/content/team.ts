@@ -1,34 +1,71 @@
 // Team snapshot (Section 11).
-//
-// SEED CONTENT: replace names/roles/initials with the real people who do the
-// work. Photos should be real portraits once available (see content-guide
-// "Team/location info").
 export interface TeamMember {
   name: string;
   role: string;
   initials: string;
+  photo?: string;
 }
 
 export const team: TeamMember[] = [
   {
-    name: "[Design lead]",
-    role: "Design Lead",
-    initials: "DL",
+    name: "Eiahia Sohel",
+    role: "Founder & CEO",
+    initials: "ES",
+    photo: "/images/team/eiahia-sohel.png",
   },
   {
-    name: "[Developer]",
-    role: "Front-end Developer",
-    initials: "FD",
+    name: "Rasheduzzaman",
+    role: "Co-Founder & COO",
+    initials: "RZ",
+    photo: "/images/team/rasheduzzaman.png",
   },
   {
-    name: "[Strategist]",
-    role: "Product Strategist",
-    initials: "PS",
+    name: "Omor Sany Ananta",
+    role: "Head of Digital Marketing",
+    initials: "OS",
+    photo: "/images/team/omor-sany-ananta.png",
   },
   {
-    name: "[Developer]",
-    role: "Back-end & Systems",
-    initials: "BS",
+    name: "Abdullah Al Mamun",
+    role: "Lead Brand Design & Identity",
+    initials: "AM",
+    photo: "/images/team/abdullah-al-mamun.png",
+  },
+  {
+    name: "Fariha Islam Osin",
+    role: "Lead UI-UX Design",
+    initials: "FO",
+    photo: "/images/team/fariha-islam-osin.png",
+  },
+  {
+    name: "Nasim Mojumder",
+    role: "Motion",
+    initials: "NM",
+    photo: "/images/team/nasim-mojumder.png",
+  },
+  {
+    name: "Shahadat Hossain Shuvo",
+    role: "Motion",
+    initials: "SH",
+    photo: "/images/team/shahadat-hossain-shuvo.png",
+  },
+  {
+    name: "Israt Jahan Rabeya",
+    role: "UI-UX Designer",
+    initials: "IR",
+    photo: "/images/team/israt-jahan-rabeya.png",
+  },
+  {
+    name: "Yeasin Arafat",
+    role: "Visual Communication Designer",
+    initials: "YA",
+    photo: "/images/team/yeasin-arafat.png",
+  },
+  {
+    name: "Md. Shahadat Hossain Khan",
+    role: "Web Developer",
+    initials: "SK",
+    photo: "/images/team/md-shahadat-hossain-khan.png",
   },
 ];
 
@@ -36,13 +73,12 @@ export const team: TeamMember[] = [
 // founder section (C3.1). Replaces the template's dummy "sarah mitchell,
 // CEO & founder" + signature — see implementation plan §5.
 //
-// SEED CONTENT: replace with the real founder identity and an approved quote.
 // The signature line renders the name in display type until a real signature
 // asset exists.
 export const founder = {
-  name: "[Founder name]", // SEED
-  role: "Founder & Principal Designer", // SEED
-  initials: "FN", // SEED
+  name: "Eiahia Sohel",
+  role: "Founder & CEO",
+  initials: "ES",
   quote:
-    "We started Waymark to give founders agency-grade product work without the agency bloat.", // SEED
+    "We started Waymark to give founders agency-grade product work without the agency bloat.",
 };

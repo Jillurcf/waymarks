@@ -49,6 +49,48 @@ export const aboutBenefits = {
   ],
 };
 
+export interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+  bullets: string[];
+}
+
+export const aboutProcessHeading = {
+  eyebrow: "How we work",
+  title: "No black box",
+  description:
+    "Three steps from first call to launch — you always know where things stand.",
+};
+
+export const aboutProcessSteps: ProcessStep[] = [
+  {
+    step: "01",
+    title: "Discovery call",
+    description:
+      "A free call to understand your goals, constraints, and whether we're the right fit.",
+    bullets: ["Goals & constraints", "Audience & scope", "Success metrics"],
+  },
+  {
+    step: "02",
+    title: "Proposal & scope",
+    description:
+      "You get a clear plan in writing before any work starts.",
+    bullets: ["Fixed price & timeline", "Deliverables list", "Milestone schedule"],
+  },
+  {
+    step: "03",
+    title: "Design & build",
+    description:
+      "Weekly demos while we design and build — and support after launch.",
+    bullets: [
+      "Usability-tested prototypes",
+      "Weekly check-ins",
+      "Launch & post-launch support",
+    ],
+  },
+];
+
 export const aboutTeam = {
   eyebrow: "The team",
   title: "The people you'll actually work with",

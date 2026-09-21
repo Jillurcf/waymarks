@@ -34,9 +34,10 @@ export const featuredWork: CaseStudy[] = [
   {
     slug: "fintech-onboarding-redesign",
     title: "Fintech Onboarding Redesign",
-    description: "Redesigned the full onboarding flow across 12 screens.",
+    description:
+      "A complicated onboarding experience redesigned around clarity and completion.",
     outcome:
-      "Cut signup completion time from 9 minutes to 4 — scope from the live product.",
+      "Signup completion time reduced from 9 minutes to 4 minutes.",
     tags: ["SaaS Design", "UX Research", "Development"],
     coverAlt: "Wireframes from the fintech onboarding redesign",
     category: "UI/UX Design",
@@ -53,16 +54,16 @@ export const featuredWork: CaseStudy[] = [
       "Save-and-resume adopted by users returning between sessions",
     ],
     metrics: [
-      { value: "4 min", label: "Median signup completion, down from 9" },
       { value: "12", label: "Screens redesigned across the flow" },
+      { value: "4 min", label: "Median signup completion time, down from 9" },
     ],
   },
   {
     slug: "b2b-analytics-dashboard",
     title: "B2B Analytics Dashboard",
     description:
-      "Rebuilt a complex reporting tool for an internal product team.",
-    outcome: "Simplified 40+ report views into 8 task-focused screens.",
+      "A data heavy analytics experience simplified around the decisions users actually need to make.",
+    outcome: "Reduced 40+ report views to 8 task-focused screens.",
     tags: ["Product Design", "Dashboard", "Design Systems"],
     coverAlt: "Dashboard layout explorations for the analytics rebuild",
     category: "SaaS & Product",
@@ -87,9 +88,9 @@ export const featuredWork: CaseStudy[] = [
     slug: "healthcare-booking-web-app",
     title: "Healthcare Booking Web App",
     description:
-      "Designed and built a booking experience used on mobile and desktop.",
+      "A booking experience redesigned to remove unnecessary friction from the customer journey.",
     outcome:
-      "Reduced booking abandonment on the checkout step by roughly a third.",
+      "Checkout abandonment reduced by roughly one third.",
     tags: ["Web Development", "UI/UX", "Mobile"],
     coverAlt: "Booking flow screens for the healthcare web app",
     category: "Web Development",

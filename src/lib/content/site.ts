@@ -9,7 +9,7 @@ export const site = {
   reviews: "[X]", // REVIEW: real review count from Clutch/Google once available
   tagline: "Digital product design and development studio",
   description:
-    "Waymark partners with startups and growing businesses on strategy, UI/UX design, and development — turning ideas into products people actually want to use.",
+    "Waymark is a digital product studio in Dubai helping startups and growing businesses design, build and launch better digital products.",
 };
 
 export const bookCallHref = `mailto:${site.email}?subject=${encodeURIComponent(

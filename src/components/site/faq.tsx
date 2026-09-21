@@ -87,7 +87,6 @@ export function Faq() {
           <SectionHeading
             eyebrow={faqHeading.eyebrow}
             title={faqHeading.title}
-            description={faqHeading.description}
             id="faq-title"
           />
           <div className="grid items-start gap-8 lg:grid-cols-5 lg:gap-12">

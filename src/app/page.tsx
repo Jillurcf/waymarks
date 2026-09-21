@@ -1,35 +1,40 @@
 import type { Metadata } from "next";
 
-import { Hero } from "@/components/site/hero";
-import { LogoStrip } from "@/components/site/logo-strip";
-import { AboutIntro } from "@/components/site/about-intro";
-import { ServicesGrid } from "@/components/site/services-grid";
-import { WhatWeDo } from "@/components/site/what-we-do";
-import { WhyWaymarks } from "@/components/site/why-waymarks";
-import { FeaturedWork } from "@/components/site/featured-work";
-import { HowWeWork } from "@/components/site/how-we-work";
-import { ProofStrip } from "@/components/site/proof-strip";
-import { PricingBlock } from "@/components/site/pricing-block";
-import { Testimonials } from "@/components/site/testimonials";
+import { ApproachSection } from "@/components/site/approach-section";
+import { ClaritySection } from "@/components/site/clarity-section";
+import { ClosingCta } from "@/components/site/closing-cta";
+import { EngagementSteps } from "@/components/site/engagement-steps";
+import { ExploreSection } from "@/components/site/explore-section";
 import { Faq } from "@/components/site/faq";
-import { BlogTeaser } from "@/components/site/blog-teaser";
+import { FeaturedWork } from "@/components/site/featured-work";
+import { FitSection } from "@/components/site/fit-section";
+import { Hero } from "@/components/site/hero";
+import { OutcomesSection } from "@/components/site/outcomes-section";
+import { ProductProcess } from "@/components/site/product-process";
+import { ResearchStats } from "@/components/site/research-stats";
+import { ResourcesSection } from "@/components/site/resources-section";
+import { ServiceTeasers } from "@/components/site/service-teasers";
+import { ServicesGrid } from "@/components/site/services-grid";
+import { WhyStudio } from "@/components/site/why-studio";
+import { homeClosingCta, homeSeo } from "@/lib/content/home";
 import { site } from "@/lib/content/site";
 
 export const metadata: Metadata = {
-  title: "Waymark — Digital Product Design & Development",
-  description: site.description,
+  title: homeSeo.title,
+  description: homeSeo.description,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Waymark — Digital Product Design & Development",
-    description: site.description,
+    title: homeSeo.title,
+    description: homeSeo.description,
     url: site.domain,
     siteName: site.name,
     type: "website",
   },
 };
 
-// Block 14 — ProfessionalService JSON-LD (M2). aggregateRating is omitted
-// until a verified review count exists (site.reviews is still SEED) —
-// placeholder values must not ship as structured data.
+// ProfessionalService JSON-LD. aggregateRating is omitted until a verified
+// review count exists (site.reviews is still SEED) — placeholder values must
+// not ship as structured data.
 const schema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -37,7 +42,7 @@ const schema = {
   url: site.domain,
   email: site.email,
   telephone: site.phone,
-  description: site.description,
+  description: homeSeo.description,
   areaServed: "United Arab Emirates",
 };
 
@@ -52,20 +57,27 @@ export default function Home() {
           __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
         }}
       />
-      {/* M2 section order — docs/implementation-plan.md §4 */}
       <Hero />
-      <LogoStrip />
-      <AboutIntro />
+      <ClaritySection />
       <ServicesGrid />
-      <WhatWeDo />
-      <WhyWaymarks />
+      <ApproachSection />
+      <ResearchStats />
+      <OutcomesSection />
+      <ProductProcess />
+      <WhyStudio />
       <FeaturedWork />
-      <HowWeWork />
-      <ProofStrip />
-      <PricingBlock />
-      <Testimonials />
+      <EngagementSteps />
+      <FitSection />
+      <ServiceTeasers />
       <Faq />
-      <BlogTeaser />
+      <ResourcesSection />
+      <ExploreSection />
+      <ClosingCta
+        eyebrow={homeClosingCta.eyebrow}
+        title={homeClosingCta.title}
+        body={homeClosingCta.body}
+        primaryLabel={homeClosingCta.ctaLabel}
+      />
     </>
   );
 }

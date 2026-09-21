@@ -67,6 +67,12 @@ export function ServicesGrid({
                       <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                         {service.summary}
                       </p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        <span className="font-medium text-foreground">
+                          What we help with:
+                        </span>{" "}
+                        {service.helpsWith.join(", ")}
+                      </p>
                     </span>
                     {/* Token-graphic tile, revealed on hover/focus (template's
                         hover image; no scraped photography ships) */}
@@ -77,7 +83,9 @@ export function ServicesGrid({
                       <Icon className="size-7 text-waymarks-secondary/70" />
                     </span>
                     <span className="flex items-center gap-1 text-sm font-medium text-waymarks-secondary">
-                      <span className="sr-only sm:not-sr-only">Read more</span>
+                      <span className="sr-only sm:not-sr-only">
+                        {service.exploreLabel}
+                      </span>
                       <ArrowRight
                         className="size-4 transition-transform group-hover:translate-x-0.5"
                         aria-hidden="true"

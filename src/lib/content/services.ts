@@ -20,6 +20,10 @@ export interface Service {
   icon: string;
   title: string;
   summary: string;
+  /** Short list shown on the service rows ("What we help with:"). */
+  helpsWith: string[];
+  /** Row CTA label, e.g. "Explore UI/UX Design". */
+  exploreLabel: string;
   /** Entry copy for /services/[slug] (first paragraph renders as lead). */
   intro: string[];
   deliverables: string[];
@@ -34,6 +38,15 @@ export const services: Service[] = [
     title: "UI/UX Design",
     summary:
       "Turning research and user needs into interfaces people enjoy using.",
+    helpsWith: [
+      "User research",
+      "Information architecture",
+      "Wireframes",
+      "Prototypes",
+      "Usability testing",
+      "Design systems",
+    ],
+    exploreLabel: "Explore UI/UX Design",
     intro: [
       "We design interfaces that make complex products feel obvious. Research, wireframes, and tested prototypes come before any visual polish — so decisions rest on evidence, not taste.",
       "You see work every week and can steer at every step. The result is a design your developers can build without guesswork, and your users don't need a manual for.",
@@ -92,6 +105,16 @@ export const services: Service[] = [
     title: "Brand Design & Identity",
     summary:
       "Visual identity systems that make a business instantly recognisable.",
+    helpsWith: [
+      "Brand strategy",
+      "Logo systems",
+      "Typography",
+      "Colour",
+      "Visual language",
+      "Guidelines",
+      "Marketing templates",
+    ],
+    exploreLabel: "Explore Brand Design",
     intro: [
       "A brand system is more than a logo. We define how your product looks, speaks, and behaves — then document it so every future asset stays consistent.",
       "Everything is built as a practical system: tokens, templates, and rules your team can apply without a designer standing by.",
@@ -148,7 +171,18 @@ export const services: Service[] = [
     slug: "web-design-development",
     icon: "LayoutTemplate",
     title: "Web Design & Development",
-    summary: "Websites built to convert, not just look good.",
+    summary:
+      "Websites built to communicate clearly and convert visitors into customers.",
+    helpsWith: [
+      "Website strategy",
+      "UX",
+      "Responsive design",
+      "Custom development",
+      "CMS integration",
+      "Performance",
+      "Analytics",
+    ],
+    exploreLabel: "Explore Web Design & Development",
     intro: [
       "We design and build marketing sites and web apps that load fast and convert. Design and code stay in one team, so nothing is lost in translation.",
       "Every build ships with a performance and accessibility pass, and analytics wired in so you can see how the site performs from day one.",
@@ -207,6 +241,15 @@ export const services: Service[] = [
     title: "SaaS & Product Design",
     summary:
       "Complex workflows made simple for SaaS platforms and internal tools.",
+    helpsWith: [
+      "Product audits",
+      "Information architecture",
+      "Dashboards",
+      "Workflows",
+      "Design systems",
+      "Developer-ready handoff",
+    ],
+    exploreLabel: "Explore SaaS & Product Design",
     intro: [
       "Dashboards, workflows, and internal tools — we make dense products feel simple. We design from real user tasks, not feature lists.",
       "Work happens inside a documented design system, so every new screen stays consistent and your developers always know what to build next.",
@@ -263,7 +306,19 @@ export const services: Service[] = [
     slug: "mvp-builds",
     icon: "Rocket",
     title: "MVP Development",
-    summary: "From idea to a working, testable product — fast.",
+    summary:
+      "From idea to a working, testable product without building everything at once.",
+    helpsWith: [
+      "MVP strategy",
+      "Product scope",
+      "UX",
+      "UI",
+      "Prototyping",
+      "Development",
+      "Testing",
+      "Launch",
+    ],
+    exploreLabel: "Explore MVP Development",
     intro: [
       "We take founders from idea to a working product users can test. Fixed scope, fixed price, and a launch date we hold.",
       "The feature set is cut to one core workflow before any code is written — so budget goes on what proves the idea, not on everything imaginable.",
@@ -319,7 +374,17 @@ export const services: Service[] = [
     slug: "mobile-app-design",
     icon: "Smartphone",
     title: "Mobile App Design",
-    summary: "Native and cross-platform app experiences that scale.",
+    summary:
+      "Native and cross platform app experiences designed around real users and real devices.",
+    helpsWith: [
+      "Mobile UX",
+      "User flows",
+      "Prototypes",
+      "Interface design",
+      "Design systems",
+      "Developer handoff",
+    ],
+    exploreLabel: "Explore Mobile App Design",
     intro: [
       "App design that survives real thumbs and real networks. We prototype on-device early, so gestures and flows feel right before any build starts.",
       "Every screen ships with its states — empty, loading, error — because that's where apps actually feel finished.",

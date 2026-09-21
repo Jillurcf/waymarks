@@ -2,22 +2,24 @@ import { Check } from "lucide-react";
 
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
-import { processHeading, processSteps } from "@/lib/content/home";
+import {
+  aboutProcessHeading,
+  aboutProcessSteps,
+} from "@/lib/content/about";
 
-// Block 8 — How it works (template .how-it-work): three numbered step cards,
-// each with a short description and a concrete bullet list.
+// Numbered step cards with concrete bullet lists — used on the About page.
 export function HowWeWork() {
   return (
     <section id="process" aria-labelledby="process-title" className="py-20 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow={processHeading.eyebrow}
-          title={processHeading.title}
-          description={processHeading.description}
+          eyebrow={aboutProcessHeading.eyebrow}
+          title={aboutProcessHeading.title}
+          description={aboutProcessHeading.description}
           id="process-title"
         />
         <ol className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {processSteps.map((step, index) => (
+          {aboutProcessSteps.map((step, index) => (
             <li key={step.step}>
               <Reveal delay={index * 100} className="h-full">
                 <div className="flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-6">

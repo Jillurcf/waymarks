@@ -30,6 +30,21 @@ export function WorkCard({ project }: { project: CaseStudy }) {
         <p className="text-sm font-medium leading-snug text-waymarks-secondary">
           {project.outcome}
         </p>
+        {project.metrics && project.metrics.length > 0 ? (
+          <div className="mt-auto flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-3">
+            {project.metrics.map((metric) => (
+              <p
+                key={metric.label}
+                className="flex items-baseline gap-1.5 text-sm leading-snug"
+              >
+                <strong className="text-base font-semibold tabular-nums tracking-tight text-foreground">
+                  {metric.value}
+                </strong>
+                <span className="text-muted-foreground">{metric.label}</span>
+              </p>
+            ))}
+          </div>
+        ) : null}
         <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
           {project.tags.map((tag) => (
             <span

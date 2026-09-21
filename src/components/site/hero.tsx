@@ -4,13 +4,11 @@ import {
   MapPin,
   PhoneCall,
   Sparkle,
-  Star,
   type LucideIcon,
 } from "lucide-react";
 
 import MoltenMetal from "@/components/molten-metal";
 import { hero } from "@/lib/content/home";
-import { trustLine } from "@/lib/content/stats";
 import { site } from "@/lib/content/site";
 import { cn } from "@/lib/utils";
 
@@ -101,32 +99,6 @@ function AnimatedHeadline() {
   );
 }
 
-function TrustLine() {
-  return (
-    <p className="mt-12 flex flex-col items-start gap-2 text-sm text-waymarks-light/70 sm:flex-row sm:items-center sm:gap-3">
-      <span
-        className="flex items-center gap-1"
-        aria-label={`${trustLine.rating} out of 5 stars`}
-      >
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star
-            key={i}
-            className="size-4 fill-waymarks-primary text-waymarks-primary"
-            aria-hidden="true"
-          />
-        ))}
-        <span className="ml-1 font-medium text-waymarks-light">
-          {trustLine.rating} rating
-        </span>
-      </span>
-      <span className="hidden sm:inline" aria-hidden="true">
-        ·
-      </span>
-      <span>{trustLine.qualifier}</span>
-    </p>
-  );
-}
-
 /** Rotating circular-text badge (template .explore-more-circle). */
 function ExploreBadge({ Icon }: { Icon: LucideIcon }) {
   return (
@@ -204,6 +176,13 @@ export function Hero() {
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-waymarks-light/70 animate-fade-up sm:text-xl">
               {hero.subhead}
             </p>
+            <p className="mt-3 max-w-xl text-lg leading-relaxed text-waymarks-light/70 animate-fade-up sm:text-xl">
+              {hero.subheadTwo}
+            </p>
+
+            <p className="mt-8 text-xl font-semibold tracking-tight text-waymarks-primary animate-fade-up">
+              {hero.ctaLead}
+            </p>
 
             {/* CTA row (template .hero-content-body, fadeInUp @ 0.2s) */}
             <div
@@ -246,8 +225,6 @@ export function Hero() {
                 </span>
               </a>
             </div>
-
-            <TrustLine />
           </div>
 
           {/* Hero visual (template col-lg-6 / .hero-images) */}

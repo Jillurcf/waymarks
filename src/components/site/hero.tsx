@@ -56,13 +56,13 @@ export function Hero() {
                 (quality gate C); eager + high priority keeps LCP behaviour. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/Waymarks_Logo-01.png"
+              src="/logo_white.png"
               alt={hero.logo.alt}
-              width={2457}
-              height={435}
+              width={2081}
+              height={321}
               loading="eager"
               fetchPriority="high"
-              className="relative z-10 w-4/5 animate-float-logo drop-shadow-lg"
+              className="relative z-10 h-auto w-4/5 animate-float-logo drop-shadow-lg"
             />
             {/* Podium glow that breathes with the logo */}
             <div

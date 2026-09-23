@@ -89,10 +89,10 @@ export function Footer() {
                   (quality gate C — route JS budget); irrelevant to LCP here. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Waymarks_Logo-01.png"
+                src="/logo_white.png"
                 alt="Waymarks logo"
                 width={158}
-                height={28}
+                height={24}
                 loading="lazy"
                 className="h-7 w-auto"
               />

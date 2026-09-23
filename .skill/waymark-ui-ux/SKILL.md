@@ -8,7 +8,7 @@ description: The Waymark brand and UI/UX design system. Use whenever you create 
 This skill encodes the Waymark visual identity as it exists in this repository.
 It derives directly from the company asset and brand signals:
 
-- **Logo lockup** `public/Waymarks_Logo-01.png` — a wide horizontal wordmark
+- **Logo lockup** `public/logo_white.png` — a wide horizontal wordmark
   lockup (2,457 × 435 px, ≈5.7:1) with glyphs rendered in a light/white tone
   for use on dark surfaces.
 - **Brand color field** — the molten-metal greens already wired into the

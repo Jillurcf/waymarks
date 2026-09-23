@@ -84,10 +84,10 @@ function Brand() {
           (quality gate C — route JS budget); eager + high fetch priority
           keeps LCP behaviour. */}
       <img
-        src="/Waymarks_Logo-01.png"
+        src="/logo_white.png"
         alt="Waymark logo"
         width={158}
-        height={28}
+        height={24}
         loading="eager"
         fetchPriority="high"
         className="h-7 w-auto"
@@ -273,7 +273,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-transparent bg-background/80 text-foreground backdrop-blur-md",
+        "sticky top-0 z-50 w-full border-b border-white/10 bg-waymarks-dark text-white backdrop-blur-md",
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6 lg:px-8">

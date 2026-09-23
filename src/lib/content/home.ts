@@ -121,7 +121,7 @@ export const hero = {
   proof: "Trusted by 100+ businesses across 12+ countries.",
   primaryCta: startProjectCta,
   secondaryCta: exploreWorkCta,
-  // Animated W logo stage (Phase 4 renders Waymarks_Logo-01.png in a framed,
+  // Animated W logo stage (Phase 4 renders logo_white.png in a framed,
   // floating container). Alt text lives here; the asset path is component data.
   logo: { alt: "Waymarks logo" },
 };
@@ -573,7 +573,7 @@ export const organizationJsonLd = {
   "@id": `${site.domain}/#organization`,
   name: "Waymarks",
   url: `${site.domain}/`,
-  logo: `${site.domain}/Waymarks_Logo-01.png`,
+  logo: `${site.domain}/logo_white.png`,
   description: homeSeo.description,
   address: {
     "@type": "PostalAddress",

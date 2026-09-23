@@ -1,630 +1,688 @@
-// Home page content. Copy follows .skill/waymark-ui-ux/content.md (calm,
-// concrete, outcome-led) and the approved homepage SEO spec: keyword coverage
-// for "digital product studio Dubai", research-backed proof numbers, and a
-// section order that mirrors the conversion path. Content is typed here so the
-// page never inlines copy.
+// Homepage (one-pager) copy for every section, mirroring the approved design
+// reference "Waymarks Final Homepage Design.html" (the single canonical
+// homepage design). Copy follows .skill/waymark-ui-ux/content.md: calm,
+// concrete, outcome-led, UK English, one CTA per section. Every renderable
+// string lives here so section components never inline copy.
+//
+// Structural choices that components make (grid columns, spacing, motion)
+// stay out of this module; copy and link targets stay in.
 
-// SEO metadata for the home route (page.tsx consumes homeSeo.title/description).
-// Relevant keywords are documented here for brief/content use — meta keywords
-// are not emitted (deprecated by Google). The focus keyword "digital product
-// studio Dubai" is carried in copy below (hero subhead and closing CTA).
+import { site, socialLinks } from "./site";
+
+// ---------------------------------------------------------------------------
+// SEO metadata + JSON-LD
+// ---------------------------------------------------------------------------
+
+// Home route metadata (wired by page.tsx in Phase 5). Title/description mirror
+// the design file's <head>. Meta keywords are deprecated by Google and not
+// emitted; they are kept on record for brief/content use.
 export const homeSeo = {
-  title: "Digital Product Studio Dubai | Waymark",
+  title: "Digital Product Studio for Startups | Waymarks",
   description:
-    "Waymark is a digital product studio in Dubai helping startups and growing businesses design, build and launch better digital products.",
-  focusKeyword: "digital product studio Dubai",
+    "Waymarks is a global digital product studio for brands, websites, apps, and growth. Share your idea and let's start your project.",
+  focusKeyword: "digital product studio",
   keywords: [
+    "Digital product studio",
+    "Digital design agency",
     "Digital product design",
-    "Product design studio Dubai",
-    "UI/UX design agency Dubai",
-    "Digital product development",
+    "Creative digital agency",
+    "Global digital studio",
   ],
 };
 
-// Block 1 — Hero.
-export const hero = {
-  eyebrow: "Digital product studio in Dubai",
-  headlineLead: "We turn complex ideas into",
-  headlineAccent: "clear digital products",
-  subhead:
-    "Waymark is a digital product studio in Dubai helping startups and growing businesses turn ideas, challenges and complicated workflows into digital experiences people understand and enjoy using.",
-  subheadTwo:
-    "From brand identity and websites to SaaS products, MVPs and mobile apps, we bring strategy, design and development together under one roof.",
-  ctaLead: "Let's build something clear.",
-  primaryCta: "Book a discovery call",
-  phoneBoxLabel: "Prefer to talk?",
-  // Floating service pill over the hero visual (template .hero-tag).
-  tag: "UI/UX design", // SEED: swap for the service you want spotlighted
-  // Rotating circular badge linking to the contact page.
-  exploreLabel: "Explore more",
-};
+// ---------------------------------------------------------------------------
+// Reusable snippets (buttons, icon metadata, anchors)
+// ---------------------------------------------------------------------------
 
-// Block 2 — Positioning: "Good products should not need explaining".
-export const claritySection = {
-  eyebrow: "Clarity first",
-  title: "Good products should not need explaining",
-  leads: [
-    "Your product might be powerful.",
-    "Your business might have a great idea behind it.",
-    "But if people do not understand what you offer, cannot figure out what to do next or struggle to use the product, complexity becomes a business problem.",
-  ],
-  turn: "We help remove that complexity.",
-  closing:
-    "Waymark works with founders, product teams and growing businesses to create digital products that are easier to understand, easier to use and easier to grow.",
-};
+// lucide icon names used across sections. Components map these names to lucide
+// components; keeping them as data means icon choice lives beside its copy.
+export const icons = {
+  strategy: "Globe",
+  design: "ShieldCheck",
+  technology: "Code",
+  growth: "TrendingUp",
+  brandIdentity: "Star",
+  uiUx: "LayoutDashboard",
+  website: "Monitor",
+  saas: "Cloud",
+  mvp: "Rocket",
+  mobileApp: "Smartphone",
+  digitalGrowth: "ChartPie",
+  startups: "Zap",
+  growingBusinesses: "ChartBar",
+  saasTeams: "Layers",
+  establishedCompanies: "Users",
+  discover: "Search",
+  define: "Diamond",
+  create: "PenTool",
+  review: "Eye",
+  launch: "CircleCheckBig",
+  improve: "TrendingUp",
+  arrowRight: "ArrowRight",
+  mail: "Mail",
+} as const;
 
-// Block 3 — Services section heading and closing bar.
-export const servicesSection = {
-  eyebrow: "Services",
-  title: "One studio. From idea to experience.",
-  description:
-    "A digital product rarely needs just one service. A startup may need a brand before launching its website. A SaaS company may need a better product experience before adding another feature. An established business may need to redesign its website while bringing its brand and customer experience together. That is why Waymark brings the essential pieces together.",
-  closingBar: {
-    highlight: "Free",
-    text: "discovery call — tell us what you're building and we'll scope it with you.",
-    ctaLabel: "Book a discovery call",
-  },
-};
+// On-page anchor targets (one-pager: nav and footer point into the page).
+export const sectionAnchors = {
+  studio: "#studio",
+  services: "#services",
+  work: "#work",
+  blog: "#blog",
+  contact: "#contact",
+} as const;
 
-// Block 4 — Approach: three connected sections on how Waymark designs.
-export interface ApproachBlock {
-  eyebrow?: string;
-  title: string;
-  intro: string[];
-  /** Short standalone lines, e.g. the questions we ask. */
-  listTitle?: string;
-  items?: string[];
-  closing: string;
-}
-
-export const approach: ApproachBlock[] = [
-  {
-    eyebrow: "Approach",
-    title: "Design with a reason behind it",
-    intro: [
-      "We do not start with colours, animations or a collection of beautiful screens.",
-      "We start by asking questions.",
-    ],
-    listTitle: "Questions that shape the design",
-    items: [
-      "Who is using this?",
-      "What are they trying to accomplish?",
-      "Where are they getting stuck?",
-      "What does the business need to achieve?",
-      "What should we solve first?",
-    ],
-    closing:
-      "The answers shape the design. That means important decisions have a reason behind them. Our digital product design approach connects business goals with user needs, so the final product is not only attractive but useful.",
-  },
-  {
-    eyebrow: "User centred",
-    title: "Built around real users",
-    intro: [
-      "People do not experience your product as a sitemap, feature list or technical specification.",
-      "They experience it one interaction at a time.",
-    ],
-    listTitle: "The moments that matter",
-    items: [
-      "They click.",
-      "They scroll.",
-      "They search.",
-      "They hesitate.",
-      "They make mistakes.",
-      "They decide whether to continue.",
-    ],
-    closing:
-      "Our process is built around understanding those moments. We use research, user flows, prototypes, usability testing and real product behaviour to create experiences that feel natural rather than complicated.",
-  },
-  {
-    eyebrow: "Why design matters",
-    title: "Why digital product design is a business decision",
-    intro: [
-      "Design is often treated as the visual layer added after everything else has been decided.",
-      "We see it differently.",
-    ],
-    listTitle: "What poor design costs",
-    items: [
-      "A confusing product can increase support requests.",
-      "A complicated checkout can reduce conversions.",
-      "Poor onboarding can prevent users from reaching the value of your product.",
-      "An inconsistent brand can make a growing business feel less established.",
-      "A slow website can make visitors leave before they even see what you offer.",
-    ],
-    closing:
-      "Good design does not solve every business problem. But poor design can create problems that are difficult to ignore.",
-  },
-];
-
-// Block 5 — Research-backed numbers.
-export interface ResearchStat {
-  number: string;
-  claim: string;
-  blurb: string;
-  source: string;
+export interface Cta {
+  label: string;
   href: string;
-  linkLabel: string;
+  /** lucide icon name rendered beside the label; components map it. */
+  icon?: string;
 }
 
-export const researchStatsHeading = {
-  eyebrow: "Why it matters",
-  title: "A few numbers worth knowing",
+// Shared buttons. One primary action per section (content.md rule 5); the
+// design reuses the same labels, so they are shared constants.
+export const startProjectCta: Cta = {
+  label: "Start a Project",
+  href: sectionAnchors.contact,
+  icon: icons.arrowRight,
 };
 
-export const researchStats: ResearchStat[] = [
+export const startProjectMailtoCta: Cta = {
+  label: "Start a Project",
+  href: `mailto:${site.email}`,
+  icon: icons.arrowRight,
+};
+
+export const exploreWorkCta: Cta = { label: "Explore Our Work", href: sectionAnchors.work };
+
+export const viewCaseStudyCta: Cta = {
+  label: "View Case Study",
+  href: sectionAnchors.contact,
+  icon: icons.arrowRight,
+};
+
+export const learnMoreCta: Cta = {
+  label: "Learn More",
+  href: sectionAnchors.contact,
+  icon: icons.arrowRight,
+};
+
+export const exploreAllServicesCta: Cta = { label: "Explore All Services", href: sectionAnchors.services };
+
+// ---------------------------------------------------------------------------
+// 1. Hero
+// ---------------------------------------------------------------------------
+
+export const hero = {
+  title: "Digital Product Studio That Turns Ideas Into Real Results",
+  subhead:
+    "Waymarks is a global digital product studio. We help startups, growing businesses, and large companies turn ideas into brands, websites, apps, and growth plans.",
+  body: "Our remote teams bring strategy, design, technology, and marketing together. The result is digital work that people understand, trust, and remember.",
+  tagline: "Think. Create. Deliver.",
+  proof: "Trusted by 100+ businesses across 12+ countries.",
+  primaryCta: startProjectCta,
+  secondaryCta: exploreWorkCta,
+  // Animated W logo stage (Phase 4 renders Waymarks_Logo-01.png in a framed,
+  // floating container). Alt text lives here; the asset path is component data.
+  logo: { alt: "Waymarks logo" },
+};
+
+// ---------------------------------------------------------------------------
+// 2. Proof — verified client testimonials
+// ---------------------------------------------------------------------------
+
+export interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  initials: string;
+}
+
+export const testimonialsSection = {
+  eyebrow: "Verified Client Testimonials",
+};
+
+export const testimonials: Testimonial[] = [
   {
-    number: "4,500+",
-    claim: "people studied",
-    blurb:
-      "Stanford's Web Credibility Project conducted research involving more than 4,500 people and found that design, usability and other website characteristics can influence perceived credibility.",
-    source: "Stanford Web Credibility Project",
-    href: "https://credibility.stanford.edu/guidelines/",
-    linkLabel: "Stanford Web Credibility Guidelines",
+    quote:
+      "Waymarks completely revolutionised our SaaS user flow. Retention skyrocketed within two months.",
+    author: "Marcus Vance",
+    role: "Head of Product",
+    company: "TechScale",
+    initials: "MV",
   },
   {
-    number: "53%",
-    claim: "mobile abandonment",
-    blurb:
-      "Google reports that 53% of mobile visits are likely to be abandoned when a page takes longer than three seconds to load.",
-    source: "Google",
-    href: "https://support.google.com/adsense/answer/7450973",
-    linkLabel: "Google AdSense Mobile Speed Guidance",
+    quote:
+      "Having strategy, UI/UX, and development under one roof eliminated months of back-and-forth.",
+    author: "Elena Rostova",
+    role: "Founder",
+    company: "Lumina Retail",
+    initials: "ER",
   },
   {
-    number: "33%",
-    claim: "potential revenue increase",
-    blurb:
-      "Lucidpress's State of Brand Consistency research reported that consistent branding could contribute to up to 33% higher revenue. The same research reported that 81% of companies experienced off-brand content.",
-    source: "Lucidpress research reported by PR Newswire",
-    href: "https://www.prnewswire.com/news-releases/study-finds-companies-with-consistent-branding-can-see-up-to-33-increase-in-revenue-300967219.html",
-    linkLabel: "Lucidpress Brand Consistency Research",
+    quote:
+      "Their team executed our complete digital overhaul seamlessly across time zones.",
+    author: "Tariq Al-Mansoor",
+    role: "Managing Director",
+    company: "Enterprise Hub",
+    initials: "TA",
   },
 ];
 
-export const researchNote =
-  "These figures come from industry research and should be treated as directional rather than a guaranteed business outcome.";
+// ---------------------------------------------------------------------------
+// 3. Connected studio bento — strategy, design, technology, growth
+// ---------------------------------------------------------------------------
 
-// Block 6 — Outcomes.
-export const outcomesSection = {
-  eyebrow: "Outcomes",
-  title: "We design for outcomes, not just deliverables",
-  intro: [
-    "A website should not exist simply because a company needs a website.",
-    "A dashboard should not exist simply because the product has data.",
-    "A mobile app should not exist simply because the business wants an app.",
-    "Every digital product should have a reason to exist.",
-  ],
-  listTitle: "That reason might be to",
-  items: [
-    "Increase conversions",
-    "Reduce friction",
-    "Improve activation",
-    "Make complex information easier to understand",
-    "Help users complete tasks faster",
-    "Launch a new product",
-    "Create a stronger brand experience",
-  ],
-  closing: ["The deliverable is the design or product.", "The outcome is what matters."],
-};
-
-// Block 7 — Product process: idea to launch.
-export const productProcessHeading = {
-  eyebrow: "Process",
-  title: "From the first idea to the final product",
-  description:
-    "Great work becomes difficult when every stage is handled by a different team. Strategy gets lost between meetings. Design decisions do not reach developers. Development starts before the experience is properly validated. Waymark keeps the process connected.",
-};
-
-export interface ProductStep {
-  step: string;
+export interface IconFeature {
+  icon: string;
   title: string;
   description: string;
 }
 
-export const productProcessSteps: ProductStep[] = [
-  {
-    step: "01",
-    title: "Discover",
-    description: "We understand the business, users, product and problem.",
-  },
-  {
-    step: "02",
-    title: "Define",
-    description: "We identify what needs to be solved and what success should look like.",
-  },
-  {
-    step: "03",
-    title: "Design",
-    description: "We turn strategy into user flows, interfaces, prototypes and systems.",
-  },
-  {
-    step: "04",
-    title: "Build",
-    description: "We develop the experience into a working digital product.",
-  },
-  {
-    step: "05",
-    title: "Launch",
-    description: "We help bring it into the real world and identify what should happen next.",
-  },
-];
-
-// Block 8 — Why Waymark.
-export const whyHeading = {
-  eyebrow: "Why Waymark",
-  title: "One team from strategy to execution",
-  description:
-    "The best product work happens when strategy, design and development can communicate directly. That is why Waymark keeps the process connected. You do not need to explain the same product problem to three different teams. You work with one studio that understands the wider picture.",
-};
-
-export const whyFeatures = [
-  {
-    icon: "Users",
-    title: "Senior people on the work",
-    description:
-      "You work directly with experienced people instead of passing your project through layers of account management.",
-  },
-  {
-    icon: "Target",
-    title: "Strategy before execution",
-    description:
-      "We understand the problem before deciding what needs to be designed or built.",
-  },
-  {
-    icon: "PanelsTopLeft",
-    title: "One connected team",
-    description:
-      "Strategy, design and development stay connected throughout the project.",
-  },
-  {
-    icon: "FileCheck",
-    title: "Clear scope",
-    description: "You know what we are delivering, what it costs and what happens next.",
-  },
-  {
-    icon: "CalendarCheck",
-    title: "Weekly visibility",
-    description:
-      "Regular demonstrations keep you close to the work without filling your calendar with unnecessary meetings.",
-  },
-  {
-    icon: "TrendingUp",
-    title: "Built to grow",
-    description:
-      "We create systems and foundations that can support the next stage of your product.",
-  },
-];
-
-// Block 9 — Featured work heading (cards pull from case-studies.ts).
-export const featuredWorkHeading = {
-  eyebrow: "Selected work",
-  title: "Proof before promises",
-  description:
-    "A few of the projects that show how we think, scope, and ship.",
-  viewAll: { label: "View all work", href: "/work" },
-};
-
-// Block 10 — Engagement: what working with Waymark looks like.
-export const engagementHeading = {
-  eyebrow: "Working with us",
-  title: "What working with Waymark looks like",
-};
-
-export const engagementSteps: ProductStep[] = [
-  {
-    step: "01",
-    title: "Discovery call",
-    description:
-      "We start with a conversation about your business, product and challenge. No complicated questionnaire. Just a focused conversation about what you are trying to achieve.",
-  },
-  {
-    step: "02",
-    title: "Proposal and scope",
-    description:
-      "We turn the conversation into a clear scope, timeline and fixed quote.",
-  },
-  {
-    step: "03",
-    title: "Design and build",
-    description:
-      "The work begins. You see progress through regular demonstrations and feedback sessions.",
-  },
-  {
-    step: "04",
-    title: "Launch and support",
-    description:
-      "We help you move from finished work to a live product and identify the next opportunities.",
-  },
-];
-
-// Block 11 — Who we work best with.
-export const fitSection = {
-  eyebrow: "Who we work with",
-  title: "We work best with ambitious teams",
-  intro: "Waymark is a good fit if you are:",
-  items: [
-    "Building a new digital product",
-    "Launching a startup",
-    "Redesigning an existing website",
-    "Growing a SaaS platform",
-    "Simplifying a complicated workflow",
-    "Creating a mobile application",
-    "Building a stronger brand",
-    "Turning an idea into an MVP",
+export const studioSection = {
+  title: "One Digital Product Studio for Strategy, Design, and Growth",
+  intro:
+    "Good digital work is never just about how it looks. It starts with understanding your business, your customers, and the problem you want to solve.",
+  body: "At our digital product studio, every team joins from day one. That keeps your strategy, brand, product, website, and marketing working as one connected experience.",
+  features: [
+    {
+      icon: icons.strategy,
+      title: "Strategy",
+      description:
+        "We learn about your goals, market, customers, and competitors before we create anything.",
+    },
+    {
+      icon: icons.design,
+      title: "Design",
+      description: "We turn ideas into clear, useful, and memorable experiences.",
+    },
+    {
+      icon: icons.technology,
+      title: "Technology",
+      description: "We build reliable digital products that work on every device and platform.",
+    },
+    {
+      icon: icons.growth,
+      title: "Growth",
+      description: "We help you reach the right people and turn attention into action.",
+    },
   ],
-  note: "You do not need to have everything figured out before speaking with us. That is part of what the discovery process is for.",
 };
 
-// Block 12 — Service teasers: common starting points, each linking to its
-// dedicated service page.
-export interface ServiceTeaser {
+// ---------------------------------------------------------------------------
+// 4. Capabilities — chips
+// ---------------------------------------------------------------------------
+
+export const capabilitiesSection = {
+  title: "One Team From First Idea To Final Launch",
+  intro: "You should not have to explain your business to five different agencies.",
+  body: "Our digital product studio brings branding, UI/UX design, web development, and digital marketing together. That means fewer gaps, faster answers, and a team that sees the big picture.",
+  subheading: "What We Can Build For You",
+  chips: [
+    "Brand identities",
+    "Websites",
+    "Web applications",
+    "Mobile applications",
+    "SaaS products",
+    "MVPs",
+    "Digital marketing systems",
+    "Growth campaigns",
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 5. Services grid
+// ---------------------------------------------------------------------------
+
+export interface Service {
   icon: string;
   title: string;
-  body: string[];
-  listTitle?: string;
-  list?: string[];
-  closing?: string;
-  cta: string;
-  href: string;
+  summary: string;
+  cta: Cta;
 }
 
-export const serviceTeasers: ServiceTeaser[] = [
-  {
-    icon: "Rocket",
-    title: "From idea to MVP",
-    body: [
-      "You might have an idea but not know what the first version should include. That is where product strategy becomes important.",
-      "We help identify the core problem, define the essential workflow and determine what needs to be built first.",
-    ],
-    closing: "The objective is not to build the biggest product possible. It is to build enough to learn.",
-    cta: "Explore MVP Development",
-    href: "/services/mvp-builds",
-  },
-  {
-    icon: "Workflow",
-    title: "When your product becomes too complicated",
-    body: [
-      "Growth can create its own problems. More features. More users. More permissions. More dashboards. More settings. More workflows.",
-      "Eventually, users may struggle to understand a product that was originally simple.",
-    ],
-    closing:
-      "Waymark can audit the existing experience, identify the areas creating the most friction and redesign them around the tasks users actually need to complete.",
-    cta: "Explore SaaS & Product Design",
-    href: "/services/saas-product-design",
-  },
-  {
-    icon: "LayoutTemplate",
-    title: "Your website is part of your product experience",
-    body: [
-      "Your website introduces people to your company before they speak with your team.",
-    ],
-    listTitle: "It needs to communicate",
-    list: [
-      "Who you are",
-      "What you offer",
-      "Who it is for",
-      "Why people should trust you",
-      "What they should do next",
-    ],
-    closing:
-      "Waymark combines UX, visual design, development and performance to create websites that do more than look good. They need to work.",
-    cta: "Explore Web Design & Development",
-    href: "/services/web-design-development",
-  },
-  {
-    icon: "Sparkles",
-    title: "A brand should work everywhere",
-    body: ["Your identity should not stop at the logo."],
-    listTitle: "It should create consistency across",
-    list: [
-      "Website",
-      "Product",
-      "Social media",
-      "Advertising",
-      "Presentations",
-      "Sales material",
-      "Email",
-      "Marketing campaigns",
-    ],
-    closing: "Waymark creates practical brand systems that your team can actually use.",
-    cta: "Explore Brand Design & Identity",
-    href: "/services/brand-identity",
-  },
-];
-
-export const serviceTeasersHeading = {
-  eyebrow: "Where we help",
-  title: "Starting points, whatever your stage",
+export const servicesSection = {
+  title: "Our Services",
+  intro:
+    "Pick one service from our digital product studio or combine several. Each one is built to work with the others.",
+  items: [
+    {
+      icon: icons.brandIdentity,
+      title: "Brand Design & Identity",
+      summary: "Create a clear, distinctive brand that people recognise and remember.",
+      cta: learnMoreCta,
+    },
+    {
+      icon: icons.uiUx,
+      title: "UI/UX Design",
+      summary: "Design digital experiences that are simple to understand and easy to use.",
+      cta: learnMoreCta,
+    },
+    {
+      icon: icons.website,
+      title: "Website Design & Development",
+      summary:
+        "Build websites that explain your value, load fast, and help visitors take action.",
+      cta: learnMoreCta,
+    },
+    {
+      icon: icons.saas,
+      title: "SaaS & Product Design",
+      summary: "Turn complicated workflows into simple, useful digital products.",
+      cta: learnMoreCta,
+    },
+    {
+      icon: icons.mvp,
+      title: "MVP Development",
+      summary:
+        "Turn an idea into a working product you can test, learn from, and improve.",
+      cta: learnMoreCta,
+    },
+    {
+      icon: icons.mobileApp,
+      title: "Mobile App Design",
+      summary: "Create mobile experiences that feel natural and match your brand.",
+      cta: learnMoreCta,
+    },
+    {
+      icon: icons.digitalGrowth,
+      title: "Digital Growth",
+      summary:
+        "Use SEO, content, social media, email, and analytics to build steady momentum.",
+      cta: learnMoreCta,
+    },
+  ],
+  exploreAll: exploreAllServicesCta,
 };
 
-// Block 13 — FAQ (objection handling). Visible text is also emitted as
-// FAQPage JSON-LD verbatim by <Faq />.
-export const faqHeading = {
-  eyebrow: "FAQ",
-  title: "Frequently Asked Questions",
+// ---------------------------------------------------------------------------
+// 6. Segment focus
+// ---------------------------------------------------------------------------
+
+export interface Segment {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export const segmentsSection = {
+  title: "A Digital Product Studio Built Around Your Business",
+  intro:
+    "Every business is different, so our digital product studio does not start with a fixed template. We start with your situation.",
+  items: [
+    {
+      icon: icons.startups,
+      title: "For Startups",
+      description:
+        "You have an idea and need to test it fast. We help you shape it, design it, and launch it.",
+    },
+    {
+      icon: icons.growingBusinesses,
+      title: "For Growing Businesses",
+      description:
+        "Your brand or website may have fallen behind. We help you refresh it and reach more customers.",
+    },
+    {
+      icon: icons.saasTeams,
+      title: "For SaaS Teams",
+      description:
+        "Your product may feel crowded or confusing. We help you make it clear and easy to use.",
+    },
+    {
+      icon: icons.establishedCompanies,
+      title: "For Established Companies",
+      description:
+        "You may need a new digital direction. We help you plan, design, and deliver it with less risk.",
+    },
+  ],
 };
+
+// ---------------------------------------------------------------------------
+// 7. Stats counters
+// ---------------------------------------------------------------------------
+
+export interface Stat {
+  /** Numeric target for the animated counter. */
+  value: number;
+  /** Rendered directly after the counted figure, e.g. "+". */
+  suffix: string;
+  label: string;
+  description: string;
+}
+
+export const statsSection = {
+  title: "Global Team. Remote Collaboration. Local Understanding.",
+  intro:
+    "Waymarks works through remote teams in many locations. Our specialists cover branding, UI/UX, development, marketing, motion, AI, and client support.",
+  body: "This lets our digital product studio build the right team for each project, instead of limiting you to one office or one skill set.",
+  subheading: "Experience Across Markets",
+  items: [
+    {
+      value: 12,
+      suffix: "+",
+      label: "Countries",
+      description:
+        "We work with businesses and brands in different markets and regions.",
+    },
+    {
+      value: 100,
+      suffix: "+",
+      label: "Businesses",
+      description:
+        "We support businesses with branding, digital products, and growth.",
+    },
+    {
+      value: 450,
+      suffix: "+",
+      label: "Ideas",
+      description:
+        "We turn concepts into brand identities and digital experiences.",
+    },
+    {
+      value: 25,
+      suffix: "+",
+      label: "Industries",
+      description:
+        "We bring experience from many industries and business models.",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 8. Featured case study
+// ---------------------------------------------------------------------------
+
+export const caseStudySection = {
+  title: "Selected Work From Our Digital Product Studio",
+  intro:
+    "A good case study should show more than a final screenshot. It should explain the problem, the thinking, the work, and what changed.",
+  client: "Weavers Furnishing Ltd.",
+  body: "A full digital transformation that combined brand strategy, UX/UI design, website development, SEO, and design systems.",
+  results: [
+    "27% increase in user engagement",
+    "55% improved retention rate",
+    "64% reported revenue increase",
+  ],
+  cta: viewCaseStudyCta,
+  // Copy inside the browser-frame thumbnail visual.
+  thumbnail: {
+    url: "weavers.co.uk",
+    wordmark: "WEAVERS",
+    badge: "E-COMMERCE",
+    title: "Crafting Timeless Home Furnishings",
+    blurb:
+      "Elevating interior elegance through bespoke artisanal textiles & custom decor.",
+    primaryButton: "Shop Collection",
+    secondaryButton: "Explore Catalog",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 9. Process
+// ---------------------------------------------------------------------------
+
+export interface ProcessStep {
+  step: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export const processSection = {
+  title: "How We Work",
+  intro: "Here is how our digital product studio takes a project from first idea to launch.",
+  steps: [
+    {
+      step: "01",
+      icon: icons.discover,
+      title: "Discover",
+      description: "We learn about your business, audience, goals, and challenges.",
+    },
+    {
+      step: "02",
+      icon: icons.define,
+      title: "Define",
+      description: "We turn what we learn into a clear direction and scope.",
+    },
+    {
+      step: "03",
+      icon: icons.create,
+      title: "Create",
+      description: "Our specialists design, build, and develop the solution.",
+    },
+    {
+      step: "04",
+      icon: icons.review,
+      title: "Review",
+      description: "You see progress, share feedback, and stay involved.",
+    },
+    {
+      step: "05",
+      icon: icons.launch,
+      title: "Launch",
+      description: "We get everything ready and help you go live with confidence.",
+    },
+    {
+      step: "06",
+      icon: icons.improve,
+      title: "Improve",
+      description: "We keep supporting you with optimisation, marketing, and development.",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 10. Why choose us
+// ---------------------------------------------------------------------------
+
+export interface Reason {
+  title: string;
+  description: string;
+}
+
+export const whyUsSection = {
+  title: "Why Businesses Choose Our Digital Product Studio",
+  intro: "Here is what sets our digital product studio apart.",
+  items: [
+    {
+      title: "Senior Thinking",
+      description:
+        "Experienced people work on your project. You do not get layers of extra communication.",
+    },
+    {
+      title: "Connected Services",
+      description:
+        "Brand, design, development, and growth work together instead of separately.",
+    },
+    {
+      title: "Flexible Teams",
+      description: "We build the team around what you actually need.",
+    },
+    {
+      title: "Clear Communication",
+      description:
+        "You always know what is happening, what is next, and where your project stands.",
+    },
+    {
+      title: "Global Delivery",
+      description:
+        "Our remote setup lets us work with clients across countries and time zones.",
+    },
+    {
+      title: "Long Term Thinking",
+      description:
+        "We do not see projects as one time jobs. We build relationships around steady improvement.",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 11. FAQ
+// ---------------------------------------------------------------------------
 
 export interface Faq {
   question: string;
   answer: string;
 }
 
-export const faqs: Faq[] = [
-  {
-    question: "What does Waymark do?",
-    answer:
-      "Waymark is a digital product studio offering UI/UX design, brand identity, web design and development, SaaS and product design, MVP development and mobile app design.",
-  },
-  {
-    question: "Where is Waymark based?",
-    answer:
-      "Waymark is based in Dubai, UAE and works with startups and growing businesses.",
-  },
-  {
-    question: "Do you work with startups?",
-    answer:
-      "Yes. We work with startups from early stage ideas through to growing digital products.",
-  },
-  {
-    question: "Can you work with an existing development team?",
-    answer:
-      "Yes. We can provide design systems, prototypes and developer ready handoff for your existing team.",
-  },
-  {
-    question: "Do you only work on new products?",
-    answer:
-      "No. We also redesign existing websites, SaaS platforms, dashboards and digital experiences.",
-  },
-  {
-    question: "Can you handle strategy as well as design?",
-    answer:
-      "Yes. We can help define the problem, structure the product experience and establish the direction before moving into detailed design.",
-  },
-  {
-    question: "How do projects start?",
-    answer:
-      "Every project begins with a discovery call. We use that conversation to understand the problem, determine the right approach and prepare a clear scope.",
-  },
-  {
-    question: "How long does a typical project take?",
-    answer:
-      "The timeline depends on the scope. A focused website or product engagement can typically take between several weeks and a few months. We provide a clear timeline as part of the proposal.",
-  },
-];
-
-// Block 14 — Research resources linked from the numbers band.
-export const resourcesHeading = {
-  eyebrow: "Resources",
-  title: "Research behind the numbers",
-  description:
-    "The sources behind the figures on this page, so you can check the evidence yourself.",
-};
-
-export interface Resource {
-  step: string;
-  title: string;
-  description: string;
-  href: string;
-  linkLabel: string;
-}
-
-export const resources: Resource[] = [
-  {
-    step: "01",
-    title: "Stanford Web Credibility Guidelines",
-    description:
-      "Research based guidelines covering visual design, usability, credibility and information architecture.",
-    href: "https://credibility.stanford.edu/guidelines/",
-    linkLabel: "Read the Stanford Web Credibility Guidelines",
-  },
-  {
-    step: "02",
-    title: "Stanford Web Credibility Research",
-    description:
-      "Background on the research behind website credibility and the influence of design decisions.",
-    href: "http://www.webcredibility.org/",
-    linkLabel: "Explore Stanford's Research",
-  },
-  {
-    step: "03",
-    title: "Google Mobile Speed Guidance",
-    description:
-      "Google's research and guidance around mobile loading performance and visitor abandonment.",
-    href: "https://support.google.com/adsense/answer/7450973",
-    linkLabel: "Read Google's Mobile Speed Guidance",
-  },
-  {
-    step: "04",
-    title: "Google: The Need for Mobile Speed",
-    description:
-      "Google's research into mobile speed, user expectations and the impact of slow experiences.",
-    href: "https://blog.google/products/admanager/the-need-for-mobile-speed/",
-    linkLabel: "Read Google's Mobile Speed Research",
-  },
-  {
-    step: "05",
-    title: "Lucidpress Brand Consistency Research",
-    description:
-      "Research examining brand consistency and its potential commercial impact.",
-    href: "https://www.prnewswire.com/news-releases/study-finds-companies-with-consistent-branding-can-see-up-to-33-increase-in-revenue-300967219.html",
-    linkLabel: "Read the Brand Consistency Research",
-  },
-];
-
-// Block 15 — Explore links.
-export const exploreSection = {
-  eyebrow: "Explore",
-  title: "Explore Waymark",
+export const faqSection = {
+  title: "Frequently Asked Questions",
+  intro: "Everything you need to know about working with our digital product studio.",
   items: [
     {
-      title: "Our Services",
-      body: "Explore everything Waymark can help you design and build.",
-      href: "/services",
-      cta: "View Services",
+      question: "What does Waymarks do?",
+      answer:
+        "Waymarks is a global digital product studio. We offer branding, UI/UX design, website design and development, SaaS and product design, MVP development, mobile app design, and digital growth services.",
     },
     {
-      title: "Our Work",
-      body: "See how we approach real digital product problems.",
-      href: "/work",
-      cta: "View Work",
+      question: "Is Waymarks a Dubai based agency?",
+      answer:
+        "Yes. Waymarks is based in Dubai and works with clients across many markets and regions.",
     },
     {
-      title: "About Waymark",
-      body: "Learn more about our approach, team and way of working.",
-      href: "/about",
-      cta: "About Waymark",
+      question:
+        "Why choose a digital product studio instead of separate freelancers?",
+      answer:
+        "A digital product studio keeps strategy, design, development, and marketing under one plan. You explain your goals once, and one team carries them through to launch.",
     },
     {
-      title: "Pricing",
-      body: "Understand how we structure projects and engagements.",
-      href: "/pricing",
-      cta: "View Pricing",
+      question: "Does Waymarks work with international clients?",
+      answer:
+        "Yes. We have worked across 12+ countries and 25+ industries.",
     },
     {
-      title: "Insights",
-      body: "Read our thinking on product design, UX, development and digital growth.",
-      href: "/blog",
-      cta: "Read the Blog",
+      question: "Can Waymarks handle a complete digital project?",
+      answer:
+        "Yes. Depending on your needs, we can support strategy, branding, UX/UI, development, launch, and growth.",
+    },
+    {
+      question: "Can you work with our existing team?",
+      answer:
+        "Yes. We can work as an extension of your team or take charge of one part of your project.",
     },
   ],
 };
 
-// Block 16 — Closing CTA (rendered via <ClosingCta /> overrides).
-export const homeClosingCta = {
-  eyebrow: "Start a project",
-  title: "The next version of your product starts with a conversation",
-  body:
-    "You do not need a perfect brief. You do not need every feature planned. You just need to know what you are trying to solve. Tell us what you are building, where things are getting complicated and what you want to achieve. We will help you figure out what comes next.",
-  lead: "Let's talk about your project.",
-  ctaLabel: "Book a discovery call",
+// Schema.org data per the design file's JSON-LD @graph. FAQ answers are built
+// from faqSection.items so schema always matches visible copy. page.tsx dumps
+// homeJsonLd verbatim in Phase 5. Declared after faqSection so module
+// initialisation order stays valid.
+export const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${site.domain}/#organization`,
+  name: "Waymarks",
+  url: `${site.domain}/`,
+  logo: `${site.domain}/Waymarks_Logo-01.png`,
+  description: homeSeo.description,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dubai",
+    addressCountry: "AE",
+  },
+  email: site.email,
 };
 
-// Contact-flow content (shared with the contact page — not rendered on home).
-export const finalCta = {
-  eyebrow: "Start the conversation",
+export const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.domain}/#website`,
+  url: `${site.domain}/`,
+  name: "Waymarks",
+  publisher: { "@id": `${site.domain}/#organization` },
+};
+
+export const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationJsonLd,
+    websiteJsonLd,
+    {
+      "@type": "FAQPage",
+      mainEntity: faqSection.items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 12. Final CTA banner
+// ---------------------------------------------------------------------------
+
+export const finalCtaSection = {
   title: "Have an Idea? Let's Make It Real.",
-  description: "Tell us what you're building. We'll respond within [X hours].",
-  bookCallLabel: "Book a Free Call Directly",
-  orLabel: "— or fill out the form below —",
-  submitLabel: "Submit",
-  successTitle: "Thanks — we've got it.",
-  successBody:
-    "We'll get back to you within one business day. If it's urgent, email hello@waymarks.agency directly.",
+  body: "Tell us what you are building, what is not working, or where you want to go next. Our digital product studio will help you find the right next step.",
+  primaryCta: startProjectMailtoCta,
+  secondaryCta: exploreWorkCta,
 };
 
-export const formOptions = {
-  services: [
-    "Web Design",
-    "UI/UX",
-    "Branding",
-    "MVP",
-    "SaaS Design",
-    "Not Sure Yet",
-  ],
-  budgets: [
-    "Under $5K",
-    "$5K – $10K",
-    "$10K – $25K",
-    "$25K+",
-    "Not sure yet",
-  ],
+// ---------------------------------------------------------------------------
+// 13. Footer
+// ---------------------------------------------------------------------------
+
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export const footer = {
+  about: {
+    title: "Global Digital Innovation & Creative Studio",
+    body: "We bring strategy, creativity, technology, and growth together to help businesses create better digital experiences.",
+    socials: socialLinks,
+  },
+  servicesColumn: {
+    title: "Services",
+    links: [
+      { label: "Brand Design & Identity", href: sectionAnchors.services },
+      { label: "UI/UX Design", href: sectionAnchors.services },
+      { label: "Website Design & Development", href: sectionAnchors.services },
+      { label: "SaaS & Product Design", href: sectionAnchors.services },
+      { label: "MVP Development", href: sectionAnchors.services },
+      { label: "Mobile App Design", href: sectionAnchors.services },
+      { label: "Digital Growth", href: sectionAnchors.services },
+    ],
+  },
+  companyColumn: {
+    title: "Company",
+    // Design lists About/Our Team/Pricing/Blog here, but the one-pager has no
+    // such sections — dead links never ship. About retargets to the studio
+    // bento; only real section anchors remain (per the Phase 1 wipe).
+    links: [
+      { label: "About", href: sectionAnchors.studio },
+      { label: "Our Work", href: sectionAnchors.work },
+      { label: "Contact", href: sectionAnchors.contact },
+    ],
+  },
+  workWithUs: {
+    title: "Work With Us",
+    highlights: [
+      "Global team",
+      "Remote collaboration",
+      "Flexible project teams",
+      "Long term partnerships",
+    ],
+    contactLabel: "Contact",
+    contactIcon: icons.mail,
+    email: site.email,
+  },
+  // Static-safe newsletter (FR-23): hidden until a static-compatible endpoint
+  // exists, matching the shared site.ts newsletter flag.
+  newsletter: {
+    enabled: false,
+    title: "Subscribe to our newsletter",
+    placeholder: "Enter your email",
+    submitLabel: "Join",
+  },
+  tagline: "Global team. Remote collaboration. Digital experiences without borders.",
+  legal: {
+    copyright: `© ${new Date().getFullYear()} Waymarks. All rights reserved.`,
+    links: [
+      { label: "Privacy Policy", href: "#privacy" },
+      { label: "Terms of Use", href: "#terms" },
+    ],
+  },
 };

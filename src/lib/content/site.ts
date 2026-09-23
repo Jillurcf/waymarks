@@ -16,6 +16,9 @@ export const bookCallHref = `mailto:${site.email}?subject=${encodeURIComponent(
   "Free strategy call",
 )}`;
 
+// Primary navbar CTA label (design file header: "Start a Project").
+export const navCtaLabel = "Start a Project";
+
 export const socialLinks = [
   { label: "Dribbble", href: "https://dribbble.com" },
   { label: "Behance", href: "https://behance.net" },

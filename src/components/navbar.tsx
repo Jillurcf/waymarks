@@ -14,14 +14,8 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { ctaClass } from "@/components/site/cta";
 import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetClose,
@@ -37,16 +31,47 @@ import {
   site,
   socialLinks,
   contactPanel,
+  navCtaLabel,
 } from "@/lib/content/site";
 
+import { sectionAnchors } from "@/lib/content/home";
+
+// One-pager (P3.3): every route except "/" was removed in Phase 1, so nav is
+// strictly in-page anchors into the homepage sections — sourced from the typed
+// content module, never hand-rolled here.
 const navItems = [
-  { title: "Services", href: "/services" },
-  { title: "Work", href: "/work" },
-  { title: "About", href: "/about" },
-  { title: "Pricing", href: "/pricing" },
-  { title: "Blog", href: "/blog" },
-  { title: "Contact", href: "/contact" },
+  { title: "Services", href: sectionAnchors.services },
+  { title: "Work", href: sectionAnchors.work },
+  { title: "Blog", href: sectionAnchors.blog },
+  { title: "Contact", href: sectionAnchors.contact },
 ];
+
+// Desktop nav is a semantic list of in-page anchor links — the design file's
+// header uses a plain <ul class="nav-links">, so the Radix navigation-menu
+// primitive is deliberately avoided (quality gate C: ≤200 KB route JS).
+function DesktopNav() {
+  const isActive = useIsActive();
+  return (
+    <nav className="hidden md:flex" aria-label="Main">
+      <ul className="flex items-center gap-6">
+        {navItems.map((item) => (
+          <li key={item.title}>
+            <Link
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={cn(
+                "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+                isActive(item.href) && "text-waymarks-accent",
+              )}
+            >
+              {item.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 function Brand() {
   return (
@@ -76,36 +101,6 @@ function useIsActive() {
   return React.useCallback(
     (href: string) => pathname === href || pathname.startsWith(`${href}/`),
     [pathname],
-  );
-}
-
-function DesktopNav() {
-  const isActive = useIsActive();
-  return (
-    <NavigationMenu className="hidden md:flex">
-      <NavigationMenuList>
-        {navItems.map((item) => (
-          <NavigationMenuItem key={item.title}>
-            <NavigationMenuLink
-              asChild
-              aria-current={isActive(item.href) ? "page" : undefined}
-            >
-              <Link
-                href={item.href}
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  isActive(item.href)
-                    ? "text-waymarks-accent"
-                    : "text-foreground",
-                )}
-              >
-                {item.title}
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
   );
 }
 
@@ -150,9 +145,9 @@ function MobileNav() {
           <Button asChild className="w-full" variant="outline">
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </Button>
-          <Button asChild className="w-full">
-            <a href={bookCallHref}>Book a Free Call</a>
-          </Button>
+          <a href={bookCallHref} className={cn(ctaClass("primary"), "mt-2 w-full")}>
+            {navCtaLabel}
+          </a>
         </SheetFooter>
       </SheetContent>
     </Sheet>
@@ -287,12 +282,9 @@ export function Navbar() {
         <DesktopNav />
         <div className="ml-auto flex items-center gap-2">
           <ContactPanel />
-          <Button asChild size="default" className="hidden sm:inline-flex">
-            <a href={bookCallHref}>Book a Free Call</a>
-          </Button>
-          <Button asChild size="default" className="sm:hidden" variant="outline">
-            <a href={bookCallHref}>Book a Call</a>
-          </Button>
+          <a href={bookCallHref} className={ctaClass("primary")}>
+            {navCtaLabel}
+          </a>
         </div>
       </div>
     </header>

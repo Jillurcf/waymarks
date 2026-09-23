@@ -1,71 +1,45 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-
 import { cn } from "@/lib/utils";
+import type { Cta } from "@/lib/content/home";
 
-// Primary CTA treatments, per design-system §4/§5: solid brand green, or the
-// official left-to-right CTA gradient (reserved for CTA buttons and hero
-// highlights). Applied on top of the shadcn Button primitives — never
-// hand-rolled.
-export const primaryCtaClass =
-  "bg-waymarks-primary text-foreground hover:bg-waymarks-primary/85";
+import { Icon } from "./icon";
 
-export const gradientCtaClass = "waymarks-cta-gradient text-foreground hover:opacity-85";
+export type CtaVariant = "primary" | "outline" | "outline-inverse";
 
-export function CtaLink({
-  href,
-  children,
-  className,
-  external = false,
-  variant = "solid",
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-  external?: boolean;
-  variant?: "solid" | "gradient";
-}) {
-  const classes = cn(
-    variant === "gradient" ? gradientCtaClass : primaryCtaClass,
-    className,
-  );
-  if (external) {
-    return (
-      <a href={href} className={classes}>
-        {children}
-      </a>
-    );
-  }
-  return <Link href={href} className={classes}>{children}</Link>;
+const baseClass =
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50";
+
+const variantClass: Record<CtaVariant, string> = {
+  // CTA gradient, reserved for primary actions (design-system §5).
+  primary:
+    "waymarks-cta-gradient text-waymarks-dark shadow-card hover:-translate-y-0.5 hover:shadow-card-hover",
+  // Secondary on light surfaces: supporting green outline.
+  outline:
+    "border border-waymarks-secondary/40 text-waymarks-secondary hover:border-waymarks-accent hover:text-waymarks-accent hover:-translate-y-0.5",
+  // Secondary on dark surfaces: white outline that heats up on hover.
+  "outline-inverse":
+    "border border-white/60 text-white hover:border-waymarks-primary hover:text-waymarks-primary hover:-translate-y-0.5",
+};
+
+/** CTA button classes for a variant; shared so non-`CtaButton` surfaces
+ *  (e.g. the navbar CTA in the header) stay visually identical to the banner. */
+export function ctaClass(variant: CtaVariant = "primary"): string {
+  return cn(baseClass, variantClass[variant]);
 }
 
-export function SecondaryCtaLink({
-  href,
-  children,
+/** On-brand CTA link rendered from the typed `Cta` data (content owns copy). */
+export function CtaButton({
+  cta,
+  variant = "primary",
   className,
-  external = false,
 }: {
-  href: string;
-  children: React.ReactNode;
+  cta: Cta;
+  variant?: CtaVariant;
   className?: string;
-  external?: boolean;
 }) {
-  const classes = cn(
-    "inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all hover:bg-muted",
-    className,
-  );
-  if (external) {
-    return (
-      <a href={href} className={classes}>
-        {children}
-        <ArrowRight className="size-4" aria-hidden="true" />
-      </a>
-    );
-  }
   return (
-    <Link href={href} className={classes}>
-      {children}
-      <ArrowRight className="size-4" aria-hidden="true" />
-    </Link>
+    <a href={cta.href} className={cn(ctaClass(variant), className)}>
+      <span>{cta.label}</span>
+      <Icon name={cta.icon} className="size-4" />
+    </a>
   );
 }

@@ -1,52 +1,70 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
-import { CtaLink } from "@/components/site/cta";
-import { services } from "@/lib/content/services";
-import {
-  site,
-  socialLinks,
-  workTogether,
-  newsletter,
-} from "@/lib/content/site";
+import { footer } from "@/lib/content/home";
 
-const quickLinks = [
-  { title: "Work", href: "/work" },
-  { title: "About", href: "/about" },
-  { title: "Pricing", href: "/pricing" },
-  { title: "Blog", href: "/blog" },
-  { title: "Contact", href: "/contact" },
-];
+import { Icon } from "./icon";
 
-const legalLinks = [
-  { title: "Privacy policy", href: "/privacy" },
-  { title: "Terms & conditions", href: "/terms" },
-];
-
-// Newsletter slot (FR-23): single email field posting to the same form
-// provider as the lead form. Hidden until a static-compatible endpoint
-// exists; wiring lands with C4.4.
-function NewsletterSlot() {
-  if (!newsletter.enabled) return null;
-
+function SocialLinks() {
+  const socials = footer.about.socials;
   return (
-    <form className="mt-6" aria-label={newsletter.title}>
-      <p className="mb-2 text-sm font-medium">{newsletter.title}</p>
-      <div className="flex gap-2">
-        <label htmlFor="footer-newsletter-email" className="sr-only">
-          {newsletter.placeholder}
-        </label>
+    <ul className="mt-6 flex gap-3">
+      {socials.map((social) => (
+        <li key={social.label}>
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-semibold text-white transition-colors duration-200 hover:bg-waymarks-cta hover:text-waymarks-dark"
+          >
+            {social.label.slice(0, 2).toUpperCase()}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function LinkColumn({ title, links }: { title: string; links: readonly { label: string; href: string }[] }) {
+  return (
+    <div>
+      <h2 className="text-base font-bold text-white">{title}</h2>
+      <ul className="mt-5 space-y-3 text-sm">
+        {links.map((link) => (
+          <li key={link.label}>
+            <a
+              href={link.href}
+              className="text-white/60 underline-offset-4 transition-colors duration-200 hover:text-waymarks-primary"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Static-safe newsletter slot (FR-23): hidden until an endpoint exists. */
+function NewsletterForm() {
+  const newsletter = footer.newsletter;
+  if (!newsletter.enabled) return null;
+  return (
+    <form className="mt-6">
+      <label htmlFor="newsletter-email" className="block text-sm font-medium text-white">
+        {newsletter.title}
+      </label>
+      <div className="mt-3 flex gap-2">
         <input
-          id="footer-newsletter-email"
+          id="newsletter-email"
           type="email"
-          name="email"
           required
           placeholder={newsletter.placeholder}
-          className="h-11 w-full min-w-0 rounded-lg border border-waymarks-light/15 bg-transparent px-3 text-sm text-waymarks-light placeholder:text-waymarks-light/40 focus-visible:border-waymarks-accent focus-visible:outline-none"
+          className="w-full min-w-0 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none placeholder:text-white/40 focus:border-waymarks-primary"
         />
         <button
           type="submit"
-          className="inline-flex h-11 shrink-0 items-center rounded-lg bg-waymarks-primary px-4 text-sm font-medium text-waymarks-dark transition-opacity hover:opacity-85"
+          className="shrink-0 rounded-full bg-waymarks-cta px-5 py-2.5 text-sm font-semibold text-waymarks-dark"
         >
           {newsletter.submitLabel}
         </button>
@@ -55,143 +73,80 @@ function NewsletterSlot() {
   );
 }
 
+/**
+ * Footer (P4.13): four-column dark footer — brand + socials, Services,
+ * Company (real section anchors only), Work With Us + newsletter slot — with
+ * tagline and legal bottom row.
+ */
 export function Footer() {
   return (
-    <footer className="bg-waymarks-dark text-waymarks-light">
-      {/* Work-together CTA band (C1.2) */}
-      <div className="border-b border-waymarks-light/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 md:flex-row md:items-center md:justify-between">
+    <footer className="bg-waymarks-dark pb-8 pt-16 text-white">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr]">
           <div>
-            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-waymarks-accent">
-              {workTogether.eyebrow}
-            </p>
-            <h2 className="max-w-xl text-3xl font-medium tracking-tight sm:text-4xl">
-              {workTogether.title}
-            </h2>
-          </div>
-          <CtaLink
-            href="/contact"
-            className="h-11 shrink-0 px-6 text-base hover:opacity-85"
-          >
-            {workTogether.cta}
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </CtaLink>
-        </div>
-      </div>
-
-      {/* Main footer */}
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-12">
-          <div className="col-span-2 md:col-span-4">
-            <Link href="/" aria-label={`${site.name} — home`}>
+            <Link href="/" aria-label={`${footer.about.title} — home`}>
               {/* Plain img: images.unoptimized makes next/image pure overhead
-                  (quality gate C — route JS budget). */}
+                  (quality gate C — route JS budget); irrelevant to LCP here. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Waymarks_Logo-01.png"
-                alt="Waymark logo"
-                width={140}
-                height={25}
-                className="h-6 w-auto"
+                alt="Waymarks logo"
+                width={158}
+                height={28}
+                loading="lazy"
+                className="h-7 w-auto"
               />
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-waymarks-light/70">
-              {site.tagline}. Strategy, UI/UX, and development under one roof.
+            <p className="mt-5 text-base font-semibold text-white">
+              {footer.about.title}
             </p>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/60">
+              {footer.about.body}
+            </p>
+            <SocialLinks />
           </div>
 
-          <nav aria-label="Services" className="md:col-span-2">
-            <p className="mb-4 text-xs font-medium uppercase tracking-widest text-waymarks-light/50">
-              Services
-            </p>
-            <ul className="space-y-2.5">
-              {services.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="text-sm text-waymarks-light/70 transition-colors hover:text-waymarks-primary"
-                  >
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <LinkColumn title={footer.servicesColumn.title} links={footer.servicesColumn.links} />
 
-          <nav aria-label="Site" className="md:col-span-2">
-            <p className="mb-4 text-xs font-medium uppercase tracking-widest text-waymarks-light/50">
-              Explore
-            </p>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-waymarks-light/70 transition-colors hover:text-waymarks-primary"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <LinkColumn title={footer.companyColumn.title} links={footer.companyColumn.links} />
 
-          <div className="col-span-2 md:col-span-4">
-            <p className="mb-4 text-xs font-medium uppercase tracking-widest text-waymarks-light/50">
-              Contact
+          <div>
+            <h2 className="text-base font-bold text-white">{footer.workWithUs.title}</h2>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+              {footer.workWithUs.highlights.join(" • ")}
             </p>
-            <ul className="space-y-2.5 text-sm text-waymarks-light/70">
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="transition-colors hover:text-waymarks-primary"
-                >
-                  {site.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.phoneHref}
-                  className="transition-colors hover:text-waymarks-primary"
-                >
-                  {site.phone}
-                </a>
-              </li>
-              <li>{site.region}</li>
-            </ul>
-            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5">
-              {socialLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-waymarks-light/70 transition-colors hover:text-waymarks-primary"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <NewsletterSlot />
+            <p className="mt-5 flex items-center gap-2 text-sm font-semibold text-waymarks-primary">
+              <Icon name={footer.workWithUs.contactIcon} className="size-4" />
+              {footer.workWithUs.contactLabel}
+            </p>
+            <a
+              href={`mailto:${footer.workWithUs.email}`}
+              className="mt-1 inline-block text-sm text-white underline-offset-4 transition-colors duration-200 hover:text-waymarks-primary"
+            >
+              {footer.workWithUs.email}
+            </a>
+            <NewsletterForm />
           </div>
         </div>
 
-        {/* Copyright row */}
-        <div className="mt-14 flex flex-col gap-3 border-t border-waymarks-light/10 pt-6 text-xs text-waymarks-light/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
-          <nav aria-label="Legal" className="flex gap-4">
-            {legalLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="transition-colors hover:text-waymarks-primary"
-              >
-                {link.title}
-              </Link>
+        <p className="mt-12 text-center text-sm font-medium text-waymarks-primary">
+          {footer.tagline}
+        </p>
+
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/50 sm:flex-row">
+          <p>{footer.legal.copyright}</p>
+          <ul className="flex gap-6">
+            {footer.legal.links.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="text-white/50 underline-offset-4 transition-colors duration-200 hover:text-waymarks-primary"
+                >
+                  {link.label}
+                </a>
+              </li>
             ))}
-          </nav>
+          </ul>
         </div>
       </div>
     </footer>

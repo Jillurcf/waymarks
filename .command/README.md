@@ -55,4 +55,4 @@ Guidelines:
 
 - Brand & UI rules: `.skill/waymark-ui-ux/` (skills)
 - Requirements: `.spec/BRD.md`, `.spec/SRS.md`
-- Build plan: `docs/implementation-plan.md`
+- Build plan: `docs/implementation-phases.md` (one-pager rebuild)

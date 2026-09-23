@@ -17,8 +17,8 @@ Launch the Waymark development server and verify it renders before handing back.
 ## Definition of done
 
 - Dev server starts with no errors.
-- Home page renders the current milestone state (see
-  `docs/implementation-plan.md`) with the Waymark hero visible.
+- Home page renders the current one-pager state (see
+  `docs/implementation-phases.md`) with the Waymark hero visible.
 - No new console warnings introduced by the change under test.
 
 Calling context (if any): $ARGUMENTS

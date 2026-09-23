@@ -209,6 +209,43 @@
       transform: translateX(40px);
     }
   }
+
+  /*
+   * Hero W logo stage (P3.1/P4.1): the Waymarks mark floats gently on its
+   * podium, mirroring the design reference's floatLogo keyframe (0 → −16px
+   * with a 1deg ease). Paused under prefers-reduced-motion via the base-layer
+   * guard below.
+   */
+  --animate-float-logo: float-logo 4s ease-in-out infinite;
+
+  @keyframes float-logo {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-16px) rotate(1deg);
+    }
+  }
+
+  /*
+   * Hero podium glow (P3.1/P4.1, design pulseGlow keyframe): radial glow
+   * @below the floating logo breathes scale 1 → 1.15. Paused under
+   * prefers-reduced-motion via the base-layer guard below.
+   */
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 0.9;
+    }
+  }
 }
 
 :root {
@@ -480,7 +517,9 @@
     .animate-marquee,
     .animate-spin-slow,
     .animate-explore-spin,
-    .animate-hero-tag-move {
+    .animate-hero-tag-move,
+    .animate-float-logo,
+    .animate-pulse-glow {
       animation-play-state: paused;
     }
 

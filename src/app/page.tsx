@@ -1,26 +1,27 @@
 import type { Metadata } from "next";
 
-import { ApproachSection } from "@/components/site/approach-section";
-import { ClaritySection } from "@/components/site/clarity-section";
-import { ClosingCta } from "@/components/site/closing-cta";
-import { EngagementSteps } from "@/components/site/engagement-steps";
-import { ExploreSection } from "@/components/site/explore-section";
-import { Faq } from "@/components/site/faq";
-import { FeaturedWork } from "@/components/site/featured-work";
-import { FitSection } from "@/components/site/fit-section";
-import { Hero } from "@/components/site/hero";
-import { OutcomesSection } from "@/components/site/outcomes-section";
-import { ProductProcess } from "@/components/site/product-process";
-import { ResearchStats } from "@/components/site/research-stats";
-import { ResourcesSection } from "@/components/site/resources-section";
-import { ServiceTeasers } from "@/components/site/service-teasers";
-import { ServicesGrid } from "@/components/site/services-grid";
-import { WhyStudio } from "@/components/site/why-studio";
-import { homeClosingCta, homeSeo } from "@/lib/content/home";
+import { homeJsonLd, homeSeo } from "@/lib/content/home";
 import { site } from "@/lib/content/site";
 
+import { Hero } from "@/components/site/hero";
+import { Testimonials } from "@/components/site/testimonials";
+import { StudioBento } from "@/components/site/studio-bento";
+import { Capabilities } from "@/components/site/capabilities";
+import { ServicesGrid } from "@/components/site/services-grid";
+import { Segments } from "@/components/site/segments";
+import { StatsSection } from "@/components/site/stats-section";
+import { CaseStudy } from "@/components/site/case-study";
+import { Process } from "@/components/site/process";
+import { WhyUs } from "@/components/site/why-us";
+import { Faq } from "@/components/site/faq";
+import { FinalCta } from "@/components/site/final-cta";
+import { Footer } from "@/components/site/footer";
+
 export const metadata: Metadata = {
-  title: homeSeo.title,
+  // P5.2: SEO title/description mirror the design file's <head> exactly —
+  // homeSeo (Content module) is the single source for both. Title uses the
+  // `absolute` form to bypass the layout template (no double-branding).
+  title: { absolute: homeSeo.title },
   description: homeSeo.description,
   alternates: { canonical: "/" },
   openGraph: {
@@ -32,52 +33,32 @@ export const metadata: Metadata = {
   },
 };
 
-// ProfessionalService JSON-LD. aggregateRating is omitted until a verified
-// review count exists (site.reviews is still SEED) — placeholder values must
-// not ship as structured data.
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Waymark",
-  url: site.domain,
-  email: site.email,
-  telephone: site.phone,
-  description: homeSeo.description,
-  areaServed: "United Arab Emirates",
-};
-
-// FAQPage JSON-LD matching the visible FAQ text is emitted by <Faq />.
-
+// Single-page home (P4/P5): every design section rendered in order — hero →
+// proof → studio bento → capabilities → services → segments → stats → case
+// study → process → why us → FAQ → final CTA → footer.
 export default function Home() {
   return (
     <>
+      {/* Schema.org Organization + WebSite + FAQPage (homeJsonLd): the FAQ
+          graph is rebuilt from faqSection.items so it always matches the
+          visible accordion copy — emitted verbatim per home.ts. */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <Hero />
-      <ClaritySection />
+      <Testimonials />
+      <StudioBento />
+      <Capabilities />
       <ServicesGrid />
-      <ApproachSection />
-      <ResearchStats />
-      <OutcomesSection />
-      <ProductProcess />
-      <WhyStudio />
-      <FeaturedWork />
-      <EngagementSteps />
-      <FitSection />
-      <ServiceTeasers />
+      <Segments />
+      <StatsSection />
+      <CaseStudy />
+      <Process />
+      <WhyUs />
       <Faq />
-      <ResourcesSection />
-      <ExploreSection />
-      <ClosingCta
-        eyebrow={homeClosingCta.eyebrow}
-        title={homeClosingCta.title}
-        body={homeClosingCta.body}
-        primaryLabel={homeClosingCta.ctaLabel}
-      />
+      <FinalCta />
+      <Footer />
     </>
   );
 }

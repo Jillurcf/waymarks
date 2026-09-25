@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ArrowLeft, ArrowRight, Check, Pause, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 
 import {
   studioSection,
@@ -41,6 +41,32 @@ function getReducedMotionSnapshot() {
 
 function getServerReducedMotionSnapshot() {
   return false;
+}
+
+function clamp(value: number, minimum: number, maximum: number) {
+  return Math.min(Math.max(value, minimum), maximum);
+}
+
+function getStudioScrollTimeline(
+  track: HTMLElement,
+  stickyContent: HTMLElement,
+  scrollSpacer: HTMLElement | null,
+) {
+  const stickyStyles = window.getComputedStyle(stickyContent);
+  const trackTop = track.getBoundingClientRect().top + window.scrollY;
+
+  if (stickyStyles.position === "sticky" && scrollSpacer) {
+    const stickyOffset = Number.parseFloat(stickyStyles.top) || 0;
+    return {
+      start: trackTop - stickyOffset,
+      distance: scrollSpacer.offsetHeight,
+    };
+  }
+
+  return {
+    start: trackTop,
+    distance: Math.max(0, track.offsetHeight - window.innerHeight),
+  };
 }
 
 function VisualFrame({
@@ -415,63 +441,108 @@ function SlideDetails({ slide }: { slide: StudioSlide }) {
 
 export function StudioBento() {
   const [activeSlide, setActiveSlide] = React.useState(0);
-  const [autoplay, setAutoplay] = React.useState(true);
+  const trackRef = React.useRef<HTMLDivElement>(null);
+  const stickyContentRef = React.useRef<HTMLDivElement>(null);
+  const scrollSpacerRef = React.useRef<HTMLDivElement>(null);
   const prefersReducedMotion = React.useSyncExternalStore(
     subscribeToReducedMotion,
     getReducedMotionSnapshot,
     getServerReducedMotionSnapshot,
   );
-  const autoplayEnabled = autoplay && !prefersReducedMotion;
-  const slide = studioSection.slides[activeSlide];
   const totalSlides = studioSection.slides.length;
+  const slide = studioSection.slides[activeSlide];
 
   React.useEffect(() => {
-    if (!autoplayEnabled) return;
+    const track = trackRef.current;
+    const stickyContent = stickyContentRef.current;
 
-    let timer: number | undefined;
+    if (!track || !stickyContent) return;
 
-    const stopTimer = () => {
-      if (timer !== undefined) window.clearInterval(timer);
+    let animationFrame: number | undefined;
+
+    const updateActiveSlide = () => {
+      if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame);
+
+      animationFrame = window.requestAnimationFrame(() => {
+        const timeline = getStudioScrollTimeline(
+          track,
+          stickyContent,
+          scrollSpacerRef.current,
+        );
+        const progress =
+          timeline.distance === 0
+            ? 0
+            : clamp((window.scrollY - timeline.start) / timeline.distance, 0, 1);
+        const nextSlide = Math.min(
+          totalSlides - 1,
+          Math.floor(progress * totalSlides),
+        );
+
+        setActiveSlide((current) => (current === nextSlide ? current : nextSlide));
+      });
     };
 
-    const startTimer = () => {
-      stopTimer();
-      if (document.hidden) return;
-      timer = window.setInterval(() => {
-        setActiveSlide((current) => (current + 1) % totalSlides);
-      }, 6000);
-    };
+    updateActiveSlide();
+    window.addEventListener("scroll", updateActiveSlide, { passive: true });
+    window.addEventListener("resize", updateActiveSlide);
 
-    startTimer();
-    document.addEventListener("visibilitychange", startTimer);
+    const resizeObserver = new ResizeObserver(updateActiveSlide);
+    resizeObserver.observe(track);
+    resizeObserver.observe(stickyContent);
+    if (scrollSpacerRef.current) resizeObserver.observe(scrollSpacerRef.current);
 
     return () => {
-      stopTimer();
-      document.removeEventListener("visibilitychange", startTimer);
+      window.removeEventListener("scroll", updateActiveSlide);
+      window.removeEventListener("resize", updateActiveSlide);
+      if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
     };
-  }, [autoplayEnabled, totalSlides]);
+  }, [totalSlides]);
+
+  const goToSlide = (index: number) => {
+    const track = trackRef.current;
+    const stickyContent = stickyContentRef.current;
+
+    if (!track || !stickyContent) return;
+
+    const timeline = getStudioScrollTimeline(
+      track,
+      stickyContent,
+      scrollSpacerRef.current,
+    );
+
+    if (timeline.distance === 0) {
+      setActiveSlide(index);
+      return;
+    }
+
+    const targetProgress = (index + 0.5) / totalSlides;
+    window.scrollTo({
+      top: timeline.start + timeline.distance * targetProgress,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
 
   const showPrevious = () => {
-    setActiveSlide((current) => (current - 1 + totalSlides) % totalSlides);
+    goToSlide(Math.max(0, activeSlide - 1));
   };
 
   const showNext = () => {
-    setActiveSlide((current) => (current + 1) % totalSlides);
+    goToSlide(Math.min(totalSlides - 1, activeSlide + 1));
   };
 
   return (
     <section
       id="studio"
-      className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-waymarks-dark py-20 text-white lg:py-24"
+      className="relative scroll-mt-24 border-y border-white/10 bg-waymarks-dark py-20 text-white lg:py-24"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-1/3 size-96 rounded-full bg-waymarks-secondary/10 blur-3xl motion-safe:animate-pulse-glow"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-12 size-80 rounded-full bg-waymarks-primary/5 blur-3xl"
-      />
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <div className="absolute -left-32 top-1/3 size-96 rounded-full bg-waymarks-secondary/10 blur-3xl motion-safe:animate-pulse-glow" />
+        <div className="absolute -right-32 top-12 size-80 rounded-full bg-waymarks-primary/5 blur-3xl" />
+      </div>
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
@@ -492,105 +563,98 @@ export function StudioBento() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-waymarks-surface-raised/80 p-2 backdrop-blur-xl">
-          <div className="flex flex-col items-stretch justify-between gap-4 lg:flex-row lg:items-center">
-            <div
-              role="group"
-              aria-label={studioSection.controls.groupLabel}
-              className="grid w-full grid-cols-2 gap-1.5 sm:grid-cols-4 lg:w-auto"
-            >
-              {studioSection.slides.map((item, index) => {
-                const active = index === activeSlide;
+        <div ref={trackRef} className="relative">
+          <div
+            ref={stickyContentRef}
+            className="relative z-10 lg:sticky lg:top-20"
+          >
+            <div className="rounded-3xl border border-white/10 bg-waymarks-surface-raised/80 p-2 backdrop-blur-xl">
+              <div className="flex flex-col items-stretch justify-between gap-4 lg:flex-row lg:items-center">
+                <div
+                  role="group"
+                  aria-label={studioSection.controls.groupLabel}
+                  className="grid w-full grid-cols-2 gap-1.5 sm:grid-cols-4 lg:w-auto"
+                >
+                  {studioSection.slides.map((item, index) => {
+                    const active = index === activeSlide;
 
-                return (
+                    return (
+                      <Button
+                        key={item.id}
+                        id={`studio-tab-${item.id}`}
+                        type="button"
+                        variant="ghost"
+                        aria-pressed={active}
+                        aria-controls={`studio-panel-${item.id}`}
+                        onClick={() => goToSlide(index)}
+                        className={cn(
+                          "min-h-11 w-full rounded-xl px-3 text-xs font-semibold sm:rounded-full sm:px-5 sm:text-sm",
+                          active
+                            ? "bg-waymarks-primary text-waymarks-dark shadow-card hover:bg-waymarks-primary hover:text-waymarks-dark"
+                            : "text-white/60 hover:bg-white/5 hover:text-white",
+                        )}
+                      >
+                        <Icon name={item.icon} className="size-4" />
+                        <span>{item.label}</span>
+                      </Button>
+                    );
+                  })}
+                </div>
+
+                <div className="flex w-full items-center justify-end gap-3 px-2 sm:px-0">
                   <Button
-                    key={item.id}
-                    id={`studio-tab-${item.id}`}
                     type="button"
-                    variant="ghost"
-                    aria-pressed={active}
-                    aria-controls={`studio-panel-${item.id}`}
-                    onClick={() => setActiveSlide(index)}
-                    className={cn(
-                      "min-h-11 w-full rounded-xl px-3 text-xs font-semibold sm:rounded-full sm:px-5 sm:text-sm",
-                      active
-                        ? "bg-waymarks-primary text-waymarks-dark shadow-card hover:bg-waymarks-primary hover:text-waymarks-dark"
-                        : "text-white/60 hover:bg-white/5 hover:text-white",
-                    )}
+                    variant="outline"
+                    size="icon-lg"
+                    aria-label={studioSection.controls.previous}
+                    disabled={activeSlide === 0}
+                    onClick={showPrevious}
+                    className="size-11 rounded-full border-white/10 bg-waymarks-surface-raised text-white/70 hover:border-waymarks-primary/50 hover:bg-waymarks-primary/10 hover:text-white"
                   >
-                    <Icon name={item.icon} className="size-4" />
-                    <span>{item.label}</span>
+                    <ArrowLeft aria-hidden="true" className="size-4" />
                   </Button>
-                );
-              })}
+                  <span className="min-w-9 text-center font-mono text-xs font-bold tabular-nums text-waymarks-primary">
+                    {String(activeSlide + 1).padStart(2, "0")} /{" "}
+                    {String(totalSlides).padStart(2, "0")}
+                  </span>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon-lg"
+                    aria-label={studioSection.controls.next}
+                    disabled={activeSlide === totalSlides - 1}
+                    onClick={showNext}
+                    className="size-11 rounded-full border-white/10 bg-waymarks-surface-raised text-white/70 hover:border-waymarks-primary/50 hover:bg-waymarks-primary/10 hover:text-white"
+                  >
+                    <ArrowRight aria-hidden="true" className="size-4" />
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            <div className="flex w-full flex-col items-stretch gap-1 px-2 sm:flex-row sm:items-center sm:gap-3 sm:px-0 lg:w-auto lg:justify-end">
-              <Button
-                type="button"
-                variant="ghost"
-                aria-pressed={autoplayEnabled}
-                disabled={prefersReducedMotion}
-                onClick={() => setAutoplay((current) => !current)}
-                className="min-h-11 self-start rounded-lg px-2.5 text-xs font-mono text-white/55 hover:bg-white/5 hover:text-waymarks-primary"
+            <div className="relative mt-8 min-h-[36rem] overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised p-5 shadow-card sm:p-8 lg:min-h-[34rem] lg:p-10">
+              <div
+                key={slide.id}
+                id={`studio-panel-${slide.id}`}
+                role="region"
+                aria-labelledby={`studio-tab-${slide.id}`}
+                className="relative z-10 grid grid-cols-1 items-center gap-8 motion-safe:animate-fade-up lg:grid-cols-12 lg:gap-12"
               >
-                {autoplayEnabled ? (
-                  <Pause aria-hidden="true" className="size-4 text-waymarks-primary" />
-                ) : (
-                  <Play aria-hidden="true" className="size-4" />
-                )}
-                <span>
-                  {autoplayEnabled
-                    ? studioSection.controls.autoplayOn
-                    : studioSection.controls.autoplayOff}
-                </span>
-              </Button>
-              <span className="hidden h-6 w-px bg-white/10 sm:block" />
-              <div className="flex items-center justify-between gap-1 sm:justify-center">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon-lg"
-                  aria-label={studioSection.controls.previous}
-                  onClick={showPrevious}
-                  className="size-11 rounded-full border-white/10 bg-waymarks-surface-raised text-white/70 hover:border-waymarks-primary/50 hover:bg-waymarks-primary/10 hover:text-white"
-                >
-                  <ArrowLeft aria-hidden="true" className="size-4" />
-                </Button>
-                <span className="min-w-9 text-center font-mono text-xs font-bold tabular-nums text-waymarks-primary">
-                  {String(activeSlide + 1).padStart(2, "0")} /{" "}
-                  {String(totalSlides).padStart(2, "0")}
-                </span>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon-lg"
-                  aria-label={studioSection.controls.next}
-                  onClick={showNext}
-                  className="size-11 rounded-full border-white/10 bg-waymarks-surface-raised text-white/70 hover:border-waymarks-primary/50 hover:bg-waymarks-primary/10 hover:text-white"
-                >
-                  <ArrowRight aria-hidden="true" className="size-4" />
-                </Button>
+                <div className="lg:col-span-5">
+                  <SlideDetails slide={slide} />
+                </div>
+                <div className="lg:col-span-7">
+                  <StudioVisualPanel visual={slide.visual} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="relative mt-8 min-h-[36rem] overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised p-5 shadow-card sm:p-8 lg:min-h-[34rem] lg:p-10">
           <div
-            key={slide.id}
-            id={`studio-panel-${slide.id}`}
-            role="region"
-            aria-labelledby={`studio-tab-${slide.id}`}
-            className="relative z-10 grid grid-cols-1 items-center gap-8 motion-safe:animate-fade-up lg:grid-cols-12 lg:gap-12"
-          >
-            <div className="lg:col-span-5">
-              <SlideDetails slide={slide} />
-            </div>
-            <div className="lg:col-span-7">
-              <StudioVisualPanel visual={slide.visual} />
-            </div>
-          </div>
+            ref={scrollSpacerRef}
+            aria-hidden="true"
+            className="hidden h-[300svh] lg:block"
+          />
         </div>
       </div>
     </section>

@@ -283,8 +283,6 @@ export const studioSection: {
     groupLabel: string;
     previous: string;
     next: string;
-    autoplayOn: string;
-    autoplayOff: string;
   };
   slides: StudioSlide[];
 } = {
@@ -297,8 +295,6 @@ export const studioSection: {
     groupLabel: "Choose a studio capability",
     previous: "Previous capability",
     next: "Next capability",
-    autoplayOn: "Autoplay on",
-    autoplayOff: "Autoplay paused",
   },
   slides: [
     {

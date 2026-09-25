@@ -9,7 +9,7 @@ import { Icon } from "./icon";
  */
 export function ServicesGrid() {
   return (
-    <section id="services" className="scroll-mt-24 bg-waymarks-light py-20 lg:py-24">
+    <section id="services" className="scroll-mt-24 bg-waymarks-dark py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {servicesSection.title}
@@ -25,8 +25,8 @@ export function ServicesGrid() {
               className="flex min-h-64 flex-col justify-between rounded-2xl border border-border bg-card p-8 transition-all duration-200 hover:-translate-y-1 hover:border-waymarks-accent hover:shadow-card-hover"
             >
               <div>
-                <Icon name={service.icon} className="size-8 text-waymarks-secondary" />
-                <h3 className="mt-4 text-xl font-bold text-waymarks-secondary">
+                <Icon name={service.icon} className="size-8 text-waymarks-primary" />
+                <h3 className="mt-4 text-xl font-bold text-white">
                   {service.title}
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">

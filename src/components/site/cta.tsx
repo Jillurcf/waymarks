@@ -12,10 +12,10 @@ const variantClass: Record<CtaVariant, string> = {
   // CTA gradient, reserved for primary actions (design-system §5).
   primary:
     "waymarks-cta-gradient text-waymarks-dark shadow-card hover:-translate-y-0.5 hover:shadow-card-hover",
-  // Secondary on light surfaces: supporting green outline.
+  // Secondary on the dark surface ramp: hairline outline that heats to accent.
   outline:
-    "border border-waymarks-secondary/40 text-waymarks-secondary hover:border-waymarks-accent hover:text-waymarks-accent hover:-translate-y-0.5",
-  // Secondary on dark surfaces: white outline that heats up on hover.
+    "border border-white/20 text-white hover:border-waymarks-accent hover:text-waymarks-accent hover:-translate-y-0.5",
+  // Secondary on brand-dark stages: brighter outline that heats up on hover.
   "outline-inverse":
     "border border-white/60 text-white hover:border-waymarks-primary hover:text-waymarks-primary hover:-translate-y-0.5",
 };

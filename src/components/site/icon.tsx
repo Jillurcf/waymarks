@@ -5,30 +5,55 @@ import {
   CircleCheckBig,
   Cloud,
   Code,
+  Compass,
+  Cpu,
   Diamond,
   Eye,
-  Globe,
   Layers,
   LayoutDashboard,
+  Lightbulb,
   Mail,
   Monitor,
+  Paintbrush,
+  Palette,
   PenTool,
   Rocket,
   Search,
-  ShieldCheck,
   Smartphone,
   Star,
   TrendingUp,
   Users,
   Zap,
 } from "lucide-react";
+import {
+  siLaravel,
+  siNextdotjs,
+  siNodedotjs,
+  siPostgresql,
+  siReact,
+  siShopify,
+  siVuedotjs,
+  siWebflow,
+  siWordpress,
+  type SimpleIcon,
+} from "simple-icons";
 
 import { cn } from "@/lib/utils";
 import { icons } from "@/lib/content/home";
 
-// Content modules reference icons by name (gate F: lucide only). The map is
-// resolved as static JSX below — never as a dynamic element type — so React
-// Compiler's static-components rule stays satisfied.
+function BrandIcon({
+  icon,
+  className,
+}: {
+  icon: SimpleIcon;
+  className?: string;
+}) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={className}>
+      <path d={icon.path} fill="currentColor" />
+    </svg>
+  );
+}
 
 /** Render a content icon by name. Decorative (aria-hidden) by default. */
 export function Icon({
@@ -39,17 +64,41 @@ export function Icon({
   className?: string;
 }) {
   const cls = cn("size-5", className);
-  // Keep the lucide imports live; the branch table stays exhaustive against
-  // the icons registry in home.ts.
   switch (name) {
     case icons.strategy:
-      return <Globe aria-hidden="true" className={cls} />;
+      return <Compass aria-hidden="true" className={cls} />;
     case icons.design:
-      return <ShieldCheck aria-hidden="true" className={cls} />;
+      return <Palette aria-hidden="true" className={cls} />;
     case icons.technology:
       return <Code aria-hidden="true" className={cls} />;
     case icons.growth:
       return <TrendingUp aria-hidden="true" className={cls} />;
+    case icons.strategyBadge:
+      return <Lightbulb aria-hidden="true" className={cls} />;
+    case icons.designBadge:
+      return <Paintbrush aria-hidden="true" className={cls} />;
+    case icons.technologyBadge:
+      return <Cpu aria-hidden="true" className={cls} />;
+    case icons.growthBadge:
+      return <Rocket aria-hidden="true" className={cls} />;
+    case icons.react:
+      return <BrandIcon icon={siReact} className={cls} />;
+    case icons.nextjs:
+      return <BrandIcon icon={siNextdotjs} className={cls} />;
+    case icons.vue:
+      return <BrandIcon icon={siVuedotjs} className={cls} />;
+    case icons.node:
+      return <BrandIcon icon={siNodedotjs} className={cls} />;
+    case icons.laravel:
+      return <BrandIcon icon={siLaravel} className={cls} />;
+    case icons.postgresql:
+      return <BrandIcon icon={siPostgresql} className={cls} />;
+    case icons.wordpress:
+      return <BrandIcon icon={siWordpress} className={cls} />;
+    case icons.shopify:
+      return <BrandIcon icon={siShopify} className={cls} />;
+    case icons.webflow:
+      return <BrandIcon icon={siWebflow} className={cls} />;
     case icons.brandIdentity:
       return <Star aria-hidden="true" className={cls} />;
     case icons.uiUx:

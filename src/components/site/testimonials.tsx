@@ -4,12 +4,12 @@ import {
 } from "@/lib/content/home";
 
 /**
- * Proof / testimonials (P4.2): three verified-client quote cards on the dark
+ * Proof / testimonials (P4.2): three verified-client quote cards on the section
  * band, avatar initials set on the CTA gradient (design avatar-placeholder).
  */
 export function Testimonials() {
   return (
-    <section className="border-y border-white/10 bg-waymarks-dark py-14 text-white sm:py-16">
+    <section className="border-y border-white/10 bg-waymarks-surface py-14 text-white sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-waymarks-primary">
           {testimonialsSection.eyebrow}
@@ -18,7 +18,7 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <figure
               key={item.author}
-              className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6"
+              className="flex flex-col rounded-2xl border border-border bg-card p-6"
             >
               <blockquote className="text-base leading-relaxed text-white/85">
                 &ldquo;{item.quote}&rdquo;

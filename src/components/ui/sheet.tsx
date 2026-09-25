@@ -37,7 +37,9 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/10 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        // Scrim tuned for the dark-first site: a 10% black veil is invisible
+        // over the brand navy, so the overlay dims to 65%.
+        "fixed inset-0 z-50 bg-black/65 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
         className
       )}
       {...props}
@@ -72,7 +74,7 @@ function SheetContent({
           <SheetPrimitive.Close data-slot="sheet-close" asChild>
             <Button
               variant="ghost"
-              className="absolute top-3 right-3"
+              className="absolute top-3 right-3 hover:bg-white/5"
               size="icon-sm"
             >
               <XIcon

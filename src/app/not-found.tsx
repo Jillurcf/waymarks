@@ -10,7 +10,7 @@ export default function NotFound() {
         <p className="text-xs font-semibold uppercase tracking-widest text-waymarks-accent">
           {notFound.eyebrow}
         </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-waymarks-secondary sm:text-4xl">
+        <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {notFound.title}
         </h1>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">

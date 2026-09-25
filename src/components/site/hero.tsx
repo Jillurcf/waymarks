@@ -20,7 +20,7 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
         <div className="animate-fade-up">
-          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-5xl">
             {hero.title}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-white/80 sm:text-xl">
@@ -47,7 +47,7 @@ export function Hero() {
 
         {/* Animated W logo stage */}
         <div className="relative mx-auto w-full max-w-md">
-          <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border border-white/10 p-10">
+          <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised/50 p-10">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute left-1/2 top-1/2 size-2/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-waymarks-accent/10 blur-2xl"

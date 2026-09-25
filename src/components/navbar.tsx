@@ -83,6 +83,7 @@ function Brand() {
       {/* Plain img: images.unoptimized makes next/image pure overhead
           (quality gate C — route JS budget); eager + high fetch priority
           keeps LCP behaviour. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo_white.png"
         alt="Waymark logo"
@@ -131,7 +132,7 @@ function MobileNav() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium transition-colors hover:bg-muted",
+                  "flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium transition-colors hover:bg-white/5",
                   isActive(item.href) && "text-waymarks-accent",
                 )}
               >
@@ -182,7 +183,7 @@ function ContactPanelRows() {
       {rows.map(({ icon: Icon, label, value, href }) => {
         const content = (
           <>
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-waymarks-primary/15 text-waymarks-secondary">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-waymarks-primary/15 text-waymarks-primary">
               <Icon className="size-4" aria-hidden="true" />
             </span>
             <span className="min-w-0">
@@ -201,7 +202,7 @@ function ContactPanelRows() {
               <SheetClose asChild>
                 <a
                   href={href}
-                  className="flex items-center gap-3 rounded-lg px-2 py-3 transition-colors hover:bg-muted"
+                  className="flex items-center gap-3 rounded-lg px-2 py-3 transition-colors hover:bg-white/5"
                 >
                   {content}
                 </a>
@@ -273,14 +274,16 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-white/10 bg-waymarks-dark text-white backdrop-blur-md",
+        "sticky top-0 z-50 w-full border-b border-white/10 bg-waymarks-dark/80 text-white backdrop-blur-md",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6 lg:px-8">
-        <MobileNav />
-        <Brand />
+      <div className="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto] items-center gap-x-4 px-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8">
+        <div className="flex min-w-0 items-center gap-2">
+          <MobileNav />
+          <Brand />
+        </div>
         <DesktopNav />
-        <div className="ml-auto flex items-center gap-2">
+        <div className="flex items-center justify-end gap-2">
           <ContactPanel />
           <a href={bookCallHref} className={ctaClass("primary")}>
             {navCtaLabel}

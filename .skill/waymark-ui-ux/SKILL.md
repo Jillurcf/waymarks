@@ -13,6 +13,10 @@ It derives directly from the company asset and brand signals:
   for use on dark surfaces.
 - **Brand color field** — the molten-metal greens already wired into the
   signature WebGL shader (`src/components/molten-metal.tsx` defaults).
+- **Dark-first surface** — the official `#00051D` brand navy is the page
+  background for every route, lifted by two neutral elevation steps
+  (`waymarks-surface` bands, `waymarks-surface-raised` cards) so the greens read
+  as light on dark.
 - **Brand facts** — "Waymark" / "waymarks.agency"; premium UI/UX & digital
   product studio positioned like leading design agencies (Musemind, etc.).
 - **Signature motion** — the liquid / molten-metal background effect.
@@ -37,7 +41,8 @@ Follow this file plus its companions:
    or re-draw it. Preserve aspect ratio and padding (clear space = height of
    the mark's lowercase glyphs on each side).
 3. **Premium restraint.** Whitespace, thin rules, and one spotlight element per
-   viewport. If everything glows, nothing glows.
+   viewport. If everything glows, nothing glows. On the dark ramp, restraint
+   means hairlines and elevation steps — not more glow.
 4. **Built with the existing stack.** Reuse `src/components/ui/*`, `cn()` from
    `src/lib/utils.ts`, tokens from `globals.css` `@theme`. Do not add new UI
    libraries without a spec change.

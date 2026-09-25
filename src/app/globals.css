@@ -15,6 +15,15 @@
   --color-waymarks-dark: var(--waymarks-dark);
   --color-waymarks-light: var(--waymarks-light);
 
+  /*
+   * Dark surface ramp. The site is dark-first: `waymarks-dark` is the page
+   * base, `waymarks-surface` is the alternating section band, and
+   * `waymarks-surface-raised` is the card / sheet elevation. Both neutrals are
+   * derived from the brand dark navy — never from the greens.
+   */
+  --color-waymarks-surface: var(--waymarks-surface);
+  --color-waymarks-surface-raised: var(--waymarks-surface-raised);
+
   /* CTA Gradient */
   --background-image-waymarks-cta:
     linear-gradient(
@@ -305,6 +314,27 @@
    */
   --waymarks-light: #ffffff;
 
+  /*
+   * Dark Surface
+   * #060B24
+   * RGB: 6, 11, 36
+   *
+   * One step above `waymarks-dark`. Alternating section bands, inputs and
+   * quiet surfaces. The site is dark-first, so this is the "quiet" tone of
+   * the brand navy — a neutral elevation, not a new brand color.
+   */
+  --waymarks-surface: #060b24;
+
+  /*
+   * Dark Surface Raised
+   * #0B1236
+   * RGB: 11, 18, 54
+   *
+   * Two steps above `waymarks-dark`. Cards, sheets, popovers and any surface
+   * that must sit clearly above both the page and a section band.
+   */
+  --waymarks-surface-raised: #0b1236;
+
   /* ========================================
      Application Theme
      ======================================== */
@@ -406,17 +436,24 @@
 
 .dark {
   /*
-   * Waymarks dark sections use the official
-   * #00051D brand background.
+   * The Waymarks site is dark-first: `.dark` is set on <html> in the root
+   * layout, so this block is the live theme and `:root` above is the light
+   * reference. `color-scheme` keeps native controls, scrollbars and form
+   * widgets dark too.
    */
+  color-scheme: dark;
 
+  /*
+   * The page base is the official #00051D brand background. Raised surfaces
+   * climb the neutral ramp: band = surface, card/sheet = surface-raised.
+   */
   --background: var(--waymarks-dark);
   --foreground: #ffffff;
 
-  --card: #00051d;
+  --card: var(--waymarks-surface-raised);
   --card-foreground: #ffffff;
 
-  --popover: #00051d;
+  --popover: var(--waymarks-surface-raised);
   --popover-foreground: #ffffff;
 
   /*
@@ -426,13 +463,18 @@
   --primary-foreground: var(--waymarks-dark);
 
   /*
-   * Secondary remains the supporting green.
+   * Secondary remains the supporting green. It is a *surface* colour on dark —
+   * never body text (it fails contrast against the navy ramp).
    */
   --secondary: var(--waymarks-secondary);
   --secondary-foreground: #ffffff;
 
-  --muted: oklch(0.22 0 0);
-  --muted-foreground: oklch(0.75 0 0);
+  /*
+   * Section bands and quiet fills.
+   */
+  --muted: var(--waymarks-surface);
+  /* Lightened neutral so body copy clears 4.5:1 on every step of the ramp. */
+  --muted-foreground: oklch(0.78 0.012 165);
 
   /*
    * Accent remains the action color.
@@ -447,6 +489,18 @@
 
   --ring: var(--waymarks-accent);
 
+  /*
+   * Shadows read as depth, not haze: darker and deeper than the light theme
+   * so lifted cards separate from the navy band behind them.
+   */
+  --card-shadow:
+    0 1px 2px rgb(0 0 0 / 0.5),
+    0 8px 24px rgb(0 0 0 / 0.35);
+
+  --card-shadow-hover:
+    0 2px 4px rgb(0 0 0 / 0.55),
+    0 18px 48px rgb(0 0 0 / 0.55);
+
   /* Charts */
   --chart-1: var(--waymarks-primary);
   --chart-2: var(--waymarks-accent);
@@ -455,7 +509,7 @@
   --chart-5: oklch(0.556 0 0);
 
   /* Sidebar */
-  --sidebar: var(--waymarks-dark);
+  --sidebar: var(--waymarks-surface);
   --sidebar-foreground: #ffffff;
 
   --sidebar-primary: var(--waymarks-primary);

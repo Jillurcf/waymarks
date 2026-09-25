@@ -3,14 +3,15 @@ import { finalCtaSection } from "@/lib/content/home";
 import { CtaButton } from "./cta";
 
 /**
- * Final CTA banner (P4.12): glowing full-width dark band whose glowing orb
- * sits behind the copy (design full-cta-banner + cta-glow-bg).
+ * Final CTA banner (P4.12): glowing full-width band whose glowing orb sits
+ * behind the copy (design full-cta-banner + cta-glow-bg). It is the last
+ * surface band before the brand-dark footer.
  */
 export function FinalCta() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-waymarks-dark py-20 text-center text-white"
+      className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-waymarks-surface py-20 text-center text-white"
     >
       <div
         aria-hidden="true"

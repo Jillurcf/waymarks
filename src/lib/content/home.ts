@@ -37,10 +37,23 @@ export const homeSeo = {
 // lucide icon names used across sections. Components map these names to lucide
 // components; keeping them as data means icon choice lives beside its copy.
 export const icons = {
-  strategy: "Globe",
-  design: "ShieldCheck",
+  strategy: "Compass",
+  design: "Palette",
   technology: "Code",
   growth: "TrendingUp",
+  strategyBadge: "Lightbulb",
+  designBadge: "Paintbrush",
+  technologyBadge: "Cpu",
+  growthBadge: "Rocket",
+  react: "React",
+  nextjs: "Next.js",
+  vue: "Vue.js",
+  node: "Node.js",
+  laravel: "Laravel",
+  postgresql: "PostgreSQL",
+  wordpress: "WordPress",
+  shopify: "Shopify",
+  webflow: "Webflow",
   brandIdentity: "Star",
   uiUx: "LayoutDashboard",
   website: "Monitor",
@@ -113,7 +126,7 @@ export const exploreAllServicesCta: Cta = { label: "Explore All Services", href:
 // ---------------------------------------------------------------------------
 
 export const hero = {
-  title: "Digital Product Studio That Turns Ideas Into Real Results",
+  title: `Digital Product Studio That Turns Ideas Into Real Results`,
   subhead:
     "Waymarks is a global digital product studio. We help startups, growing businesses, and large companies turn ideas into brands, websites, apps, and growth plans.",
   body: "Our remote teams bring strategy, design, technology, and marketing together. The result is digital work that people understand, trust, and remember.",
@@ -173,38 +186,335 @@ export const testimonials: Testimonial[] = [
 // 3. Connected studio bento — strategy, design, technology, growth
 // ---------------------------------------------------------------------------
 
-export interface IconFeature {
-  icon: string;
-  title: string;
+export type StudioSlideId = "strategy" | "design" | "technology" | "growth";
+export type StudioTechCategory = "all" | "frontend" | "backend" | "cms";
+export type StudioFidelity = "wireframe" | "hifi";
+
+export interface StudioHighlight {
+  label: string;
   description: string;
 }
 
-export const studioSection = {
-  title: "One Digital Product Studio for Strategy, Design, and Growth",
+export interface StudioStrategyVisual {
+  kind: "strategy";
+  title: string;
+  hint: string;
+  selectionLabel: string;
+  prompt: string;
+  nodes: Array<{
+    label: string;
+    detail: string;
+  }>;
+}
+
+export interface StudioDesignVisual {
+  kind: "design";
+  title: string;
+  modesLabel: string;
+  modes: Record<StudioFidelity, string>;
+  preview: {
+    wireframeAvatar: string;
+    hifiAvatar: string;
+    title: string;
+    description: string;
+    badge: Record<StudioFidelity, string>;
+    button: Record<StudioFidelity, string>;
+  };
+  footer: string;
+}
+
+export interface StudioTechnologyVisual {
+  kind: "technology";
+  title: string;
+  filtersLabel: string;
+  filters: Array<{ id: StudioTechCategory; label: string }>;
+  items: Array<{
+    name: string;
+    category: Exclude<StudioTechCategory, "all">;
+    icon: string;
+  }>;
+  footerLabel: string;
+  footerValue: string;
+}
+
+export interface StudioGrowthVisual {
+  kind: "growth";
+  title: string;
+  metric: {
+    value: string;
+    label: string;
+  };
+  chart: {
+    label: string;
+    value: string;
+    note: string;
+  };
+  stats: Array<{
+    label: string;
+    value: string;
+  }>;
+}
+
+export type StudioVisual =
+  | StudioStrategyVisual
+  | StudioDesignVisual
+  | StudioTechnologyVisual
+  | StudioGrowthVisual;
+
+export interface StudioSlide {
+  id: StudioSlideId;
+  icon: string;
+  badgeIcon: string;
+  label: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  highlights: StudioHighlight[];
+  cta: Cta;
+  visual: StudioVisual;
+}
+
+export const studioSection: {
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  intro: string;
+  controls: {
+    groupLabel: string;
+    previous: string;
+    next: string;
+    autoplayOn: string;
+    autoplayOff: string;
+  };
+  slides: StudioSlide[];
+} = {
+  eyebrow: "Our core capabilities",
+  title: "One Digital Product Studio for",
+  titleAccent: "Strategy, Design, and Growth",
   intro:
     "Good digital work is never just about how it looks. It starts with understanding your business, your customers, and the problem you want to solve.",
-  body: "At our digital product studio, every team joins from day one. That keeps your strategy, brand, product, website, and marketing working as one connected experience.",
-  features: [
+  controls: {
+    groupLabel: "Choose a studio capability",
+    previous: "Previous capability",
+    next: "Next capability",
+    autoplayOn: "Autoplay on",
+    autoplayOff: "Autoplay paused",
+  },
+  slides: [
     {
+      id: "strategy",
       icon: icons.strategy,
-      title: "Strategy",
+      badgeIcon: icons.strategyBadge,
+      label: "Strategy",
+      eyebrow: "Discovery and roadmapping",
+      title: "Product strategy and architecture",
       description:
-        "We learn about your goals, market, customers, and competitors before we create anything.",
+        "We map business needs, review the market, and turn what we learn into a practical product roadmap. We establish product clarity before design or code begins.",
+      highlights: [
+        {
+          label: "Research",
+          description:
+            "Competitor and user interviews reveal the strongest market opportunities.",
+        },
+        {
+          label: "Positioning",
+          description:
+            "A clear value proposition aligns the product with business goals.",
+        },
+        {
+          label: "Feasibility",
+          description:
+            "An early technical blueprint reduces rework and future risk.",
+        },
+      ],
+      cta: {
+        label: "Plan your product",
+        href: sectionAnchors.contact,
+        icon: icons.arrowRight,
+      },
+      visual: {
+        kind: "strategy",
+        title: "Strategy map",
+        hint: "Explore three milestones",
+        selectionLabel: "Selected milestone",
+        prompt: "Select a milestone to inspect the roadmap",
+        nodes: [
+          {
+            label: "Discovery",
+            detail: "Research, audience, and market context",
+          },
+          {
+            label: "Architecture",
+            detail: "Product structure, scope, and priorities",
+          },
+          {
+            label: "Roadmap",
+            detail: "A staged plan for validation and launch",
+          },
+        ],
+      },
     },
     {
+      id: "design",
       icon: icons.design,
-      title: "Design",
-      description: "We turn ideas into clear, useful, and memorable experiences.",
+      badgeIcon: icons.designBadge,
+      label: "Design",
+      eyebrow: "UI/UX and design systems",
+      title: "Clear interfaces built to scale",
+      description:
+        "We create cohesive brand identities, practical design systems, and responsive interfaces. Every interaction is designed to feel clear and remain usable as the product grows.",
+      highlights: [
+        {
+          label: "Design tokens",
+          description:
+            "Reusable type, colour, spacing, and component rules keep work consistent.",
+        },
+        {
+          label: "Prototypes",
+          description:
+            "Tested flows help us resolve usability issues before development.",
+        },
+        {
+          label: "Interaction",
+          description:
+            "Motion and states follow accessible, lightweight patterns.",
+        },
+      ],
+      cta: {
+        label: "Review your design",
+        href: sectionAnchors.contact,
+        icon: icons.arrowRight,
+      },
+      visual: {
+        kind: "design",
+        title: "Component preview",
+        modesLabel: "Choose design fidelity",
+        modes: {
+          wireframe: "Wireframe",
+          hifi: "High fidelity",
+        },
+        preview: {
+          wireframeAvatar: "UI",
+          hifiAvatar: "WM",
+          title: "Responsive product system",
+          description:
+            "A reusable component library with accessible states and a consistent 4px spacing rhythm.",
+          badge: {
+            wireframe: "Wireframe component",
+            hifi: "Active design token",
+          },
+          button: {
+            wireframe: "Button component placeholder",
+            hifi: "Interactive button token",
+          },
+        },
+        footer: "Typeface: Geist | Spacing: 4px rhythm",
+      },
     },
     {
+      id: "technology",
       icon: icons.technology,
-      title: "Technology",
-      description: "We build reliable digital products that work on every device and platform.",
+      badgeIcon: icons.technologyBadge,
+      label: "Technology",
+      eyebrow: "Engineering and platforms",
+      title: "Reliable builds, ready to grow",
+      description:
+        "We build fast, accessible frontends and dependable backends. Clear architecture and tested code keep launches stable as usage grows.",
+      highlights: [
+        {
+          label: "Frontend",
+          description:
+            "React, Next.js, Vue, Angular, and Tailwind CSS.",
+        },
+        {
+          label: "Backend and data",
+          description:
+            "Node.js, Laravel, PostgreSQL, MongoDB, and SQL Server.",
+        },
+        {
+          label: "CMS and commerce",
+          description: "WordPress, Shopify, and headless Webflow.",
+        },
+      ],
+      cta: {
+        label: "Discuss your build",
+        href: sectionAnchors.contact,
+        icon: icons.arrowRight,
+      },
+      visual: {
+        kind: "technology",
+        title: "Technology matrix",
+        filtersLabel: "Filter technologies",
+        filters: [
+          { id: "all", label: "All" },
+          { id: "frontend", label: "Frontend" },
+          { id: "backend", label: "Backend" },
+          { id: "cms", label: "CMS" },
+        ],
+        items: [
+          { name: "React", category: "frontend", icon: icons.react },
+          { name: "Next.js", category: "frontend", icon: icons.nextjs },
+          { name: "Vue.js", category: "frontend", icon: icons.vue },
+          { name: "Node.js", category: "backend", icon: icons.node },
+          { name: "Laravel", category: "backend", icon: icons.laravel },
+          { name: "PostgreSQL", category: "backend", icon: icons.postgresql },
+          { name: "WordPress", category: "cms", icon: icons.wordpress },
+          { name: "Shopify", category: "cms", icon: icons.shopify },
+          { name: "Webflow", category: "cms", icon: icons.webflow },
+        ],
+        footerLabel: "APIs and cloud",
+        footerValue: "REST, GraphQL, Docker, AWS",
+      },
     },
     {
+      id: "growth",
       icon: icons.growth,
-      title: "Growth",
-      description: "We help you reach the right people and turn attention into action.",
+      badgeIcon: icons.growthBadge,
+      label: "Growth",
+      eyebrow: "Measurement and conversion",
+      title: "Turn attention into useful growth",
+      description:
+        "Launch is the start. We test conversion paths, improve Core Web Vitals, and connect analytics to the next product decision.",
+      highlights: [
+        {
+          label: "Conversion",
+          description:
+            "Structured A/B tests reveal where customer journeys need attention.",
+        },
+        {
+          label: "Performance",
+          description:
+            "Fast pages and technical SEO improve discovery and usability.",
+        },
+        {
+          label: "Measurement",
+          description:
+            "Events and clear dashboards show what changed and why.",
+        },
+      ],
+      cta: {
+        label: "Plan your next test",
+        href: sectionAnchors.contact,
+        icon: icons.arrowRight,
+      },
+      visual: {
+        kind: "growth",
+        title: "Illustrative growth dashboard",
+        metric: {
+          value: "+32%",
+          label: "Illustrative lift",
+        },
+        chart: {
+          label: "Validated experiment",
+          value: "132",
+          note: "Example conversion index",
+        },
+        stats: [
+          { label: "Baseline", value: "100" },
+          { label: "Experiment", value: "118" },
+          { label: "Validated", value: "132" },
+        ],
+      },
     },
   ],
 };

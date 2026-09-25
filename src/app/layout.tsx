@@ -63,9 +63,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // The site is dark-first (design-system §1): `dark` activates the
+      // brand-navy surface ramp in globals.css for the whole document.
+      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col bg-waymarks-dark">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:bg-background focus:px-4 focus:py-2"

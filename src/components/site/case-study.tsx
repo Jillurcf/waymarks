@@ -3,13 +3,17 @@ import { caseStudySection } from "@/lib/content/home";
 import { CtaButton } from "./cta";
 
 /**
- * Case study (P4.8): Weavers dark showcase card with the browser-frame
- * thumbnail rebuilt entirely from tokens/typography — no imagery (gate C).
+ * Case study (P4.8): Weavers showcase card inverted out of the section band —
+ * the browser-frame thumbnail is rebuilt entirely from tokens/typography, no
+ * imagery (gate C).
  */
 export function CaseStudy() {
   const thumb = caseStudySection.thumbnail;
   return (
-    <section id="work" className="scroll-mt-24 bg-waymarks-dark py-20 text-white lg:py-24">
+    <section
+      id="work"
+      className="scroll-mt-24 border-y border-white/10 bg-waymarks-surface py-20 text-white lg:py-24"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
           {caseStudySection.title}
@@ -18,7 +22,7 @@ export function CaseStudy() {
           {caseStudySection.intro}
         </p>
 
-        <div className="mt-12 grid items-center gap-10 rounded-3xl border border-white/10 bg-white/5 p-8 lg:grid-cols-2 lg:gap-14 lg:p-12">
+        <div className="mt-12 grid items-center gap-10 rounded-3xl border border-white/10 bg-waymarks-dark p-8 shadow-card lg:grid-cols-2 lg:gap-14 lg:p-12">
           <div>
             <h3 className="text-2xl font-bold text-white">{caseStudySection.client}</h3>
             <p className="mt-4 text-base leading-relaxed text-white/75">
@@ -40,7 +44,7 @@ export function CaseStudy() {
           </div>
 
           {/* Browser-frame thumbnail */}
-          <div className="overflow-hidden rounded-xl border border-white/10 bg-waymarks-dark shadow-card">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-waymarks-surface-raised shadow-card">
             <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-2.5">
               <span aria-hidden="true" className="size-2.5 rounded-full bg-red-400/80" />
               <span aria-hidden="true" className="size-2.5 rounded-full bg-yellow-400/80" />

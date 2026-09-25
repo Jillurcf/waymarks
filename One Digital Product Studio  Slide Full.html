@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waymarks - Digital Product Studio Showcase</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'wm-dark': '#00051D',
+                        'wm-surface': '#0F142B',
+                        'wm-surface-card': '#07130E',
+                        'wm-lime': '#BDD631',
+                        'wm-accent': '#22C448',
+                        'wm-primary-green': '#006543',
+                        'wm-muted': '#707380',
+                        'wm-border': 'rgba(255, 255, 255, 0.08)',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'lime-glow': '0 0 25px rgba(189, 214, 49, 0.25)',
+                        'accent-glow': '0 0 25px rgba(34, 196, 72, 0.25)',
+                        'card-glow': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --color-dark-bg: #00051D;
+            --color-surface: #0F142B;
+            --color-lime: #BDD631;
+            --color-accent: #22C448;
+            --color-primary-green: #006543;
+            --font-main: 'Poppins', sans-serif;
+            --grid-unit: 8px;
+        }
+
+        body {
+            background-color: #00051D;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(15, 20, 43, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(189, 214, 49, 0.3);
+            box-shadow: 0 0 20px rgba(189, 214, 49, 0.15);
+        }
+
+        /* Gradient Button as per Design System */
+        .btn-gradient-primary {
+            background: linear-gradient(135deg, #BDD631 0%, #22C448 100%);
+            color: #00051D;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient-primary:hover {
+            box-shadow: 0 0 20px rgba(34, 196, 72, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Developer Spec Grid Overlay */
+        .dev-grid-overlay {
+            background-size: 8px 8px;
+            background-image:
+                linear-gradient(to right, rgba(34, 196, 72, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 196, 72, 0.05) 1px, transparent 1px);
+            pointer-events: none;
+        }
+
+        /* Ambient Pulsing Animations */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        .animate-pulse-ambient {
+            animation: pulse-slow 6s infinite ease-in-out;
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: -40; }
+        }
+
+        .animated-path {
+            stroke-dasharray: 8;
+            animation: dash 2s linear infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #00051D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #006543;
+            border-radius: 99px;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative antialiased selection:bg-wm-lime selection:text-wm-dark">
+
+
+
+    <!-- Background Ambient Glows -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-40 left-1/4 w-[500px] h-[500px] bg-wm-primary-green/20 rounded-full blur-[140px] animate-pulse-ambient"></div>
+        <div class="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-wm-lime/10 rounded-full blur-[120px] animate-pulse-ambient" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-20 left-1/3 w-[600px] h-[600px] bg-wm-accent/10 rounded-full blur-[160px] animate-pulse-ambient" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Developer Grid Overlay Layer -->
+    <div id="grid-overlay" class="fixed inset-0 dev-grid-overlay z-30 hidden"></div>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+
+        <!-- SECTION HEADER -->
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <!-- Badge Kicker -->
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-wm-surface border border-wm-border mb-6">
+                <span class="w-2 h-2 rounded-full bg-wm-lime animate-ping"></span>
+                <span class="w-2 h-2 rounded-full bg-wm-lime -ml-4"></span>
+                <span class="text-xs font-semibold tracking-widest text-wm-lime uppercase font-inter">Our Core Capabilities</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6 font-poppins">
+                One Digital Product Studio for <span class="bg-gradient-to-r from-wm-lime via-wm-accent to-emerald-400 bg-clip-text text-transparent">Strategy, Design, and Growth</span>
+            </h2>
+
+            <!-- Subtitle -->
+            <p class="text-base sm:text-lg text-slate-300 font-inter leading-relaxed">
+                Good digital work is never just about how it looks. It starts with understanding your business, your customers, and the exact problem you want to solve.
+            </p>
+        </div>
+
+        <!-- TAB NAVIGATION & SLIDER CONTROLS -->
+        <div id="studio-showcase" class="mb-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 glass-panel p-2.5 rounded-2xl sm:rounded-full border border-wm-border">
+
+                <!-- Category Tabs -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 w-full md:w-auto">
+                    <button onclick="switchTab(0)" id="tab-btn-0" class="tab-btn px-5 py-3 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center space-x-2 transition-all duration-300 bg-wm-lime text-wm-dark shadow-lime-glow">
+                        <i class="fa-solid fa-compass text-base"></i>
+                        <span>1. Strategy</span>
+                    </button>
+                    <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-5 py-3 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-slate-300 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-palette text-base"></i>
+                        <span>2. Design</span>
+                    </button>
+                    <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-5 py-3 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-slate-300 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-code text-base"></i>
+                        <span>3. Technology</span>
+                    </button>
+                    <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-5 py-3 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-slate-300 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-chart-line text-base"></i>
+                        <span>4. Growth</span>
+                    </button>
+                </div>
+
+                <!-- Slider Actions & Indicators -->
+                <div class="flex items-center justify-between md:justify-end w-full md:w-auto space-x-4 px-3">
+                    <!-- Auto-play Toggle -->
+                    <button id="autoplay-btn" onclick="toggleAutoplay()" class="text-xs text-slate-400 hover:text-wm-lime flex items-center space-x-1.5 px-2.5 py-1 rounded-lg hover:bg-white/5 transition-all">
+                        <i id="autoplay-icon" class="fa-solid fa-pause text-wm-lime"></i>
+                        <span id="autoplay-text" class="font-mono">AUTOPLAY ON</span>
+                    </button>
+
+                    <div class="h-4 w-px bg-wm-border hidden sm:block"></div>
+
+                    <!-- Slide Navigation Arrows -->
+                    <div class="flex items-center space-x-2">
+                        <button onclick="prevSlide()" class="w-10 h-10 rounded-full border border-wm-border bg-wm-surface/80 text-slate-300 hover:text-white hover:border-wm-lime hover:bg-wm-lime/10 flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-left text-sm"></i>
+                        </button>
+                        <span id="slide-indicator" class="font-mono text-xs text-wm-lime font-bold px-1">01/04</span>
+                        <button onclick="nextSlide()" class="w-10 h-10 rounded-full border border-wm-border bg-wm-surface/80 text-slate-300 hover:text-white hover:border-wm-lime hover:bg-wm-lime/10 flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SLIDER CONTENT STAGE -->
+        <div class="relative min-h-[580px] lg:min-h-[520px] glass-panel rounded-3xl border border-wm-border p-6 sm:p-8 lg:p-10 overflow-hidden shadow-card-glow">
+
+            <!-- Ambient Background Mesh Graphic -->
+            <div class="absolute inset-0 bg-gradient-to-br from-wm-surface-card/60 via-wm-surface/40 to-wm-dark/90 pointer-events-none"></div>
+
+            <!-- SLIDE 1: STRATEGY -->
+            <div id="slide-0" class="slide-content transition-all duration-500 opacity-100 transform translate-x-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+                <!-- Left Details Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-wm-lime/10 border border-wm-lime/30 text-wm-lime text-xs font-semibold">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <span>DISCOVERY & ROADMAPPING</span>
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white font-poppins">Product Strategy & Architecture</h3>
+
+                    <p class="text-slate-300 font-inter text-sm sm:text-base leading-relaxed">
+                        We map business requirements, conduct deep market audits, and craft high-impact product roadmaps. Before writing a line of code or designing a screen, we establish product clarity.
+                    </p>
+
+                    <!-- Key Bullet Highlights -->
+                    <ul class="space-y-3 pt-2">
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Competitor & User Research:</strong> Uncovering hidden market leverage points.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Value Proposition Design:</strong> Aligning product feature sets with revenue goals.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Technical Feasibility Blueprint:</strong> Choosing scalable tech stacks early.</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-4 flex items-center space-x-4">
+                        <button class="btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold flex items-center space-x-2">
+                            <span>Explore Strategy Phase</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Visual Canvas Column (Interactive Strategy Ambient SVG Artwork) -->
+                <div class="lg:col-span-7 h-80 sm:h-96 lg:h-full min-h-[340px] rounded-2xl glass-card relative p-6 flex flex-col justify-between overflow-hidden group">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-wm-border pb-3">
+                        <span class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-wm-lime animate-pulse"></span>
+                            <span>STRATEGIC MAP VISUALIZER</span>
+                        </span>
+                        <span class="text-wm-lime">Interactive Nodes</span>
+                    </div>
+
+                    <!-- Ambient Glowing SVG Canvas -->
+                    <div class="relative w-full h-full flex items-center justify-center py-4">
+                        <svg class="w-full h-full max-h-[260px]" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background Grid Lines -->
+                            <path d="M0 40H500M0 120H500M0 200H500" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                            <path d="M100 0V240M250 0V240M400 0V240" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                            <!-- Connecting Animated Light Path -->
+                            <path id="strategy-path-1" d="M 60 180 C 140 180, 160 60, 250 60 C 340 60, 360 140, 440 140" stroke="#BDD631" stroke-width="3" stroke-linecap="round" fill="none" class="animated-path" opacity="0.8"/>
+                            <path d="M 60 180 C 140 180, 160 60, 250 60 C 340 60, 360 140, 440 140" stroke="#22C448" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.15"/>
+
+                            <!-- Nodes -->
+                            <!-- Node 1: Research -->
+                            <g class="cursor-pointer hover:scale-110 transition-transform" onclick="highlightNode('Research Target Audits')">
+                                <circle cx="60" cy="180" r="20" fill="#0F142B" stroke="#BDD631" stroke-width="2"/>
+                                <circle cx="60" cy="180" r="8" fill="#BDD631"/>
+                                <text x="60" y="220" text-anchor="middle" fill="#FFFFFF" font-size="11" font-family="Poppins">1. Discovery</text>
+                            </g>
+
+                            <!-- Node 2: Positioning -->
+                            <g class="cursor-pointer hover:scale-110 transition-transform" onclick="highlightNode('Product Positioning & Architecture')">
+                                <circle cx="250" cy="60" r="24" fill="#0F142B" stroke="#22C448" stroke-width="2"/>
+                                <circle cx="250" cy="60" r="10" fill="#22C448"/>
+                                <text x="250" y="30" text-anchor="middle" fill="#FFFFFF" font-size="11" font-family="Poppins">2. Architecture</text>
+                            </g>
+
+                            <!-- Node 3: Execution Roadmap -->
+                            <g class="cursor-pointer hover:scale-110 transition-transform" onclick="highlightNode('Roadmap Launch Plan')">
+                                <circle cx="440" cy="140" r="20" fill="#0F142B" stroke="#006543" stroke-width="2"/>
+                                <circle cx="440" cy="140" r="8" fill="#BDD631"/>
+                                <text x="440" y="180" text-anchor="middle" fill="#FFFFFF" font-size="11" font-family="Poppins">3. Roadmap</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Interactive Tooltip Output -->
+                    <div class="bg-wm-dark/80 backdrop-blur-md p-3 rounded-xl border border-wm-border text-xs flex items-center justify-between">
+                        <span class="text-slate-400">Selected Node Info:</span>
+                        <span id="strategy-node-text" class="text-wm-lime font-mono font-semibold">Click a node to inspect roadmap milestone</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: DESIGN -->
+            <div id="slide-1" class="slide-content transition-all duration-500 opacity-0 transform translate-x-8 absolute inset-0 p-6 sm:p-8 lg:p-10 pointer-events-none grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-wm-accent/10 border border-wm-accent/30 text-wm-accent text-xs font-semibold">
+                        <i class="fa-solid fa-paintbrush"></i>
+                        <span>UI/UX & DESIGN SYSTEM</span>
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white font-poppins">Crafting Scalable Digital Interfaces</h3>
+
+                    <p class="text-slate-300 font-inter text-sm sm:text-base leading-relaxed">
+                        We build cohesive brand identities, modern design systems, and responsive user interfaces that deliver intuitive and memorable user experiences.
+                    </p>
+
+                    <ul class="space-y-3 pt-2">
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Figma Design Tokens:</strong> Custom grids, scales, and component libraries.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>High-Fidelity Wireframes:</strong> Interactive prototypes tested with users.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Micro-Interactions:</strong> Smooth motion guidelines & accessibility AA standard.</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-4">
+                        <button class="btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold flex items-center space-x-2">
+                            <span>View Design Systems</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Wireframe-to-HiFi Toggle Canvas -->
+                <div class="lg:col-span-7 h-80 sm:h-96 lg:h-full min-h-[340px] rounded-2xl glass-card relative p-6 flex flex-col justify-between overflow-hidden">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-wm-border pb-3">
+                        <span class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-wm-accent"></span>
+                            <span>UI COMPONENT PREVIEW</span>
+                        </span>
+
+                        <!-- Interactive Fidelity Switcher Button -->
+                        <div class="flex items-center bg-wm-dark rounded-lg p-1 border border-wm-border">
+                            <button id="wireframe-btn" onclick="setFidelity('wireframe')" class="px-2.5 py-1 rounded text-[11px] font-semibold text-slate-400 hover:text-white transition-all">Wireframe</button>
+                            <button id="hifi-btn" onclick="setFidelity('hifi')" class="px-2.5 py-1 rounded text-[11px] font-semibold bg-wm-accent text-wm-dark shadow-sm transition-all">Hi-Fi UI Mode</button>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Card Preview -->
+                    <div class="my-auto py-4 flex justify-center">
+                        <div id="design-demo-card" class="w-full max-w-sm rounded-2xl p-6 transition-all duration-500 bg-wm-surface border border-wm-border shadow-xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <div id="demo-avatar" class="w-10 h-10 rounded-full bg-wm-lime/20 border border-wm-lime flex items-center justify-center text-wm-lime font-bold">WM</div>
+                                <span id="demo-badge" class="px-2.5 py-1 rounded-full bg-wm-accent/20 text-wm-accent text-xs font-semibold">Active Design Token</span>
+                            </div>
+                            <div id="demo-title" class="text-lg font-bold text-white mb-2">Dark Mode Card System</div>
+                            <div id="demo-sub" class="text-xs text-slate-300 mb-4 leading-relaxed">Responsive 8pt grid structure with WCAG AA compliance colors (#00051D / #BDD631).</div>
+                            <button id="demo-cta" class="w-full py-2.5 rounded-xl btn-gradient-primary text-xs font-bold text-wm-dark">Interactive Button Token</button>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-400 text-center font-mono">
+                        System Typeface: <span class="text-wm-lime">Poppins</span> | Grid: <span class="text-wm-accent">8pt Scale</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: TECHNOLOGY -->
+            <div id="slide-2" class="slide-content transition-all duration-500 opacity-0 transform translate-x-8 absolute inset-0 p-6 sm:p-8 lg:p-10 pointer-events-none grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+                        <i class="fa-solid fa-microchip"></i>
+                        <span>ENGINEERING & STACK</span>
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white font-poppins">Robust & Scalable Tech Architecture</h3>
+
+                    <p class="text-slate-300 font-inter text-sm sm:text-base leading-relaxed">
+                        From ultra-fast frontends to reliable cloud backend systems, we write clean, well-tested code engineered for high-scale performance.
+                    </p>
+
+                    <ul class="space-y-3 pt-2">
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Frontend:</strong> React, Next.js, Vue, Angular, Tailwind CSS.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Backend & CMS:</strong> Node.js, Laravel, Express, WordPress, Headless Webflow.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Databases:</strong> Postgres, MongoDB, SQL Server.</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-4">
+                        <button class="btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold flex items-center space-x-2">
+                            <span>Explore Full Tech Stack</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Tech Stack Wall (Waymarks Stack Showcase) -->
+                <div class="lg:col-span-7 h-80 sm:h-96 lg:h-full min-h-[340px] rounded-2xl glass-card relative p-6 flex flex-col justify-between overflow-hidden">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-wm-border pb-3">
+                        <span class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-wm-lime"></span>
+                            <span>WAYMARKS TECH MATRIX</span>
+                        </span>
+
+                        <!-- Filter buttons -->
+                        <div class="flex items-center space-x-1">
+                            <button onclick="filterTech('all')" class="tech-filter-btn px-2 py-0.5 rounded text-[11px] bg-wm-lime text-wm-dark font-semibold">All</button>
+                            <button onclick="filterTech('frontend')" class="tech-filter-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white">Frontend</button>
+                            <button onclick="filterTech('backend')" class="tech-filter-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white">Backend</button>
+                            <button onclick="filterTech('cms')" class="tech-filter-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white">CMS</button>
+                        </div>
+                    </div>
+
+                    <!-- Tech Pills Grid -->
+                    <div class="my-auto py-3 grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-[220px] overflow-y-auto pr-1">
+                        <div class="tech-pill frontend p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-brands fa-react text-sky-400 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">React JS</span>
+                        </div>
+                        <div class="tech-pill frontend p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-solid fa-N text-white text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Next.js</span>
+                        </div>
+                        <div class="tech-pill frontend p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-brands fa-vuejs text-emerald-400 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Vue.js</span>
+                        </div>
+                        <div class="tech-pill backend p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-brands fa-node-js text-green-500 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Node.js</span>
+                        </div>
+                        <div class="tech-pill backend p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-brands fa-laravel text-red-500 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Laravel</span>
+                        </div>
+                        <div class="tech-pill backend p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-solid fa-database text-amber-400 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Postgres</span>
+                        </div>
+                        <div class="tech-pill cms p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-brands fa-wordpress text-blue-400 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">WordPress</span>
+                        </div>
+                        <div class="tech-pill cms p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-brands fa-shopify text-emerald-300 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Shopify</span>
+                        </div>
+                        <div class="tech-pill cms p-2.5 rounded-xl bg-wm-dark/80 border border-wm-border hover:border-wm-lime/50 flex items-center space-x-2.5 transition-all">
+                            <i class="fa-solid fa-w text-sky-300 text-lg"></i>
+                            <span class="text-xs font-semibold text-white">Webflow</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-400 font-mono text-right">
+                        API & Cloud: <span class="text-wm-lime">REST, GraphQL, Docker, AWS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: GROWTH -->
+            <div id="slide-3" class="slide-content transition-all duration-500 opacity-0 transform translate-x-8 absolute inset-0 p-6 sm:p-8 lg:p-10 pointer-events-none grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-wm-lime/10 border border-wm-lime/30 text-wm-lime text-xs font-semibold">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>ANALYTICS & CONVERSION</span>
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white font-poppins">Turning Attention Into Actionable Growth</h3>
+
+                    <p class="text-slate-300 font-inter text-sm sm:text-base leading-relaxed">
+                        Launching is just step one. We optimize conversion funnels, execute CRO testing, and leverage data to scale active user engagement.
+                    </p>
+
+                    <ul class="space-y-3 pt-2">
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>CRO Optimization:</strong> Continuous A/B testing and funnel refinement.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>SEO & Core Web Vitals:</strong> Sub-second page loads & high rankings.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-sm text-slate-200">
+                            <span class="w-5 h-5 rounded-full bg-wm-accent/20 border border-wm-accent text-wm-accent flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-check"></i></span>
+                            <span><strong>Performance Tracking:</strong> Event tracking and live dashboard metrics.</span>
+                        </li>
+                    </ul>
+
+                    <div class="pt-4">
+                        <button class="btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold flex items-center space-x-2">
+                            <span>Accelerate Growth</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Animated Growth Chart Simulation -->
+                <div class="lg:col-span-7 h-80 sm:h-96 lg:h-full min-h-[340px] rounded-2xl glass-card relative p-6 flex flex-col justify-between overflow-hidden">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-wm-border pb-3">
+                        <span class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-wm-accent animate-pulse"></span>
+                            <span>LIVE METRICS SIMULATOR</span>
+                        </span>
+                        <span class="text-wm-accent font-bold">+184% Conversion Rate</span>
+                    </div>
+
+                    <!-- SVG Dynamic Growth Chart -->
+                    <div class="my-auto relative w-full h-44">
+                        <svg class="w-full h-full overflow-visible" viewBox="0 0 400 120" fill="none">
+                            <defs>
+                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#22C448" stop-opacity="0.4"/>
+                                    <stop offset="100%" stop-color="#22C448" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Area Fill -->
+                            <path d="M0 100 Q 100 80, 180 50 T 380 10 L 380 120 L 0 120 Z" fill="url(#chartGradient)" />
+
+                            <!-- Glowing Trendline -->
+                            <path d="M0 100 Q 100 80, 180 50 T 380 10" stroke="#BDD631" stroke-width="4" fill="none" />
+                            <path d="M0 100 Q 100 80, 180 50 T 380 10" stroke="#22C448" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.2" />
+
+                            <!-- Animated Glowing Data Point -->
+                            <circle cx="380" cy="10" r="6" fill="#BDD631" class="animate-ping" />
+                            <circle cx="380" cy="10" r="5" fill="#BDD631" />
+                        </svg>
+
+                        <!-- Stat Floating Card -->
+                        <div class="absolute top-2 right-8 bg-wm-dark/90 border border-wm-accent/40 p-2.5 rounded-xl text-xs font-mono shadow-lg">
+                            <div class="text-slate-400">Monthly Growth</div>
+                            <div class="text-wm-lime font-bold text-sm">$142,500 MRR</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs pt-3 border-t border-wm-border">
+                        <div class="p-2 rounded-lg bg-wm-dark/60">
+                            <div class="text-slate-400">LCP Score</div>
+                            <div class="text-wm-lime font-bold font-mono">0.8s</div>
+                        </div>
+                        <div class="p-2 rounded-lg bg-wm-dark/60">
+                            <div class="text-slate-400">Retention</div>
+                            <div class="text-wm-accent font-bold font-mono">89.4%</div>
+                        </div>
+                        <div class="p-2 rounded-lg bg-wm-dark/60">
+                            <div class="text-slate-400">SEO Score</div>
+                            <div class="text-emerald-400 font-bold font-mono">100/100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- DEVELOPER & DESIGN HANDOFF SPEC DRAWER -->
+    <div id="spec-drawer" class="fixed bottom-0 left-0 right-0 bg-wm-surface/95 backdrop-blur-xl border-t border-wm-lime/30 z-50 transform translate-y-full transition-transform duration-300 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between border-b border-wm-border pb-3 mb-4">
+                <div class="flex items-center space-x-3">
+                    <span class="p-1.5 rounded-md bg-wm-lime/20 text-wm-lime text-xs font-mono font-bold">DESIGN SYSTEM HANDOFF TOKEN REVIEW</span>
+                    <span class="text-xs text-slate-400 font-mono">Prepared for UI/UX & Development Teams</span>
+                </div>
+                <button onclick="toggleSpecMode()" class="text-slate-400 hover:text-white text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Token Specs Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono">
+                <!-- Color Tokens -->
+                <div class="p-3 rounded-xl bg-wm-dark border border-wm-border">
+                    <div class="text-wm-lime font-bold mb-2">Color Palette Tokens</div>
+                    <div class="space-y-1 text-slate-300">
+                        <div class="flex justify-between"><span>Dark BG:</span> <span class="text-wm-lime">#00051D</span></div>
+                        <div class="flex justify-between"><span>Lime Glow:</span> <span class="text-wm-lime">#BDD631</span></div>
+                        <div class="flex justify-between"><span>Accent Green:</span> <span class="text-wm-accent">#22C448</span></div>
+                        <div class="flex justify-between"><span>Primary Green:</span> <span class="text-wm-primary-green">#006543</span></div>
+                    </div>
+                </div>
+
+                <!-- Typography Scale -->
+                <div class="p-3 rounded-xl bg-wm-dark border border-wm-border">
+                    <div class="text-wm-lime font-bold mb-2">Typography Rules</div>
+                    <div class="space-y-1 text-slate-300">
+                        <div class="flex justify-between"><span>Primary Font:</span> <span>Poppins</span></div>
+                        <div class="flex justify-between"><span>Body / Fallback:</span> <span>Inter</span></div>
+                        <div class="flex justify-between"><span>H2 Heading:</span> <span>40px / 125%</span></div>
+                        <div class="flex justify-between"><span>Body Copy:</span> <span>16px / 160%</span></div>
+                    </div>
+                </div>
+
+                <!-- Layout & Grid Rules -->
+                <div class="p-3 rounded-xl bg-wm-dark border border-wm-border">
+                    <div class="text-wm-lime font-bold mb-2">Grid & Radius Tokens</div>
+                    <div class="space-y-1 text-slate-300">
+                        <div class="flex justify-between"><span>Grid System:</span> <span>8pt Scale</span></div>
+                        <div class="flex justify-between"><span>Card Radius:</span> <span>24px (1.5rem)</span></div>
+                        <div class="flex justify-between"><span>Pill Buttons:</span> <span>99px (full)</span></div>
+                        <div class="flex justify-between"><span>Container Max:</span> <span>1280px</span></div>
+                    </div>
+                </div>
+
+                <!-- CTA Gradient Definition -->
+                <div class="p-3 rounded-xl bg-wm-dark border border-wm-border">
+                    <div class="text-wm-lime font-bold mb-2">CTA Button Tokens</div>
+                    <div class="space-y-1 text-slate-300">
+                        <div class="flex justify-between"><span>Gradient:</span> <span>135deg</span></div>
+                        <div class="flex justify-between"><span>Stops:</span> <span>#BDD631 -> #22C448</span></div>
+                        <div class="flex justify-between"><span>Text Color:</span> <span>#00051D (Bold)</span></div>
+                        <div class="flex justify-between"><span>Min Target:</span> <span>44px height</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State variables
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoplay = true;
+        let autoplayTimer = null;
+        let isSpecOpen = false;
+
+        // Initialize slideshow logic on window load
+        window.onload = function() {
+            startAutoplay();
+        };
+
+        function switchTab(index) {
+            if (index === currentSlide) return;
+
+            // Update tab styles
+            for (let i = 0; i < totalSlides; i++) {
+                const tabBtn = document.getElementById(`tab-btn-${i}`);
+                if (i === index) {
+                    tabBtn.className = "tab-btn px-5 py-3 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center space-x-2 transition-all duration-300 bg-wm-lime text-wm-dark shadow-lime-glow";
+                } else {
+                    tabBtn.className = "tab-btn px-5 py-3 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-slate-300 hover:text-white hover:bg-white/5";
+                }
+            }
+
+            // Update slides visibility with transition
+            const currentSlideEl = document.getElementById(`slide-${currentSlide}`);
+            const nextSlideEl = document.getElementById(`slide-${index}`);
+
+            // Hide old slide
+            currentSlideEl.classList.remove('opacity-100', 'translate-x-0');
+            currentSlideEl.classList.add('opacity-0', '-translate-x-8', 'pointer-events-none');
+
+            // Show new slide
+            nextSlideEl.classList.remove('opacity-0', 'translate-x-8', 'pointer-events-none');
+            nextSlideEl.classList.add('opacity-100', 'translate-x-0');
+
+            currentSlide = index;
+
+            // Update Indicator
+            document.getElementById('slide-indicator').innerText = `0${currentSlide + 1}/04`;
+
+            // Reset Autoplay timer on manual interaction
+            if (autoplay) {
+                restartAutoplay();
+            }
+        }
+
+        function nextSlide() {
+            const next = (currentSlide + 1) % totalSlides;
+            switchTab(next);
+        }
+
+        function prevSlide() {
+            const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+            switchTab(prev);
+        }
+
+        function startAutoplay() {
+            autoplayTimer = setInterval(() => {
+                nextSlide();
+            }, 6000);
+        }
+
+        function restartAutoplay() {
+            clearInterval(autoplayTimer);
+            startAutoplay();
+        }
+
+        function toggleAutoplay() {
+            autoplay = !autoplay;
+            const icon = document.getElementById('autoplay-icon');
+            const text = document.getElementById('autoplay-text');
+
+            if (autoplay) {
+                icon.className = "fa-solid fa-pause text-wm-lime";
+                text.innerText = "AUTOPLAY ON";
+                startAutoplay();
+            } else {
+                icon.className = "fa-solid fa-play text-slate-400";
+                text.innerText = "AUTOPLAY PAUSED";
+                clearInterval(autoplayTimer);
+            }
+        }
+
+        // Interactive Strategy node feedback
+        function highlightNode(title) {
+            const textEl = document.getElementById('strategy-node-text');
+            textEl.innerText = title;
+            textEl.classList.add('text-wm-accent');
+            setTimeout(() => textEl.classList.remove('text-wm-accent'), 1000);
+        }
+
+        // Design Hi-Fi / Wireframe toggle
+        function setFidelity(mode) {
+            const card = document.getElementById('design-demo-card');
+            const avatar = document.getElementById('demo-avatar');
+            const badge = document.getElementById('demo-badge');
+            const cta = document.getElementById('demo-cta');
+            const wireBtn = document.getElementById('wireframe-btn');
+            const hifiBtn = document.getElementById('hifi-btn');
+
+            if (mode === 'wireframe') {
+                card.className = "w-full max-w-sm rounded-2xl p-6 transition-all duration-500 bg-transparent border-2 border-dashed border-slate-600";
+                avatar.className = "w-10 h-10 rounded-full border border-slate-500 flex items-center justify-center text-slate-400 text-xs font-mono";
+                badge.className = "px-2 py-0.5 rounded border border-slate-600 text-slate-400 text-xs font-mono";
+                badge.innerText = "Wireframe Component";
+                cta.className = "w-full py-2.5 rounded-xl border border-slate-500 text-xs font-mono text-slate-300 bg-transparent";
+                cta.innerText = "[ Button Component Placeholder ]";
+
+                wireBtn.className = "px-2.5 py-1 rounded text-[11px] font-semibold bg-slate-700 text-white shadow-sm transition-all";
+                hifiBtn.className = "px-2.5 py-1 rounded text-[11px] font-semibold text-slate-400 hover:text-white transition-all";
+            } else {
+                card.className = "w-full max-w-sm rounded-2xl p-6 transition-all duration-500 bg-wm-surface border border-wm-border shadow-xl";
+                avatar.className = "w-10 h-10 rounded-full bg-wm-lime/20 border border-wm-lime flex items-center justify-center text-wm-lime font-bold";
+                badge.className = "px-2.5 py-1 rounded-full bg-wm-accent/20 text-wm-accent text-xs font-semibold";
+                badge.innerText = "Active Design Token";
+                cta.className = "w-full py-2.5 rounded-xl btn-gradient-primary text-xs font-bold text-wm-dark";
+                cta.innerText = "Interactive Button Token";
+
+                hifiBtn.className = "px-2.5 py-1 rounded text-[11px] font-semibold bg-wm-accent text-wm-dark shadow-sm transition-all";
+                wireBtn.className = "px-2.5 py-1 rounded text-[11px] font-semibold text-slate-400 hover:text-white transition-all";
+            }
+        }
+
+        // Technology Stack Category Filter
+        function filterTech(category) {
+            const pills = document.querySelectorAll('.tech-pill');
+            pills.forEach(pill => {
+                if (category === 'all' || pill.classList.contains(category)) {
+                    pill.style.display = 'flex';
+                } else {
+                    pill.style.display = 'none';
+                }
+            });
+
+            // Update active filter button state
+            const buttons = document.querySelectorAll('.tech-filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "tech-filter-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white";
+            });
+            event.target.className = "tech-filter-btn px-2 py-0.5 rounded text-[11px] bg-wm-lime text-wm-dark font-semibold";
+        }
+
+        // Developer Spec Overlay Toggle
+        function toggleSpecMode() {
+            isSpecOpen = !isSpecOpen;
+            const drawer = document.getElementById('spec-drawer');
+            const grid = document.getElementById('grid-overlay');
+
+            if (isSpecOpen) {
+                drawer.classList.remove('translate-y-full');
+                grid.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-y-full');
+                grid.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -834,6 +834,15 @@ export interface Faq {
 export const faqSection = {
   title: "Frequently Asked Questions",
   intro: "Everything you need to know about working with our digital product studio.",
+  cta: startProjectCta,
+  activeSupport: {
+    title: "Active Support",
+    subtitle: "24/7 Response Time",
+    avatars: [
+      { src: "/images/support_img1.png", alt: "Support agent 1" },
+      { src: "/images/support_img2.png", alt: "Support agent 2" },
+    ],
+  },
   items: [
     {
       question: "What does Waymarks do?",

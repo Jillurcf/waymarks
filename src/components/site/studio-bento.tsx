@@ -546,14 +546,14 @@ export function StudioBento() {
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-waymarks-surface-raised px-3.5 py-1.5">
+          {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-waymarks-surface-raised px-3.5 py-1.5">
             <span className="size-2 rounded-full bg-waymarks-primary" />
             <span className="text-xs font-semibold uppercase tracking-widest text-waymarks-primary">
               {studioSection.eyebrow}
             </span>
-          </div>
-          <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-            {studioSection.title}{" "}
+          </div> */}
+          <h2 className="text-[40px] font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+            {studioSection.title}
             <span className="text-waymarks-primary">
               {studioSection.titleAccent}
             </span>
@@ -568,7 +568,7 @@ export function StudioBento() {
             ref={stickyContentRef}
             className="relative z-10 lg:sticky lg:top-20"
           >
-            <div className="rounded-3xl border border-white/10 bg-waymarks-surface-raised/80 p-2 backdrop-blur-xl">
+            <div className="rounded-full border border-white/10 bg-waymarks-surface-raised/80 p-2 backdrop-blur-xl">
               <div className="flex flex-col items-stretch justify-between gap-4 lg:flex-row lg:items-center">
                 <div
                   role="group"
@@ -588,14 +588,16 @@ export function StudioBento() {
                         aria-controls={`studio-panel-${item.id}`}
                         onClick={() => goToSlide(index)}
                         className={cn(
-                          "min-h-11 w-full rounded-xl px-3 text-xs font-semibold sm:rounded-full sm:px-5 sm:text-sm",
+                          "min-h-11 w-full rounded-xl text-xs font-semibold sm:rounded-full sm:px-5 sm:text-sm",
                           active
                             ? "bg-waymarks-primary text-waymarks-dark shadow-card hover:bg-waymarks-primary hover:text-waymarks-dark"
                             : "text-white/60 hover:bg-white/5 hover:text-white",
                         )}
                       >
-                        <Icon name={item.icon} className="size-4" />
-                        <span>{item.label}</span>
+                       <div className="flex items-center gap-1 px-14">
+                          <Icon name={item.icon} className="size-4" />
+                          <span className="">{item.label}</span>
+                        </div>
                       </Button>
                     );
                   })}

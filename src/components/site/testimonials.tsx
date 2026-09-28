@@ -11,7 +11,7 @@ export function Testimonials() {
   return (
     <section className="border-y border-white/10 bg-waymarks-surface py-14 text-white sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-waymarks-primary">
+        <p className="text-center font-bold text-[22px] uppercase tracking-widest text-waymarks-primary">
           {testimonialsSection.eyebrow}
         </p>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -31,7 +31,7 @@ export function Testimonials() {
                   <span className="block text-sm font-semibold text-white">
                     {item.author}
                   </span>
-                  <span className="block text-xs text-white/60">
+                  <span className="block text-[12px] text-white/60">
                     {item.role} @ {item.company}
                   </span>
                 </span>

@@ -10,18 +10,28 @@ import { CountUp } from "./count-up";
 export function StatsSection() {
   return (
     <section className="bg-waymarks-dark py-20 lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {statsSection.title}
-        </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {statsSection.intro}
-        </p>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          {statsSection.body}
-        </p>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0">
+      <div className="flex max-w-6xl flex-col sm:px-6 lg:flex-row lg:gap-0 lg:items-stretch"  >
+         <div className="max-w-6xL lg:w-8/12 items-center">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:mt-6">
+            {statsSection.title}
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {statsSection.intro}
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {statsSection.body}
+          </p>
+        </div>
+        <div className="lg:flex lg:w-4/12">
+          <img src="/images/logo_global_team.png" className="w-full h-auto rounded-3xl lg:h-full lg:w-full" 
+          // alt={statsSection.image.alt}
+           />
+        </div>
+      </div>
 
-        <h3 className="mt-14 text-3xl font-bold tracking-tight text-foreground">
+       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+         <h3 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
           {statsSection.subheading}
         </h3>
         <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
@@ -39,6 +49,7 @@ export function StatsSection() {
             </div>
           ))}
         </div>
+       </div>
       </div>
     </section>
   );

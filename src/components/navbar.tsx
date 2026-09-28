@@ -284,7 +284,7 @@ export function Navbar() {
         </div>
         <DesktopNav />
         <div className="flex items-center justify-end gap-2">
-          <ContactPanel />
+  
           <a href={bookCallHref} className={ctaClass("primary")}>
             {navCtaLabel}
           </a>

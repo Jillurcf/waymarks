@@ -20,7 +20,7 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
         <div className="animate-fade-up">
-          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-5xl">
+          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-[56px]">
             {hero.title}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-white/80 sm:text-xl">
@@ -29,7 +29,7 @@ export function Hero() {
           <p className="mt-4 max-w-xl text-base leading-relaxed text-white/60">
             {hero.body}
           </p>
-          <p className="mt-8 text-xl font-bold tracking-[0.05em] text-waymarks-primary sm:text-2xl">
+          <p className="mt-8 text-[22px] font-bold tracking-[0.05em] text-waymarks-primary sm:text-2xl">
             {hero.tagline}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -47,7 +47,7 @@ export function Hero() {
 
         {/* Animated W logo stage */}
         <div className="relative mx-auto w-full max-w-md">
-          <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised/50 p-10">
+          <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised/50">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute left-1/2 top-1/2 size-2/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-waymarks-accent/10 blur-2xl"
@@ -56,13 +56,13 @@ export function Hero() {
                 (quality gate C); eager + high priority keeps LCP behaviour. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo_white.png"
+              src="/images/3DLogo_Waymarks1.png"
               alt={hero.logo.alt}
-              width={2081}
-              height={321}
+              width={480}
+              height={480}
               loading="eager"
               fetchPriority="high"
-              className="relative z-10 h-auto w-4/5 animate-float-logo drop-shadow-lg"
+              className="relative z-10 h-auto w-5/5 animate-float-logo drop-shadow-lg"
             />
             {/* Podium glow that breathes with the logo */}
             <div

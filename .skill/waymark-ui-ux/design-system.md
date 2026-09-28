@@ -55,7 +55,7 @@ inverted spotlight (the case-study showcase card).
 
 ## 2. Typography
 
-- Sans: Geist, loaded through `next/font`.
+- Sans: Inter (Google Fonts, `next/font/google`) — the only typeface in the system. No secondary or monospace family; `font-mono` resolves to Inter so labels and metrics stay in one voice.
 - Headings may use tighter tracking (`tracking-tight`) for large display typography.
 - Small labels and metadata may use `tracking-widest` with uppercase styling.
 - Scale: `6xl/7xl` display → `body sm/base` → `label xs/sm`.

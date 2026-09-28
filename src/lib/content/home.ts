@@ -134,9 +134,9 @@ export const hero = {
   proof: "Trusted by 100+ businesses across 12+ countries.",
   primaryCta: startProjectCta,
   secondaryCta: exploreWorkCta,
-  // Animated W logo stage (Phase 4 renders logo_white.png in a framed,
-  // floating container). Alt text lives here; the asset path is component data.
-  logo: { alt: "Waymarks logo" },
+  // 3D Waymarks mark on the hero stage: rendered as-is in a framed, floating
+  // container. Alt text lives here; the asset path is component data.
+  logo: { alt: "The Waymarks 3D logo mark" },
 };
 
 // ---------------------------------------------------------------------------

@@ -1,41 +1,15 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 
 import { Navbar } from "@/components/navbar";
 import { site } from "@/lib/content/site";
 
-const geistSans = localFont({
-  variable: "--font-geist-sans",
-  src: [
-    {
-      path: "./fonts/geist-sans-latin.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "./fonts/geist-sans-latin-ext.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-  ],
-});
-
-const geistMono = localFont({
-  variable: "--font-geist-mono",
-  src: [
-    {
-      path: "./fonts/geist-mono-latin.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "./fonts/geist-mono-latin-ext.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-  ],
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -65,7 +39,7 @@ export default function RootLayout({
       lang="en"
       // The site is dark-first (design-system §1): `dark` activates the
       // brand-navy surface ramp in globals.css for the whole document.
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-waymarks-dark">
         <a

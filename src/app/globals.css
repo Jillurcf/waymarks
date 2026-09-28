@@ -67,9 +67,9 @@
      Typography
      ======================================== */
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
+  --font-heading: var(--font-inter);
 
   /* ========================================
      Charts

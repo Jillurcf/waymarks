@@ -1,6 +1,7 @@
 // Single route map for the whole site (docs/architecture.md, FR-18/FR-19).
-// The site is currently a one-pager: only the home route exists. Nav links are
-// in-page anchors into the homepage sections.
+// The homepage is a one-pager, so its nav links are in-page anchors; routes
+// that exist as their own page are registered here and read by nav, footer,
+// sitemap and breadcrumbs.
 
 export interface Route {
   path: string;
@@ -8,9 +9,18 @@ export interface Route {
   description?: string;
 }
 
-export const staticRoutes: Route[] = [{ path: "/", title: "Home" }];
+export const staticRoutes: Route[] = [
+  { path: "/", title: "Home" },
+  {
+    path: "/services/",
+    title: "Services",
+    description:
+      "Digital design services built around real business needs — brand, UI/UX, websites, SaaS products, MVPs, mobile apps and growth.",
+  },
+];
 
-export const navRoutes: Route[] = [];
+/** Routes reachable from the navbar (non-anchor paths only). */
+export const navRoutes: Route[] = staticRoutes.filter((route) => route.path !== "/");
 
 /** Every indexable URL on the site, in sitemap order. */
 export function allRoutes(): Route[] {
@@ -18,7 +28,18 @@ export function allRoutes(): Route[] {
 }
 
 export function findRoute(path: string): Route | undefined {
-  return allRoutes().find((route) => route.path === path);
+  // Matches with or without the trailing slash the export adds, so
+  // breadcrumbTrail's accumulated "/services" resolves too.
+  const normalized = path.endsWith("/") ? path : `${path}/`;
+  return allRoutes().find(
+    (route) => route.path === path || route.path === normalized,
+  );
+}
+
+/** Path for a registered route, so nav/footer hrefs never hard-code a URL.
+ *  Unregistered paths are returned unchanged rather than throwing. */
+export function routeHref(path: string): string {
+  return findRoute(path)?.path ?? path;
 }
 
 function prettifySegment(segment: string): string {

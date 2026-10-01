@@ -534,6 +534,24 @@
   );
 }
 
+/*
+ * Same CTA gradient applied to glyphs instead of a surface. Needed as its own
+ * rule because `.waymarks-cta-gradient` sets the `background` shorthand, which
+ * resets `background-clip` and would defeat a `bg-clip-text` utility (unlayered
+ * CSS outranks Tailwind's utilities layer). Hero highlights only — never body
+ * text, never a large fill.
+ */
+.waymarks-gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    var(--waymarks-primary) 0%,
+    var(--waymarks-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* ==========================================
    Molten Metal Container
    ========================================== */

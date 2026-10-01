@@ -35,12 +35,13 @@ import {
 } from "@/lib/content/site";
 
 import { sectionAnchors } from "@/lib/content/home";
+import { routeHref } from "@/lib/routes";
 
-// One-pager (P3.3): every route except "/" was removed in Phase 1, so nav is
-// strictly in-page anchors into the homepage sections — sourced from the typed
-// content module, never hand-rolled here.
+// Nav items: real routes come from the route map (src/lib/routes.ts) so nav,
+// footer and sitemap can never drift; the rest are in-page anchors into the
+// homepage sections — sourced from the typed content module, never hand-rolled.
 const navItems = [
-  { title: "Services", href: sectionAnchors.services },
+  { title: "Services", href: routeHref("/services/") },
   { title: "Work", href: sectionAnchors.work },
   { title: "Blog", href: sectionAnchors.blog },
   { title: "Contact", href: sectionAnchors.contact },
@@ -100,7 +101,14 @@ function Brand() {
 function useIsActive() {
   const pathname = usePathname();
   return React.useCallback(
-    (href: string) => pathname === href || pathname.startsWith(`${href}/`),
+    (href: string) => {
+      // trailingSlash export: hrefs carry the slash, the pathname may not.
+      const normalize = (path: string) =>
+        path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+      const current = normalize(pathname);
+      const target = normalize(href);
+      return current === target || current.startsWith(`${target}/`);
+    },
     [pathname],
   );
 }

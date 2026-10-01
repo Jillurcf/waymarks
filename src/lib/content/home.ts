@@ -8,6 +8,7 @@
 // stay out of this module; copy and link targets stay in.
 
 import { site, socialLinks } from "./site";
+import { routeHref } from "../routes";
 
 // ---------------------------------------------------------------------------
 // SEO metadata + JSON-LD
@@ -951,14 +952,17 @@ export const footer = {
   },
   servicesColumn: {
     title: "Services",
+    // Service detail routes are not built yet, so every entry resolves to the
+    // services overview rather than a dead link (conversion register: no dead
+    // links). Swap in `/services/<slug>/` when the detail pages land.
     links: [
-      { label: "Brand Design & Identity", href: sectionAnchors.services },
-      { label: "UI/UX Design", href: sectionAnchors.services },
-      { label: "Website Design & Development", href: sectionAnchors.services },
-      { label: "SaaS & Product Design", href: sectionAnchors.services },
-      { label: "MVP Development", href: sectionAnchors.services },
-      { label: "Mobile App Design", href: sectionAnchors.services },
-      { label: "Digital Growth", href: sectionAnchors.services },
+      { label: "Brand Design & Identity", href: routeHref("/services/") },
+      { label: "UI/UX Design", href: routeHref("/services/") },
+      { label: "Website Design & Development", href: routeHref("/services/") },
+      { label: "SaaS & Product Design", href: routeHref("/services/") },
+      { label: "MVP Development", href: routeHref("/services/") },
+      { label: "Mobile App Design", href: routeHref("/services/") },
+      { label: "Digital Growth", href: routeHref("/services/") },
     ],
   },
   companyColumn: {

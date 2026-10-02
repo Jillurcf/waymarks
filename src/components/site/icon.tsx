@@ -13,10 +13,12 @@ import {
   LayoutDashboard,
   Lightbulb,
   Mail,
+  MapPin,
   Monitor,
   Paintbrush,
   Palette,
   PenTool,
+  Phone,
   Rocket,
   Search,
   Smartphone,
@@ -135,6 +137,10 @@ export function Icon({
       return <ArrowRight aria-hidden="true" className={cls} />;
     case icons.mail:
       return <Mail aria-hidden="true" className={cls} />;
+    case icons.phone:
+      return <Phone aria-hidden="true" className={cls} />;
+    case icons.mapPin:
+      return <MapPin aria-hidden="true" className={cls} />;
     default:
       return null;
   }

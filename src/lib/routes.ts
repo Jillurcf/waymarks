@@ -17,6 +17,12 @@ export const staticRoutes: Route[] = [
     description:
       "Digital design services built around real business needs — brand, UI/UX, websites, SaaS products, MVPs, mobile apps and growth.",
   },
+  {
+    path: "/contact/",
+    title: "Contact",
+    description:
+      "Talk to Waymark about your project — brand, UI/UX, website, SaaS, MVP, mobile app or growth work. Book a free discovery call.",
+  },
 ];
 
 /** Routes reachable from the navbar (non-anchor paths only). */

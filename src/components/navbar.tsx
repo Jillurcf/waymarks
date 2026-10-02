@@ -44,7 +44,7 @@ const navItems = [
   { title: "Services", href: routeHref("/services/") },
   { title: "Work", href: sectionAnchors.work },
   { title: "Blog", href: sectionAnchors.blog },
-  { title: "Contact", href: sectionAnchors.contact },
+  { title: "Contact", href: routeHref("/contact/") },
 ];
 
 // Desktop nav is a semantic list of in-page anchor links — the design file's

@@ -74,6 +74,8 @@ export const icons = {
   improve: "TrendingUp",
   arrowRight: "ArrowRight",
   mail: "Mail",
+  phone: "Phone",
+  mapPin: "MapPin",
 } as const;
 
 // On-page anchor targets (one-pager: nav and footer point into the page).
@@ -969,11 +971,12 @@ export const footer = {
     title: "Company",
     // Design lists About/Our Team/Pricing/Blog here, but the one-pager has no
     // such sections — dead links never ship. About retargets to the studio
-    // bento; only real section anchors remain (per the Phase 1 wipe).
+    // bento; only real section anchors remain (per the Phase 1 wipe). Contact
+    // points at its own route rather than the homepage #contact band.
     links: [
       { label: "About", href: sectionAnchors.studio },
       { label: "Our Work", href: sectionAnchors.work },
-      { label: "Contact", href: sectionAnchors.contact },
+      { label: "Contact", href: routeHref("/contact/") },
     ],
   },
   workWithUs: {

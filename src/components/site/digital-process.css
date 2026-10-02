@@ -1,0 +1,158 @@
+.digital-process {
+  width: 100%;
+  background: #01051c;
+  color: #ffffff;
+  border-bottom: 1px solid #333435;
+  padding: 20px 0 40px;
+}
+
+.digital-process-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.digital-process-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.digital-process-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.digital-process-heading span {
+  color: #8ee600;
+}
+
+.digital-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.process-step {
+  min-width: 0;
+}
+
+.step-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.step-number {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #0b1329;
+  border: 1px solid #18213a;
+  color: #b4e900;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.step-line {
+  height: 1px;
+  flex: 1;
+  margin-left: 8px;
+  background: linear-gradient(
+    to right,
+    #1a2132,
+    #171d2d
+  );
+}
+
+.step-content {
+  margin-top: 7px;
+}
+
+.step-content h3 {
+  margin: 0 0 7px;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.step-content p {
+  max-width: 150px;
+  margin: 0;
+  color: #858b9d;
+  font-size: 9.5px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .digital-process {
+    padding: 35px 0;
+  }
+
+  .digital-process-container {
+    padding: 0 24px;
+  }
+
+  .digital-process-heading {
+    margin-bottom: 35px;
+  }
+
+  .digital-process-heading h2 {
+    font-size: 25px;
+  }
+
+  .digital-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 35px;
+  }
+
+  .step-content p {
+    max-width: 220px;
+    font-size: 11px;
+  }
+
+  .step-content h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .digital-process {
+    padding: 32px 0;
+  }
+
+  .digital-process-container {
+    padding: 0 20px;
+  }
+
+  .digital-process-heading h2 {
+    font-size: 23px;
+  }
+
+  .digital-process-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .step-content p {
+    max-width: 100%;
+    font-size: 12px;
+  }
+
+  .step-content h3 {
+    font-size: 18px;
+  }
+
+  .step-line {
+    display: block;
+  }
+}

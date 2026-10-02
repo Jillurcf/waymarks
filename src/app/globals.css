@@ -23,6 +23,7 @@
    */
   --color-waymarks-surface: var(--waymarks-surface);
   --color-waymarks-surface-raised: var(--waymarks-surface-raised);
+  --color-waymarks-service-accent: var(--waymarks-service-accent);
 
   /* CTA Gradient */
   --background-image-waymarks-cta:
@@ -294,6 +295,9 @@
    * and interactive highlights.
    */
   --waymarks-accent: #22c448;
+
+
+  --waymarks-service-accent: #BDD631;
 
   /*
    * Dark Background

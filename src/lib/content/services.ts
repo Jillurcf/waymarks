@@ -37,7 +37,7 @@ export const servicesBrandDesign = {
   body: "Build a brand people recognise, trust, and remember.",
   cta: {
     label: "Explore Brand Design",
-    href: `${routeHref("/services/")}#brand-design`,
+    href: routeHref("/services/brand-design/"),
     icon: icons.arrowRight,
   },
 } as const;

@@ -8,6 +8,7 @@
 // stay out of this module; copy and link targets stay in.
 
 import { site, socialLinks } from "./site";
+import { icons } from "./icons";
 import { routeHref } from "../routes";
 
 // ---------------------------------------------------------------------------
@@ -35,48 +36,10 @@ export const homeSeo = {
 // Reusable snippets (buttons, icon metadata, anchors)
 // ---------------------------------------------------------------------------
 
-// lucide icon names used across sections. Components map these names to lucide
-// components; keeping them as data means icon choice lives beside its copy.
-export const icons = {
-  strategy: "Compass",
-  design: "Palette",
-  technology: "Code",
-  growth: "TrendingUp",
-  strategyBadge: "Lightbulb",
-  designBadge: "Paintbrush",
-  technologyBadge: "Cpu",
-  growthBadge: "Rocket",
-  react: "React",
-  nextjs: "Next.js",
-  vue: "Vue.js",
-  node: "Node.js",
-  laravel: "Laravel",
-  postgresql: "PostgreSQL",
-  wordpress: "WordPress",
-  shopify: "Shopify",
-  webflow: "Webflow",
-  brandIdentity: "Star",
-  uiUx: "LayoutDashboard",
-  website: "Monitor",
-  saas: "Cloud",
-  mvp: "Rocket",
-  mobileApp: "Smartphone",
-  digitalGrowth: "ChartPie",
-  startups: "Zap",
-  growingBusinesses: "ChartBar",
-  saasTeams: "Layers",
-  establishedCompanies: "Users",
-  discover: "Search",
-  define: "Diamond",
-  create: "PenTool",
-  review: "Eye",
-  launch: "CircleCheckBig",
-  improve: "TrendingUp",
-  arrowRight: "ArrowRight",
-  mail: "Mail",
-  phone: "Phone",
-  mapPin: "MapPin",
-} as const;
+// lucide icon names used across sections. Defined in ./icons so leaf content
+// modules below the route map can read them too; re-exported here so existing
+// `import { icons } from "./home"` call sites keep working.
+export { icons };
 
 // On-page anchor targets (one-pager: nav and footer point into the page).
 export const sectionAnchors = {
@@ -954,11 +917,12 @@ export const footer = {
   },
   servicesColumn: {
     title: "Services",
-    // Service detail routes are not built yet, so every entry resolves to the
-    // services overview rather than a dead link (conversion register: no dead
-    // links). Swap in `/services/<slug>/` when the detail pages land.
+    // Brand design has a detail route, so it links straight there. The rest
+    // resolve to the services overview rather than a dead link (conversion
+    // register: no dead links). Swap in `/services/<slug>/` as each detail page
+    // lands in src/lib/content/service-details.ts.
     links: [
-      { label: "Brand Design & Identity", href: routeHref("/services/") },
+      { label: "Brand Design & Identity", href: routeHref("/services/brand-design/") },
       { label: "UI/UX Design", href: routeHref("/services/") },
       { label: "Website Design & Development", href: routeHref("/services/") },
       { label: "SaaS & Product Design", href: routeHref("/services/") },

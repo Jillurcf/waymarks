@@ -1,0 +1,54 @@
+// lucide / simple-icons icon names used across sections. Components map these
+// names to icon components; keeping them as data means icon choice lives beside
+// its copy.
+//
+// This lives in its own leaf module because it is needed by content modules on
+// both sides of the route map: routes.ts imports service-details.ts to register
+// the service detail routes, while home.ts and services.ts read routeHref back
+// from routes.ts. Anything home.ts exports that service-details.ts needs must
+// live below that loop.
+
+export const icons = {
+  strategy: "Compass",
+  design: "Palette",
+  technology: "Code",
+  growth: "TrendingUp",
+  strategyBadge: "Lightbulb",
+  designBadge: "Paintbrush",
+  technologyBadge: "Cpu",
+  growthBadge: "Rocket",
+  react: "React",
+  nextjs: "Next.js",
+  vue: "Vue.js",
+  node: "Node.js",
+  laravel: "Laravel",
+  postgresql: "PostgreSQL",
+  wordpress: "WordPress",
+  shopify: "Shopify",
+  webflow: "Webflow",
+  brandIdentity: "Star",
+  uiUx: "LayoutDashboard",
+  website: "Monitor",
+  saas: "Cloud",
+  mvp: "Rocket",
+  mobileApp: "Smartphone",
+  digitalGrowth: "ChartPie",
+  startups: "Zap",
+  growingBusinesses: "ChartBar",
+  saasTeams: "Layers",
+  establishedCompanies: "Users",
+  discover: "Search",
+  define: "Diamond",
+  create: "PenTool",
+  review: "Eye",
+  launch: "CircleCheckBig",
+  improve: "TrendingUp",
+  arrowRight: "ArrowRight",
+  socialMedia: "Share2",
+  presentations: "Presentation",
+  packaging: "Package",
+  ads: "Megaphone",
+  mail: "Mail",
+  phone: "Phone",
+  mapPin: "MapPin",
+} as const;

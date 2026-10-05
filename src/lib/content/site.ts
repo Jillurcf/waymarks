@@ -52,12 +52,6 @@ export const newsletter = {
   submitLabel: "Subscribe",
 };
 
-// Sidebar CTA box for detail pages (C1.7).
-export const sidebarCta = {
-  title: "Questions about your project?",
-  body: "Book a free discovery call. We'll talk through goals, scope, and timeline — no obligation.",
-};
-
 // Closing contact CTA band for inner pages (BR-2 / FR-4). One primary action
 // per section (content.md rule 5); the phone line is contact info, not a
 // competing CTA.

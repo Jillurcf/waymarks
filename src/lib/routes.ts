@@ -3,6 +3,8 @@
 // that exist as their own page are registered here and read by nav, footer,
 // sitemap and breadcrumbs.
 
+import { serviceDetails } from "./content/service-details";
+
 export interface Route {
   path: string;
   title: string;
@@ -25,12 +27,20 @@ export const staticRoutes: Route[] = [
   },
 ];
 
+/** Service detail routes, derived from the typed content module so the
+ *  services overview, sitemap and breadcrumbs can never drift from it. */
+export const serviceRoutes: Route[] = serviceDetails.map((service) => ({
+  path: service.path,
+  title: service.title,
+  description: service.seoDescription,
+}));
+
 /** Routes reachable from the navbar (non-anchor paths only). */
 export const navRoutes: Route[] = staticRoutes.filter((route) => route.path !== "/");
 
 /** Every indexable URL on the site, in sitemap order. */
 export function allRoutes(): Route[] {
-  return staticRoutes;
+  return [...staticRoutes, ...serviceRoutes];
 }
 
 export function findRoute(path: string): Route | undefined {

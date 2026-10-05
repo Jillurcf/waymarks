@@ -1,0 +1,30 @@
+import type { ServiceDetail } from "@/lib/content/service-details";
+
+import { CtaButton } from "./cta";
+
+/**
+ * Service closing CTA: the glowing orb sits behind the copy, matching the
+ * site-wide final CTA treatment with service-specific words. Last surface band
+ * before the brand-dark footer.
+ */
+export function ServiceDetailClosing({ service }: { service: ServiceDetail }) {
+  return (
+    <section className="relative scroll-mt-24 overflow-hidden border-b border-white/10 bg-waymarks-surface py-20 text-center text-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-[38rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-waymarks-primary/15 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          {service.closing.title}
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
+          {service.closing.body}
+        </p>
+        <div className="mt-8">
+          <CtaButton cta={service.closing.cta} variant="primary" />
+        </div>
+      </div>
+    </section>
+  );
+}

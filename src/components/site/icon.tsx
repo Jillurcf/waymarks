@@ -14,13 +14,17 @@ import {
   Lightbulb,
   Mail,
   MapPin,
+  Megaphone,
   Monitor,
+  Package,
   Paintbrush,
   Palette,
   PenTool,
   Phone,
+  Presentation,
   Rocket,
   Search,
+  Share2,
   Smartphone,
   Star,
   TrendingUp,
@@ -135,6 +139,14 @@ export function Icon({
       return <CircleCheckBig aria-hidden="true" className={cls} />;
     case icons.arrowRight:
       return <ArrowRight aria-hidden="true" className={cls} />;
+    case icons.socialMedia:
+      return <Share2 aria-hidden="true" className={cls} />;
+    case icons.presentations:
+      return <Presentation aria-hidden="true" className={cls} />;
+    case icons.packaging:
+      return <Package aria-hidden="true" className={cls} />;
+    case icons.ads:
+      return <Megaphone aria-hidden="true" className={cls} />;
     case icons.mail:
       return <Mail aria-hidden="true" className={cls} />;
     case icons.phone:

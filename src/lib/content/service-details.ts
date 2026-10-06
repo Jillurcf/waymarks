@@ -302,7 +302,7 @@ brandEverywhere: {
       body: "Six identities shipped in the last year, each built around a different problem.",
       items: [
         {
-          title: "Vegetable Focused",
+          title: "",
           image: {
             src: "/images/services/recent_brand_work01.png",
             alt: "Packaging artwork for the Vegetable Focused produce brand",
@@ -312,7 +312,7 @@ brandEverywhere: {
         },
         // SEED — placeholder project names; confirm real client titles before ship.
         {
-          title: "SEED Project Two",
+          title: "Vegetable Focused",
           image: {
             src: "/images/services/recent_brand_work02.png",
             alt: "Identity artwork for a recent Waymark brand project",
@@ -322,7 +322,7 @@ brandEverywhere: {
         },
         // SEED
         {
-          title: "SEED Project Three",
+          title: "Real State",
           image: {
             src: "/images/services/recent_brand_work03.png",
             alt: "Identity artwork for a recent Waymark brand project",
@@ -332,7 +332,7 @@ brandEverywhere: {
         },
         // SEED
         {
-          title: "SEED Project Four",
+          title: "Real State",
           image: {
             src: "/images/services/recent_brand_work04.png",
             alt: "Identity artwork for a recent Waymark brand project",
@@ -342,7 +342,7 @@ brandEverywhere: {
         },
         // SEED
         {
-          title: "SEED Project Five",
+          title: "Dress the Vibe",
           image: {
             src: "/images/services/recent_brand_work05.png",
             alt: "Identity artwork for a recent Waymark brand project",
@@ -352,7 +352,7 @@ brandEverywhere: {
         },
         // SEED
         {
-          title: "SEED Project Six",
+          title: "Dress the Vibe",
           image: {
             src: "/images/services/recent_brand_work06.png",
             alt: "Identity artwork for a recent Waymark brand project",

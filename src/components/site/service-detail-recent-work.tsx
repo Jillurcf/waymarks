@@ -19,29 +19,44 @@ export function ServiceDetailRecentWork({ service }: { service: ServiceDetail })
           <span className="waymarks-gradient-text block">{heading.highlight}</span>
         </h2>
 
-        <p className="mx-auto mt-8 max-w-xl text-center text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="mx-auto mt-8 max-w-lg text-center text-base leading-relaxed text-muted-foreground sm:text-lg">
           {body}
         </p>
 
-        <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:gap-x-12 lg:gap-y-14">
-          {items.map((item) => (
-            <li key={item.title}>
-              {/* Project artwork. Plain img: images.unoptimized makes next/image
-                  pure overhead (quality gate C). */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.image.src}
-                alt={item.image.alt}
-                width={item.image.width}
-                height={item.image.height}
-                className="aspect-[4/3] w-full rounded-2xl border border-white/10 object-cover"
-              />
-              <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
-                {item.title}
-              </h3>
-            </li>
-          ))}
-        </ul>
+        {/* One flex div per line of two images — no grid. Each row is
+            independently styled: change a row's classes, not the layout. */}
+        <div>
+          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
+            <div>
+              <img src={items[0].image.src} alt={items[0].image.alt} />
+            </div>
+            <div>
+              <img src={items[1].image.src} alt={items[1].image.alt} />
+              <p>{items[1].title}</p>
+            </div>
+          </div>
+          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
+            <div>
+              <img src={items[2].image.src} alt={items[2].image.alt} />
+              <p>{items[2].title}</p>
+            </div>
+            <div>
+              <img src={items[3].image.src} alt={items[3].image.alt} />
+              <p>{items[3].title}</p>
+            </div>
+          </div>
+          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
+            <div>
+              <img src={items[4].image.src} alt={items[4].image.alt} />
+              <p>{items[4].title}</p>
+            </div>
+            <div>
+              <img src={items[5].image.src} alt={items[5].image.alt} />
+              <p>{items[5].title}</p>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </section>
   );

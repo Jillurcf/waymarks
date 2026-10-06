@@ -54,7 +54,7 @@ export const servicesUserExperience = {
   body: "Create digital experiences that feel simple, useful, and natural.",
   cta: {
     label: "Explore UI/UX Design",
-    href: `${routeHref("/services/")}#ui-ux-design`,
+    href: routeHref("/services/ui-ux-design/"),
     icon: icons.arrowRight,
   },
 } as const;

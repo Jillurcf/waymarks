@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { breadcrumbTrail, type Route } from "@/lib/routes";
 import type { ServiceDetail } from "@/lib/content/service-details";
 
-import { CtaButton } from "./cta";
+import { CtaButton, ctaClass } from "./cta";
 import { ServiceMark } from "./service-mark";
 
 /** Breadcrumb trail for any route whose path is registered in the route map. */
@@ -80,7 +80,14 @@ export function ServiceDetailHero({ service }: { service: ServiceDetail }) {
               {service.hero.body}
             </p>
 
-            <CtaButton cta={service.hero.cta} variant="primary" className="mt-2" />
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <CtaButton cta={service.hero.cta} variant="primary" />
+              {service.hero.secondaryCta ? (
+                <a href={service.hero.secondaryCta.href} className={ctaClass("outline")}>
+                  <span>{service.hero.secondaryCta.label}</span>
+                </a>
+              ) : null}
+            </div>
           </div>
 
           {/* Hero visual. Plain img: images.unoptimized makes next/image pure

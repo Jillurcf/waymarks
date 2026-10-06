@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { site } from "@/lib/content/site";
 import {
   findServiceDetail,
-  serviceDetails,
   serviceFaqJsonLd,
   serviceJsonLd,
-  type ServiceDetail,
 } from "@/lib/content/service-details";
 
 import { Footer } from "@/components/site/footer";
@@ -15,36 +12,16 @@ import { ServiceDetailBrandEverywhere } from "@/components/site/service-detail-b
 import { ServiceDetailBrandIdentityProcess } from "@/components/site/service-detail-brand-identity-process";
 import { ServiceDetailDesignServices } from "@/components/site/service-detail-design-services";
 import { ServiceDetailClosing } from "@/components/site/service-detail-closing";
-import { ServiceDetailFaq } from "@/components/site/service-detail-faq";
 import { ServiceDetailHero } from "@/components/site/service-detail-hero";
-import { ServiceDetailProcess } from "@/components/site/service-detail-process";
 import { ServiceDetailRecentWork } from "@/components/site/service-detail-recent-work";
 import { ServiceDetailWhatYouReceive } from "@/components/site/service-detail-what-you-receive";
 import { ServiceDetailWhoItsFor } from "@/components/site/service-detail-who-its-for";
 import { ServiceDetailWhyMatters } from "@/components/site/service-detail-why-matters";
 import { Faq } from "@/components/site/faq";
 
-// Every slug resolves at build time from the typed content module — required by
-// the static export, so an unregistered slug 404s instead of rendering a shell.
-export const dynamicParams = false;
+const service = findServiceDetail("ui-ux-design")!;
 
-export function generateStaticParams() {
-  // ui-ux-design has its own route at app/services/ui-ux-design/.
-  return serviceDetails
-    .filter((service) => service.slug !== "ui-ux-design")
-    .map((service) => ({ slug: service.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  if (slug === "ui-ux-design") notFound();
-  const service = findServiceDetail(slug);
-  if (!service) return {};
-
+export function generateMetadata(): Metadata {
   return {
     title: { absolute: service.seoTitle },
     description: service.seoDescription,
@@ -64,35 +41,21 @@ export async function generateMetadata({
   };
 }
 
-/** Service + FAQPage structured data. `<` is escaped so a stray sequence in
- *  copy can never close the script tag early. */
-function ServiceStructuredData({ service }: { service: ServiceDetail }) {
+/**
+ * UI/UX Design service detail page (own route file so the hero and section
+ * order can be designed independently of the shared `[slug]` template).
+ * Hero → why it matters → product touchpoints → design services → recent work
+ * → what you receive → process → who it is for → FAQs → closing CTA → footer.
+ */
+export default function UiUxDesignServicePage() {
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [serviceJsonLd(service), serviceFaqJsonLd(service.faqs)],
   }).replace(/</g, "\\u003c");
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />;
-}
-
-/**
- * Service detail route: hero → why it matters → brand everywhere → design
- * services → recent brand work → what you receive → identity process → who it is
- * for → methodology → FAQs → closing CTA → footer.
- */
-export default async function ServiceDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  if (slug === "ui-ux-design") notFound();
-  const service = findServiceDetail(slug);
-  if (!service) notFound();
-
   return (
     <>
-      <ServiceStructuredData service={service} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ServiceDetailHero service={service} />
       <ServiceDetailWhyMatters service={service} />
       <ServiceDetailBrandEverywhere service={service} />

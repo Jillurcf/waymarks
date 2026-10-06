@@ -54,6 +54,8 @@ export interface ServiceDetail {
     body: string;
     image: ServiceDetailImage;
     cta: Cta;
+    /** Secondary hero action; renders as an outline button without an icon. */
+    secondaryCta?: Cta;
   };
   /**
    * Two-column rationale band: the headline states why the service matters, the
@@ -468,6 +470,348 @@ brandEverywhere: {
     closing: {
       title: "Ready to look more like yourself?",
       body: "Tell us where the brand is today and where it needs to go. We will tell you honestly what a rebrand costs and what it buys.",
+      cta: { label: "Book a discovery call", href: bookCallHref, icon: icons.arrowRight },
+    },
+  },
+  {
+    path: "/services/ui-ux-design/",
+    slug: "ui-ux-design",
+    title: "UI/UX Design",
+    seoTitle: "UI/UX Design Services | Waymarks",
+    seoDescription:
+      "UI/UX design that makes digital products easier to use — research, planning, design, and testing so users move through your product with less confusion and more confidence.",
+    hero: {
+      label: "UI/UX Design",
+      title: ["UI/UX Design", "That Makes", "Digital Products", "Easier To Use"],
+      intro:
+        "Good design helps people know what to do next. As a UI/UX design agency, we research, plan, design, and test your product so users move through it with less confusion and more confidence.",
+      body: "We make digital experiences easier to understand, easier to navigate, and easier to love.",
+      // Studio hero visual for the UI/UX route (528 × 604 portrait).
+      image: {
+        src: "/images/services/UIUX/UI_UX_Hero.png",
+        alt: "Waymark UI/UX design work on a digital product",
+        width: 528,
+        height: 604,
+      },
+      cta: { label: "Start a project", href: bookCallHref, icon: icons.arrowRight },
+      secondaryCta: { label: "Explore Our Work", href: "#recent-work" },
+    },
+    whyItMatters: {
+      heading: { lead: "Why UI/UX Design", highlight: "Matters" },
+      lead: "People judge software in seconds. If they cannot find the next step, they leave — and confusion costs you sign-ups, sales, and support time.",
+      body: "UI/UX design removes the guesswork. Clear screens, obvious actions, and a logical flow keep users moving forward and coming back.",
+    },
+    brandEverywhere: {
+      heading: { lead: "A Product Should", highlight: "Work Everywhere" },
+      lead: "The same ease needs to hold on your website, in your app, on a dashboard, and through every onboarding and checkout flow.",
+      body: "We design a coherent product experience that stays simple and consistent at every touchpoint users meet.",
+      touchpoints: [
+        { title: "Websites", icon: icons.website },
+        { title: "Mobile Apps", icon: icons.mobileApp },
+        { title: "SaaS Platforms", icon: icons.saas },
+        { title: "Dashboards", icon: icons.uiUx },
+        { title: "Onboarding", icon: icons.discover },
+        { title: "Notifications", icon: icons.improve },
+      ],
+    },
+    designServices: {
+      heading: { lead: "Our UI/UX", highlight: "Design Services" },
+      intro:
+        "Great products start with understanding users, then shape every screen around what they need to do next. We research, structure, design, and test so the result is both useful and beautiful.",
+      body: "We design product experiences that feel simple, feel natural, and help users get things done.",
+      items: [
+        {
+          number: "01",
+          title: "UX Research",
+          body: "User interviews, analytics, and market context that ground every design decision.",
+          image: {
+            src: "/images/services/design-servic01.png",
+            alt: "Interview and research notes from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED — placeholder artwork; confirm screen captures for each service.
+        {
+          number: "02",
+          title: "User Flows",
+          body: "The routes users take, mapped before any screen is designed.",
+          image: {
+            src: "/images/services/design-servic02.png",
+            alt: "User flow diagram from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "03",
+          title: "Wireframes",
+          body: "Low-fidelity layouts that agree structure and hierarchy fast.",
+          image: {
+            src: "/images/services/design-servic03.png",
+            alt: "Low-fidelity wireframes from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "04",
+          title: "UI Design",
+          body: "High-fidelity screens with colour, typography, and motion that match your brand.",
+          image: {
+            src: "/images/services/design-servic04.png",
+            alt: "Final UI screens from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "05",
+          title: "Design System",
+          body: "Reusable components and tokens that keep every future screen consistent.",
+          image: {
+            src: "/images/services/design-servic05.png",
+            alt: "Design tokens and component library from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "06",
+          title: "Prototyping",
+          body: "Clickable prototypes that make the experience feel real before build.",
+          image: {
+            src: "/images/services/design-servic06.png",
+            alt: "Interactive prototype preview from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "07",
+          title: "Usability Testing",
+          body: "Real users, real tasks, and a short list of fixes that go into the design.",
+          image: {
+            src: "/images/services/design-servic07.png",
+            alt: "Usability test session notes from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "08",
+          title: "Interaction Design",
+          body: "Micro-interactions and transitions that make a product feel responsive.",
+          image: {
+            src: "/images/services/design-servic08.png",
+            alt: "Interaction design states from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "09",
+          title: "Accessibility",
+          body: "Contrast, keyboard, and screen-reader checks so no one is left out.",
+          image: {
+            src: "/images/services/design-servic09.png",
+            alt: "Accessibility audit checklist from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+        // SEED
+        {
+          number: "10",
+          title: "Developer Handoff",
+          body: "Specced, organised files your engineers can build from without guesswork.",
+          image: {
+            src: "/images/services/design-servic10.png",
+            alt: "Handoff-ready design files from a Waymark UX project",
+            width: 620,
+            height: 350,
+          },
+        },
+      ],
+    },
+    recentWork: {
+      heading: { lead: "Recent", highlight: "UX Work" },
+      body: "Six digital products shipped in the last year, each designed around a different user problem.",
+      items: [
+        {
+          title: "Vegetable Focused",
+          image: {
+            src: "/images/services/recent_brand_work01.png",
+            alt: "Product screens for a recently shipped Waymark experience",
+            width: 757,
+            height: 404,
+          },
+        },
+        // SEED — placeholder projects; confirm real product names and screens before ship.
+        {
+          title: "SEED Project Two",
+          image: {
+            src: "/images/services/recent_brand_work02.png",
+            alt: "Product screens for a recently shipped Waymark experience",
+            width: 443,
+            height: 400,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Three",
+          image: {
+            src: "/images/services/recent_brand_work03.png",
+            alt: "Product screens for a recently shipped Waymark experience",
+            width: 400,
+            height: 362,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Four",
+          image: {
+            src: "/images/services/recent_brand_work04.png",
+            alt: "Product screens for a recently shipped Waymark experience",
+            width: 400,
+            height: 362,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Five",
+          image: {
+            src: "/images/services/recent_brand_work05.png",
+            alt: "Product screens for a recently shipped Waymark experience",
+            width: 650,
+            height: 400,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Six",
+          image: {
+            src: "/images/services/recent_brand_work06.png",
+            alt: "Product screens for a recently shipped Waymark experience",
+            width: 546,
+            height: 400,
+          },
+        },
+      ],
+    },
+    whatYouReceive: {
+      heading: {
+        lead: "What You Receive From",
+        highlight: "Our UI/UX",
+        tail: "Design",
+      },
+      items: [
+        "Journey maps and user flow documents",
+        "Wireframes and clickable prototypes",
+        "A scalable UI kit and design system",
+        "Usability test notes and fixes",
+        "Developer-ready specs for handoff",
+      ],
+    },
+    designProcess: {
+      heading: { lead: "Our UI/UX", highlight: "Design Process" },
+      steps: [
+        {
+          number: "01",
+          title: "Discover",
+          description: "We learn about your users, goals, and the problems in the current product.",
+        },
+        {
+          number: "02",
+          title: "Define",
+          description: "We set the flows, hierarchy, and success measures for the experience.",
+        },
+        {
+          number: "03",
+          title: "Create",
+          description: "We design screens and prototypes, screen by screen, flow by flow.",
+        },
+        {
+          number: "04",
+          title: "Refine",
+          description: "We test with real users and tighten the design with your feedback.",
+        },
+        {
+          number: "05",
+          title: "Deliver",
+          description: "You receive the final UI and the system your team can keep building from.",
+        },
+      ],
+    },
+    whoItsFor: {
+      title: "Who This Is For",
+      points: [
+        "Startups launching a first digital product.",
+        "Product teams that need a simpler, clearer experience.",
+        "Businesses that want more sign-ups and fewer support questions.",
+      ],
+      cta: { label: "Talk to our UX team", href: bookCallHref, icon: icons.arrowRight },
+      image: {
+        src: "/images/services/who_this_for.png",
+        alt: "UX design artwork for a Waymark client project",
+        width: 620,
+        height: 500,
+      },
+    },
+    process: [
+      {
+        title: "Discover",
+        description:
+          "We interview users, review the data, and agree what the product has to help people achieve.",
+      },
+      {
+        title: "Define",
+        description:
+          "Flows, information hierarchy, and success measures — agreed before any screen is drawn.",
+      },
+      {
+        title: "Design",
+        description:
+          "Wireframes to hi-fi UI, iterated with you and tested with real users along the way.",
+      },
+      {
+        title: "Deliver",
+        description:
+          "Specced screens plus a design system, handed over so your team can build without guesswork.",
+      },
+    ],
+    faqs: [
+      {
+        question: "We already have a product. Can you improve it?",
+        answer:
+          "Yes. We audit the current flows, find where users drop off, and redesign the parts that cost you sign-ups and support time.",
+      },
+      {
+        question: "Do you test the designs with real users?",
+        answer:
+          "We prototype the key flows and run short moderated tests, then feed the findings straight back into the design.",
+      },
+      {
+        question: "Do you design for our developers?",
+        answer:
+          "Every screen ships with specs, tokens, and a component list your engineers can build from — nothing is left to guesswork.",
+      },
+      {
+        question: "How long does UI/UX design take?",
+        answer:
+          "A focused design sprint runs two to four weeks; a full product experience typically runs six to ten weeks from research to handoff.",
+      },
+    ],
+    closing: {
+      title: "Ready to make your product easier to use?",
+      body: "Tell us what your users get stuck on today. We will show you exactly what a clearer experience looks like and what it costs.",
       cta: { label: "Book a discovery call", href: bookCallHref, icon: icons.arrowRight },
     },
   },

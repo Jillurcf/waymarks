@@ -12,12 +12,17 @@ import {
 
 import { Footer } from "@/components/site/footer";
 import { ServiceDetailBrandEverywhere } from "@/components/site/service-detail-brand-everywhere";
+import { ServiceDetailBrandIdentityProcess } from "@/components/site/service-detail-brand-identity-process";
 import { ServiceDetailDesignServices } from "@/components/site/service-detail-design-services";
 import { ServiceDetailClosing } from "@/components/site/service-detail-closing";
 import { ServiceDetailFaq } from "@/components/site/service-detail-faq";
 import { ServiceDetailHero } from "@/components/site/service-detail-hero";
 import { ServiceDetailProcess } from "@/components/site/service-detail-process";
+import { ServiceDetailRecentWork } from "@/components/site/service-detail-recent-work";
+import { ServiceDetailWhatYouReceive } from "@/components/site/service-detail-what-you-receive";
+import { ServiceDetailWhoItsFor } from "@/components/site/service-detail-who-its-for";
 import { ServiceDetailWhyMatters } from "@/components/site/service-detail-why-matters";
+import { Faq } from "@/components/site/faq";
 
 // Every slug resolves at build time from the typed content module — required by
 // the static export, so an unregistered slug 404s instead of rendering a shell.
@@ -68,7 +73,8 @@ function ServiceStructuredData({ service }: { service: ServiceDetail }) {
 
 /**
  * Service detail route: hero → why it matters → brand everywhere → design
- * services → methodology → FAQs → closing CTA → footer.
+ * services → recent brand work → what you receive → identity process → who it is
+ * for → methodology → FAQs → closing CTA → footer.
  */
 export default async function ServiceDetailPage({
   params,
@@ -86,8 +92,12 @@ export default async function ServiceDetailPage({
       <ServiceDetailWhyMatters service={service} />
       <ServiceDetailBrandEverywhere service={service} />
       <ServiceDetailDesignServices service={service} />
-      <ServiceDetailProcess service={service} />
-      <ServiceDetailFaq service={service} />
+      <ServiceDetailRecentWork service={service} />
+      <ServiceDetailWhatYouReceive service={service} />
+      <ServiceDetailBrandIdentityProcess service={service} />
+      <ServiceDetailWhoItsFor service={service} />
+
+      <Faq />
       <ServiceDetailClosing service={service} />
       <Footer />
     </>

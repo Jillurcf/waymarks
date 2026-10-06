@@ -25,6 +25,11 @@ export interface ServiceDetailStep {
   description: string;
 }
 
+/** Step with its own number, for bands that render it in a marker. */
+export interface ServiceDetailNumberedStep extends ServiceDetailStep {
+  number: string;
+}
+
 /** Image reference with its intrinsic size, so every `img` can reserve space. */
 export interface ServiceDetailImage {
   src: string;
@@ -84,6 +89,49 @@ export interface ServiceDetail {
     intro: string;
     body: string;
     items: { number: string; title: string; body: string; image: ServiceDetailImage }[];
+  };
+  /**
+   * Proof band: the headline states the claim, the paragraph sets it up, and
+   * `items` are the six most recent identity projects — image plus the short
+   * project name shown under it.
+   */
+  recentWork: {
+    /** Headline split in two — `lead` renders white, `highlight` as gradient. */
+    heading: { lead: string; highlight: string };
+    body: string;
+    items: { title: string; image: ServiceDetailImage }[];
+  };
+  /**
+   * Deliverables band: the headline states what the client gets — white lead,
+   * gradient middle phrase, white tail — and the trailing column lists the five
+   * handover deliverables behind a glass tick.
+   */
+  whatYouReceive: {
+    /** Headline in three parts — `lead` and `tail` white, `highlight` gradient. */
+    heading: { lead: string; highlight: string; tail: string };
+    items: string[];
+  };
+  /**
+   * Identity process band: the framed headline names the process, and the five
+   * steps run in a single row below it — the number marker sits on the frame's
+   * top rule, so the line of circles reads as one waymarked route. Stacks to a
+   * single column on mobile.
+   */
+  designProcess: {
+    /** Headline split in two — `lead` renders white, `highlight` as gradient. */
+    heading: { lead: string; highlight: string };
+    steps: ServiceDetailNumberedStep[];
+  };
+  /**
+ * Audience band: the visual leads in the left column, and the trailing column
+ * states who the service is for — the audience lines, then one CTA.
+ */
+  whoItsFor: {
+    title: string;
+    /** One line per audience type. */
+    points: string[];
+    cta: Cta;
+    image: ServiceDetailImage;
   };
   process: ServiceDetailStep[];
   faqs: ServiceDetailFaq[];
@@ -248,6 +296,130 @@ brandEverywhere: {
           },
         },
       ],
+    },
+    recentWork: {
+      heading: { lead: "Recent", highlight: "Brand Work" },
+      body: "Six identities shipped in the last year, each built around a different problem.",
+      items: [
+        {
+          title: "Vegetable Focused",
+          image: {
+            src: "/images/services/recent_brand_work01.png",
+            alt: "Packaging artwork for the Vegetable Focused produce brand",
+            width: 757,
+            height: 404,
+          },
+        },
+        // SEED — placeholder project names; confirm real client titles before ship.
+        {
+          title: "SEED Project Two",
+          image: {
+            src: "/images/services/recent_brand_work02.png",
+            alt: "Identity artwork for a recent Waymark brand project",
+            width: 443,
+            height: 400,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Three",
+          image: {
+            src: "/images/services/recent_brand_work03.png",
+            alt: "Identity artwork for a recent Waymark brand project",
+            width: 400,
+            height: 362,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Four",
+          image: {
+            src: "/images/services/recent_brand_work04.png",
+            alt: "Identity artwork for a recent Waymark brand project",
+            width: 400,
+            height: 362,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Five",
+          image: {
+            src: "/images/services/recent_brand_work05.png",
+            alt: "Identity artwork for a recent Waymark brand project",
+            width: 650,
+            height: 400,
+          },
+        },
+        // SEED
+        {
+          title: "SEED Project Six",
+          image: {
+            src: "/images/services/recent_brand_work06.png",
+            alt: "Identity artwork for a recent Waymark brand project",
+            width: 546,
+            height: 400,
+          },
+        },
+      ],
+    },
+    whatYouReceive: {
+      heading: {
+        lead: "What You Receive From",
+        highlight: "Our Brand Identity",
+        tail: "Design",
+      },
+      items: [
+        "Logo files in every format you need",
+        "Editable source files for every lockup",
+        "Colour and typography tokens for product and web",
+        "Guidelines your team can follow without us",
+        "Social and presentation templates ready to edit",
+      ],
+    },
+    designProcess: {
+      heading: { lead: "Our Brand Identity", highlight: "Design Process" },
+      steps: [
+        {
+          number: "01",
+          title: "Discover",
+          description: "We learn about your business, market, audience, and competitors.",
+        },
+        {
+          number: "02",
+          title: "Define",
+          description: "We set your positioning, personality, and visual direction.",
+        },
+        {
+          number: "03",
+          title: "Create",
+          description: "We develop concepts, identity elements, and supporting assets.",
+        },
+        {
+          number: "04",
+          title: "Refine",
+          description: "We review the direction together and improve it with your feedback.",
+        },
+        {
+          number: "05",
+          title: "Deliver",
+          description: "You receive the final identity system and all brand assets.",
+        },
+      ],
+    },
+    whoItsFor: {
+      title: "Who This Is For",
+      points: [
+        "Startups that need a first brand.",
+        "Growing companies that need a fresh look.",
+        "Established businesses that want a clear, modern identity across every channel.",
+      ],
+      cta: { label: "Talk to our brand team", href: bookCallHref, icon: icons.arrowRight },
+      image: {
+        src: "/images/services/who_this_for.png",
+        alt: "Brand identity artwork for a Waymark client project",
+        width: 620,
+        height: 500,
+      },
     },
     process: [
       {

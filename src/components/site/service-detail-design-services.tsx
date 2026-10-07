@@ -1,14 +1,24 @@
-import type { ServiceDetail } from "@/lib/content/service-details";
+import type { ServiceDetail, ServiceDetailImage } from "@/lib/content/service-details";
 
 /**
  * Design services band: the discipline headline leads at display size with the
  * closing phrase on the CTA gradient, the two promise paragraphs follow, and the
  * service line-up sits below in a two-column grid — number, title, and the
  * concrete outcome. Every card is identical, so the grid fills row by row
- * (design-system §3).
+ * (design-system §3). Pass `images` to re-run the same line-up as a gallery with
+ * a different screen capture per card.
  */
-export function ServiceDetailDesignServices({ service }: { service: ServiceDetail }) {
+export function ServiceDetailDesignServices({
+  service,
+  images,
+}: {
+  service: ServiceDetail;
+  images?: ServiceDetailImage[];
+}) {
   const { heading, intro, body, items } = service.designServices;
+  const cards = images
+    ? items.slice(0, images.length).map((item, index) => ({ ...item, image: images[index] }))
+    : items;
 
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
@@ -24,7 +34,7 @@ export function ServiceDetailDesignServices({ service }: { service: ServiceDetai
         </div>
 
         <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:gap-x-12">
-          {items.map((item) => (
+          {cards.map((item) => (
             <li key={item.number}>
               {/* Service visual (620 × 350). Plain img: images.unoptimized makes
                   next/image pure overhead (quality gate C). */}

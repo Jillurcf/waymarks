@@ -101,3 +101,33 @@ export const presentation_icon =`<svg width="48" height="48" viewBox="0 0 48 48"
 <path d="M16 26V20M24 26V14M32 26V22" stroke="#BDD631" stroke-width="3" stroke-linecap="round"/>
 </svg>
 `
+export const high_fidelity_icon =`<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M36 8H12C8.68629 8 6 10.6863 6 14V34C6 37.3137 8.68629 40 12 40H36C39.3137 40 42 37.3137 42 34V14C42 10.6863 39.3137 8 36 8Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 18H42M16 28H32" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+
+export const user_flows_icon =`<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36 29C38.7614 29 41 26.7614 41 24C41 21.2386 38.7614 19 36 19C33.2386 19 31 21.2386 31 24C31 26.7614 33.2386 29 36 29Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 41C14.7614 41 17 38.7614 17 36C17 33.2386 14.7614 31 12 31C9.23858 31 7 33.2386 7 36C7 38.7614 9.23858 41 12 41Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17 12H24C25.5913 12 27.1174 12.6321 28.2426 13.7574C29.3679 14.8826 30 16.4087 30 18V19M17 36H24C25.5913 36 27.1174 35.3679 28.2426 34.2426C29.3679 33.1174 30 31.5913 30 30V29" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+export const desing_systems_icon = `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 6L42 16L24 26L6 16L24 6Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 26L24 36L42 26" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+export const responsive_layout_icon = `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 10H10C7.79086 10 6 11.7909 6 14V26C6 28.2091 7.79086 30 10 30H28C30.2091 30 32 28.2091 32 26V14C32 11.7909 30.2091 10 28 10Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38 18H32C29.7909 18 28 19.7909 28 22V36C28 38.2091 29.7909 40 32 40H38C40.2091 40 42 38.2091 42 36V22C42 19.7909 40.2091 18 38 18Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+export const interactive_prototypes_icon = `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 6L22 40L27 26L42 21L10 6Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+export const wireframes_icon = `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M38 6H10C7.79086 6 6 7.79086 6 10V38C6 40.2091 7.79086 42 10 42H38C40.2091 42 42 40.2091 42 38V10C42 7.79086 40.2091 6 38 6Z" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 18H42M20 18V42" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+
+export const developer_ready_designs_icon = `<svg width="39" height="35" viewBox="0 0 39 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.5 7.50024L1.5 17.5002L11.5 27.5002M27.5 7.50024L37.5 17.5002L27.5 27.5002M23.5 1.50024L15.5 33.5002" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`

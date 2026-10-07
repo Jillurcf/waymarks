@@ -8,15 +8,17 @@ import {
 } from "@/lib/content/service-details";
 
 import { Footer } from "@/components/site/footer";
-import { ServiceDetailBrandEverywhere } from "@/components/site/service-detail-brand-everywhere";
 import { ServiceDetailBrandIdentityProcess } from "@/components/site/service-detail-brand-identity-process";
 import { ServiceDetailDesignServices } from "@/components/site/service-detail-design-services";
 import { ServiceDetailClosing } from "@/components/site/service-detail-closing";
 import { ServiceDetailHero } from "@/components/site/service-detail-hero";
+import { ServiceDetailReceiveFromAgency } from "@/components/site/service-detail-receive-from-agency";
+import { ServiceDetailRecentProductDesign } from "@/components/site/service-detail-recent-product-design";
 import { ServiceDetailRecentWork } from "@/components/site/service-detail-recent-work";
 import { ServiceDetailWhatYouReceive } from "@/components/site/service-detail-what-you-receive";
 import { ServiceDetailWhoItsFor } from "@/components/site/service-detail-who-its-for";
 import { ServiceDetailWhyMatters } from "@/components/site/service-detail-why-matters";
+import { ServiceDetailWhyWorkWithAgency } from "@/components/site/service-detail-why-work-with-agency";
 import { Faq } from "@/components/site/faq";
 
 const service = findServiceDetail("ui-ux-design")!;
@@ -44,8 +46,9 @@ export function generateMetadata(): Metadata {
 /**
  * UI/UX Design service detail page (own route file so the hero and section
  * order can be designed independently of the shared `[slug]` template).
- * Hero → why it matters → product touchpoints → design services → recent work
- * → what you receive → process → who it is for → FAQs → closing CTA → footer.
+ * Hero → why work with an agency → what you receive from our agency → design
+ * services → design services gallery → recent product design → what you receive
+ * (deliverables) → process → who it is for → FAQs → closing CTA → footer.
  */
 export default function UiUxDesignServicePage() {
   const jsonLd = JSON.stringify({
@@ -57,10 +60,14 @@ export default function UiUxDesignServicePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ServiceDetailHero service={service} />
-      <ServiceDetailWhyMatters service={service} />
-      <ServiceDetailBrandEverywhere service={service} />
-      <ServiceDetailDesignServices service={service} />
-      <ServiceDetailRecentWork service={service} />
+      <ServiceDetailWhyWorkWithAgency service={service} />
+      <ServiceDetailReceiveFromAgency service={service} />
+        <ServiceDetailDesignServices
+        service={service}
+        images={service.designServicesGalleryImages}
+      />
+      <ServiceDetailRecentProductDesign service={service} />
+
       <ServiceDetailWhatYouReceive service={service} />
       <ServiceDetailBrandIdentityProcess service={service} />
       <ServiceDetailWhoItsFor service={service} />

@@ -58,6 +58,33 @@ export interface ServiceDetail {
     secondaryCta?: Cta;
   };
   /**
+   * Agency rationale band: rendered directly under the hero on the UI/UX Design
+   * service page only. The headline asks the question — white lead, gradient
+   * agency phrase — and the trailing column repeats the handover deliverables
+   * behind a glass question mark.
+   */
+  whyWorkWithAgency?: {
+    /** Headline split in two — `lead` renders white, `highlight` as gradient. */
+    heading: { lead: string; highlight: string };
+    /** Opening line under the headline, set in white. */
+    lead: string;
+    /** Supporting paragraph under the lead, set in the muted body colour. */
+    body: string;
+  };
+  /**
+   * Deliverables showcase band: rendered after the agency rationale band on the
+   * UI/UX Design service page only, reversed from the band it replaces — the
+   * deliverable rows lead on the left behind their icons, and the trailing
+   * column carries the headline with the product visual beneath it.
+   */
+  receiveFromAgency?: {
+    /** Headline split in two — `lead` renders white, `highlight` as gradient. */
+    heading: { lead: string; highlight: string };
+    image: ServiceDetailImage;
+    /** One row per deliverable: icon name plus its label. */
+    items: { icon: string; label: string }[];
+  };
+  /**
    * Two-column rationale band: the headline states why the service matters, the
    * closing phrase carries the CTA gradient, and the trailing column argues the
    * case in one lead line plus a supporting paragraph.
@@ -91,6 +118,31 @@ export interface ServiceDetail {
     intro: string;
     body: string;
     items: { number: string; title: string; body: string; image: ServiceDetailImage }[];
+  };
+  /**
+   * Second design-services run on the UI/UX Design page: the same service
+   * line-up as `designServices`, with the dedicated UI/UX screen captures
+   * swapped in image-for-image. The run renders one card per image, so its
+   * length caps how many services appear.
+   */
+  designServicesGalleryImages?: ServiceDetailImage[];
+  /**
+   * Recent product design band: UI/UX Design page only, run directly after the
+   * second design-services run. The centred headline leads white with the
+   * closing phrase on the CTA gradient, the supporting line sits beneath, and
+   * the visuals split into two columns — the captioned screens stack one under
+   * the other on the left, one tall product shot holds the right.
+   */
+  recentProductDesign?: {
+    /** Headline split in two — `lead` renders white, `highlight` as gradient. */
+    heading: { lead: string; highlight: string };
+    body: string;
+    /** Tall visual for the right-hand column. */
+    image: ServiceDetailImage;
+    /** Caption shown under the right-hand image, matching the left-hand stack. */
+    imageTitle?: string;
+    /** Left-hand column: one captioned screen per entry, stacked top to bottom. */
+    items: { title: string; image: ServiceDetailImage }[];
   };
   /**
    * Proof band: the headline states the claim, the paragraph sets it up, and
@@ -496,6 +548,33 @@ brandEverywhere: {
       cta: { label: "Start a project", href: bookCallHref, icon: icons.arrowRight },
       secondaryCta: { label: "Explore Our Work", href: "#recent-work" },
     },
+    whyWorkWithAgency: {
+      heading: { lead: "Why Work With a", highlight: "UI/UX Design Agency?" },
+      lead: "Great screens are not enough. A product also needs clear steps, simple words, and a flow that matches how people think.",
+      body: "Our UI/UX design agency team looks at the whole journey, not just the interface. That helps you reduce drop offs, cut support questions, and build trust.",
+    },
+    receiveFromAgency: {
+      heading: {
+        lead: "What You Receive From Our",
+        highlight: "UI/UX Design Agency",
+      },
+      image: {
+        src: "/images/services/UIUX/what_you_receive_from_ui_ux.png",
+        alt: "What you receive from Waymark's UI/UX design agency",
+        width: 446,
+        height: 727,
+      },
+      items: [
+        { icon: icons.highFidelity, label: "High fidelity UI designs" },
+        { icon: icons.userFlows, label: "User flows" },
+        { icon: icons.designSystems, label: "Design systems" },
+        { icon: icons.responsiveLayouts, label: "Responsive layouts" },
+        { icon: icons.interactivePrototypes, label: "Interactive prototypes" },
+        { icon: icons.wireframes, label: "Wireframes" },
+        { icon: icons.developerReadyDesigns, label: "Developer ready design files" },
+        { icon: icons.usabilityTesting, label: "Usability testing insights" },
+      ],
+    },
     whyItMatters: {
       heading: { lead: "Why UI/UX Design", highlight: "Matters" },
       lead: "People judge software in seconds. If they cannot find the next step, they leave — and confusion costs you sign-ups, sales, and support time.",
@@ -637,6 +716,105 @@ brandEverywhere: {
             alt: "Handoff-ready design files from a Waymark UX project",
             width: 620,
             height: 350,
+          },
+        },
+      ],
+    },
+    // SEED — dedicated UI/UX screen captures for the second design-services run.
+    designServicesGalleryImages: [
+      {
+        src: "/images/services/UIUX/design_image01.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image02.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image03.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image04.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image05.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image06.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image07.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image08.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+      {
+        src: "/images/services/UIUX/design_image09.png",
+        alt: "UI/UX design screen from a Waymark product project",
+        width: 620,
+        height: 350,
+      },
+    ],
+    // SEED — recent product design band for the UI/UX page: copy supplied with
+    // the design, screens captured from recent product work.
+    recentProductDesign: {
+      heading: { lead: "Recent", highlight: "Product Design" },
+      body: "A few identity systems we've built recently for startups and growing teams.",
+      image: {
+        src: "/images/services/UIUX/recent_product_right_img.png",
+        alt: "Tall product design showcase from a recent Waymark UI/UX engagement",
+        width: 640,
+        height: 1254,
+      },
+      imageTitle: "Prototyping",
+      items: [
+        {
+          title: "Wireframing",
+          image: {
+            src: "/images/services/UIUX/recent_product_left01.png",
+            alt: "Wireframing screen from a recent Waymark product design project",
+            width: 610,
+            height: 404,
+          },
+        },
+        {
+          title: "Dashboard",
+          image: {
+            src: "/images/services/UIUX/recent_product_left02.png",
+            alt: "Dashboard screen from a recent Waymark product design project",
+            width: 610,
+            height: 404,
+          },
+        },
+        {
+          title: "Mobile App",
+          image: {
+            src: "/images/services/UIUX/recent_product_left03.png",
+            alt: "Mobile app screen from a recent Waymark product design project",
+            width: 610,
+            height: 404,
           },
         },
       ],

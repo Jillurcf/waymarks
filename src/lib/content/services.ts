@@ -68,7 +68,7 @@ export const servicesWebsiteDesign = {
   body: "Design websites that look sharp and guide people to take action.",
   cta: {
     label: "Explore Website Design",
-    href: `${routeHref("/services/")}#website-design`,
+    href: routeHref("/services/website-design/"),
     icon: icons.arrowRight,
   },
 } as const;

@@ -20,6 +20,12 @@ export const staticRoutes: Route[] = [
       "Digital design services built around real business needs — brand, UI/UX, websites, SaaS products, MVPs, mobile apps and growth.",
   },
   {
+    path: "/services/website-design/",
+    title: "Website Design",
+    description:
+      "Web design and development built for more than looks — clear, smooth-working websites that explain your value and turn visitors into customers.",
+  },
+  {
     path: "/contact/",
     title: "Contact",
     description:

@@ -84,3 +84,177 @@ export const websiteDesignServices = {
     { icon: icons.designSystemsMark, label: "Design Systems" },
   ],
 };
+
+// Website development services band: copy of the design services band for the
+// development half of the offer. SEED — heading, body, image and item labels
+// below are placeholders copied from `websiteDesignServices` for the studio to
+// replace with the approved development line-up.
+export const websiteDevelopmentServices = {
+  heading: { lead: "Website", highlight: "Development Services" },
+  body: "Your website is often the first real meeting between a customer and your business. Our web design and development team builds sites that explain your value clearly, work smoothly, and help visitors take action.",
+  image: {
+    src: "/images/services/website_design/website_devlopment_service.png",
+    alt: "Waymark website development services",
+    width: 446,
+    height: 500,
+  },
+  items: [
+    { icon: icons.developerReadyDesigns, label: "Frontend Development" },
+    { icon: icons.backendDevelopment, label: "Backend Development" },
+    { icon: icons.cmsSetup, label: "CMS Setup" },
+    { icon: icons.performanceOptimization, label: "Performance Optimization" },
+    { icon: icons.qaTesting, label: "QA and Testing" },
+    { icon: icons.deployment, label: "Deployment or Publishing Support" },
+    { icon: icons.usabilityTestingMark, label: "Maintenance Support" },
+  ],
+};
+
+// "Why Web Design and Development Should Work Together" band: case for keeping
+// design and code under one team — the headline leads white with the rest on
+// the CTA gradient, then the two supporting lines and four outcome cards.
+export const websiteDesignWhyTogether = {
+  heading: {
+    lead: "Why Web Design and",
+    highlight: ["Development Should Work", "Together"],
+  },
+  intro:
+    "When design and code are planned together, you get fewer delays and a better site. Designers know what is possible. Developers know why each choice was made.",
+  footnote:
+    "That is why our web design and development work happens in one team, from the first sketch to the final launch.",
+  features: [
+    {
+      icon: icons.clock3,
+      title: "Fewer Project Delays",
+      description:
+        "When design and code are planned together, you get fewer delays and a better site. Designers know what is possible. Developers know why each choice was made.",
+    },
+    {
+      icon: icons.cpu,
+      title: "Feasible Innovation",
+      description:
+        "Creative UI ideas are backed immediately by engineering feasibility, ensuring animations and layouts perform smoothly.",
+    },
+    {
+      icon: icons.target,
+      title: "Purpose-Driven Intent",
+      description:
+        "Every line of code preserves the original UX context, ensuring visitor interactions drive business objectives.",
+    },
+    {
+      icon: icons.sparkles,
+      title: "Flawless Polish",
+      description:
+        "Pixel-perfect execution across responsive mobile screens and desktop monitors without visual compromises.",
+    },
+  ],
+};
+
+// "Built for different business needs" band: copy of the shared `designServices`
+// line-up — centred gradient headline, promise paragraphs, then a numbered
+// gallery of the business types a website can be built for. SEED — intro, body
+// and item copy are placeholders to confirm with the approved service line-up;
+// item imagery reuses the shared service captures until the studio supplies
+// website-build captures.
+export const websiteDesignBusinessNeeds = {
+  heading: { lead: "Built Web For Different", highlight: "Business Needs" },
+  intro:
+    "Websites built to fit the way a business actually works. Every build starts from what that business needs to do — then shape, code and copy follow it.",
+  body: "From local service businesses to growing startups, we build the right website for each business.",
+  items: [
+    {
+      number: "01",
+      title: "Local & Service Businesses",
+      body: "A clear storefront that turns local searches into booked jobs and answered calls.",
+      image: {
+        src: "/images/services/website_design/build_web_Image01.png",
+        alt: "Waymark website build for a local service business",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED — placeholder copy for items 05–08 and beyond.
+    {
+      number: "02",
+      title: "E-commerce",
+      body: "Storefronts built to sell — fast load times, clear product pages, and a checkout that works.",
+      image: {
+        src: "/images/services/website_design/build_web_Image02.png",
+        alt: "Waymark e-commerce website build",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED
+    {
+      number: "03",
+      title: "Startups & SaaS",
+      body: "Product-led websites that explain what you do, prove value, and turn visitors into sign-ups.",
+      image: {
+        src: "/images/services/website_design/build_web_Image03.png",
+        alt: "Waymark SaaS website build",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED
+    {
+      number: "04",
+      title: "Corporate & B2B",
+      body: "Credible, informative sites that carry trust across departments and win business.",
+      image: {
+        src: "/images/services/website_design/build_web_Image04.png",
+        alt: "Waymark corporate website build",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED
+    {
+      number: "05",
+      title: "Real Estate",
+      body: "Property-focused sites that make listings easy to browse and enquiries easy to make.",
+      image: {
+        src: "/images/services/website_design/build_web_Image05.png",
+        alt: "Waymark real estate website build",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED
+    {
+      number: "06",
+      title: "Hospitality & Restaurants",
+      body: "Menus, bookings, and locations that bring guests in and keep them coming back.",
+      image: {
+        src: "/images/services/website_design/build_web_Image06.png",
+        alt: "Waymark hospitality website build",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED
+    {
+      number: "07",
+      title: "Nonprofits & Community",
+      body: "Purpose-driven sites that raise visibility, explain impact, and move supporters to act.",
+      image: {
+        src: "/images/services/website_design/build_web_Image07.png",
+        alt: "Waymark nonprofit website build",
+        width: 620,
+        height: 350,
+      },
+    },
+    // SEED
+    {
+      number: "08",
+      title: "Portfolio & Creatives",
+      body: "Showcase sites that let the work speak and turn visitors into clients.",
+      image: {
+        src: "/images/services/website_design/build_web_Image08.png",
+        alt: "Waymark portfolio website build",
+        width: 620,
+        height: 350,
+      },
+    },
+  ],
+};

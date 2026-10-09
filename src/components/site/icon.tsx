@@ -3,6 +3,7 @@ import {
   ChartBar,
   ChartPie,
   CircleCheckBig,
+  Clock3,
   Cloud,
   Code,
   Compass,
@@ -26,7 +27,9 @@ import {
   Search,
   Share2,
   Smartphone,
+  Sparkles,
   Star,
+  Target,
   TrendingUp,
   Users,
   Zap,
@@ -288,6 +291,153 @@ export function Icon({
       );
     case icons.usabilityTesting:
       return <Eye aria-hidden="true" className={cls} />;
+    // Converted from the Figma export (`usability_testing_icon`); strokes are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.usabilityTestingMark:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>
+          <path
+            d="M8 40V20M20 40V8M32 40V26M44 40H4"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`backend_icon`); strokes are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.backendDevelopment:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>
+          <path
+            d="M40 4H8C5.79086 4 4 5.79086 4 8V16C4 18.2091 5.79086 20 8 20H40C42.2091 20 44 18.2091 44 16V8C44 5.79086 42.2091 4 40 4Z"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M40 28H8C5.79086 28 4 29.7909 4 32V40C4 42.2091 5.79086 44 8 44H40C42.2091 44 44 42.2091 44 40V32C44 29.7909 42.2091 28 40 28Z"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12 12H12.02"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12 36H12.02"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`cms_setup_icon`); strokes are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.cmsSetup:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>
+          <path
+            d="M40 6H8C6.89543 6 6 6.89543 6 8V18C6 19.1046 6.89543 20 8 20H40C41.1046 20 42 19.1046 42 18V8C42 6.89543 41.1046 6 40 6Z"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M22 28H8C6.89543 28 6 28.8954 6 30V40C6 41.1046 6.89543 42 8 42H22C23.1046 42 24 41.1046 24 40V30C24 28.8954 23.1046 28 22 28Z"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M40 28H34C32.8954 28 32 28.8954 32 30V40C32 41.1046 32.8954 42 34 42H40C41.1046 42 42 41.1046 42 40V30C42 28.8954 41.1046 28 40 28Z"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`performance_optimization_icon`);
+    // strokes are `currentColor` so the mark inherits the row colour (gate A).
+    case icons.performanceOptimization:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>
+          <path
+            d="M24 28L32 20"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M6.68 37.9999C4.92444 34.9595 4.00013 31.5106 4 27.9998C3.99987 24.489 4.92391 21.04 6.67924 17.9995C8.43457 14.959 10.9593 12.4341 13.9998 10.6786C17.0402 8.92319 20.4892 7.99902 24 7.99902C27.5108 7.99902 30.9598 8.92319 34.0002 10.6786C37.0407 12.4341 39.5654 14.959 41.3208 17.9995C43.0761 21.04 44.0001 24.489 44 27.9998C43.9999 31.5106 43.0756 34.9595 41.32 37.9999"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`QA_testing_icon`); strokes are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.qaTesting:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>
+          <path
+            d="M40 25.9999C40 35.9999 33 40.9999 24.68 43.8999C24.2443 44.0476 23.7711 44.0405 23.34 43.8799C15 40.9999 8 35.9999 8 25.9999V11.9999C8 11.4695 8.21071 10.9608 8.58579 10.5857C8.96086 10.2106 9.46957 9.99992 10 9.99992C14 9.99992 19 7.59992 22.48 4.55992C22.9037 4.19792 23.4427 3.99902 24 3.99902C24.5573 3.99902 25.0963 4.19792 25.52 4.55992C29.02 7.61992 34 9.99992 38 9.99992C38.5304 9.99992 39.0391 10.2106 39.4142 10.5857C39.7893 10.9608 40 11.4695 40 11.9999V25.9999Z"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M18 24L22 28L30 20"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`deployment_icon`); strokes are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.deployment:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>
+          <path
+            d="M36 33.96H24.02C21.82 33.96 20.12 35.84 19.06 37.76C18.2209 39.3345 16.8796 40.5833 15.2492 41.3079C13.6189 42.0326 11.7931 42.1914 10.0621 41.7592C8.33115 41.3271 6.7943 40.3287 5.69589 38.9228C4.59749 37.5169 4.00056 35.7841 4 34C4.02 32.6 4.4 31.2 5.14 30"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12 34.0001L18.26 22.4401C19.32 20.5001 18.46 18.0801 17.26 16.2401C16.6936 15.3343 16.3144 14.3243 16.1447 13.2695C15.975 12.2148 16.0183 11.1368 16.272 10.099C16.5257 9.06131 16.9846 8.0849 17.6218 7.22742C18.2589 6.36993 19.0614 5.64874 19.9817 5.10639C20.9021 4.56405 21.9218 4.21154 22.9806 4.06965C24.0395 3.92777 25.116 3.99939 26.1467 4.28029C27.1774 4.56118 28.1414 5.04567 28.9818 5.70516C29.8222 6.36465 30.5221 7.18578 31.04 8.12011"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M24 12L30.26 23.46C31.32 25.4 33.8 26 36 26C38.1217 26 40.1566 26.8429 41.6569 28.3431C43.1571 29.8434 44 31.8783 44 34C44 36.1217 43.1571 38.1566 41.6569 39.6569C40.1566 41.1571 38.1217 42 36 42"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
     // Converted from the Figma export (`competitive_analysis_icon`); strokes
     // are `currentColor` so the mark inherits the row colour (quality gate A).
     case icons.competitiveAnalysis:
@@ -506,6 +656,14 @@ export function Icon({
           />
         </svg>
       );
+    case icons.clock3:
+      return <Clock3 aria-hidden="true" className={cls} />;
+    case icons.cpu:
+      return <Cpu aria-hidden="true" className={cls} />;
+    case icons.target:
+      return <Target aria-hidden="true" className={cls} />;
+    case icons.sparkles:
+      return <Sparkles aria-hidden="true" className={cls} />;
     default:
       return null;
   }

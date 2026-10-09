@@ -41,6 +41,7 @@ import { routeHref } from "@/lib/routes";
 // footer and sitemap can never drift; the rest are in-page anchors into the
 // homepage sections — sourced from the typed content module, never hand-rolled.
 const navItems = [
+  { title: "About Us", href: routeHref("/about/") },
   { title: "Services", href: routeHref("/services/") },
   { title: "Work", href: sectionAnchors.work },
   { title: "Blog", href: sectionAnchors.blog },

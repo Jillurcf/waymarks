@@ -156,6 +156,188 @@ export function Icon({
       return <Phone aria-hidden="true" className={cls} />;
     case icons.mapPin:
       return <MapPin aria-hidden="true" className={cls} />;
+    // Converted from the Figma export (`about_us`); the plate and the "i" mark
+    // inherit the row colour (quality gate A).
+    case icons.aboutUs:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 44 44" fill="none" className={cls}>
+          <rect
+            width="44"
+            height="44"
+            rx="12"
+            fill="currentColor"
+            fillOpacity="0.1"
+          />
+          <path
+            d="M21.9997 31.1667C27.0623 31.1667 31.1663 27.0626 31.1663 22C31.1663 16.9374 27.0623 12.8333 21.9997 12.8333C16.9371 12.8333 12.833 16.9374 12.833 22C12.833 27.0626 16.9371 31.1667 21.9997 31.1667Z"
+            stroke="currentColor"
+            strokeWidth="1.83"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M22 25.6667V22"
+            stroke="currentColor"
+            strokeWidth="1.83"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M21.8851 18.5625H21.9997M21.7705 18.5625C21.7705 18.4359 21.8731 18.3333 21.9997 18.3333C22.1263 18.3333 22.2288 18.4359 22.2288 18.5625C22.2288 18.6891 22.1263 18.7917 21.9997 18.7917C21.8731 18.7917 21.7705 18.6891 21.7705 18.5625Z"
+            stroke="currentColor"
+            strokeWidth="1.83"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`about_us_hero_icon`). The frame carries
+    // three tones, so it references the brand tokens rather than `currentColor`
+    // (still zero raw hex — quality gate A).
+    case icons.aboutUsHero:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 72 72" fill="none" className={cls}>
+          <rect
+            width="72"
+            height="72"
+            rx="12"
+            fill="var(--waymarks-secondary)"
+            fillOpacity="0.3"
+          />
+          <rect
+            x="0.5"
+            y="0.5"
+            width="71"
+            height="71"
+            rx="11.5"
+            stroke="var(--waymarks-accent)"
+            strokeOpacity="0.2"
+          />
+          <path
+            d="M55.08 42H46C44.9391 42 43.9217 42.4214 43.1716 43.1716C42.4214 43.9217 42 44.9391 42 46V55.08"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M26 18.68V22C26 23.5913 26.6321 25.1174 27.7574 26.2426C28.8826 27.3679 30.4087 28 32 28C33.0609 28 34.0783 28.4214 34.8284 29.1716C35.5786 29.9217 36 30.9391 36 32C36 34.2 37.8 36 40 36C41.0609 36 42.0783 35.5786 42.8284 34.8284C43.5786 34.0783 44 33.0609 44 32C44 29.8 45.8 28 48 28H54.34"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M33.9996 55.9V48C33.9996 46.9391 33.5782 45.9217 32.828 45.1716C32.0779 44.4214 31.0605 44 29.9996 44C28.9387 44 27.9213 43.5786 27.1712 42.8284C26.421 42.0783 25.9996 41.0609 25.9996 40V38C25.9996 36.9391 25.5782 35.9217 24.828 35.1716C24.0779 34.4214 23.0605 34 21.9996 34H16.0996"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M36 56C47.0457 56 56 47.0457 56 36C56 24.9543 47.0457 16 36 16C24.9543 16 16 24.9543 16 36C16 47.0457 24.9543 56 36 56Z"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`creative_powerHouse_icon`); the frame
+    // keeps the two brand tones and the mark inherits the row colour.
+    case icons.creativePowerhouse:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 72 72" fill="none" className={cls}>
+          <rect
+            width="72"
+            height="72"
+            rx="12"
+            fill="var(--waymarks-secondary)"
+            fillOpacity="0.3"
+          />
+          <rect
+            x="0.5"
+            y="0.5"
+            width="71"
+            height="71"
+            rx="11.5"
+            stroke="var(--waymarks-accent)"
+            strokeOpacity="0.2"
+          />
+          <path
+            d="M34.0339 17.628C34.1196 17.1692 34.3631 16.7549 34.7221 16.4567C35.0811 16.1585 35.5332 15.9952 35.9999 15.9952C36.4666 15.9952 36.9187 16.1585 37.2777 16.4567C37.6368 16.7549 37.8802 17.1692 37.9659 17.628L40.0679 28.744C40.2172 29.5343 40.6013 30.2613 41.17 30.83C41.7387 31.3987 42.4656 31.7827 43.2559 31.932L54.3719 34.034C54.8307 34.1197 55.2451 34.3632 55.5433 34.7222C55.8415 35.0813 56.0047 35.5333 56.0047 36C56.0047 36.4668 55.8415 36.9188 55.5433 37.2778C55.2451 37.6369 54.8307 37.8803 54.3719 37.966L43.2559 40.068C42.4656 40.2173 41.7387 40.6014 41.17 41.1701C40.6013 41.7388 40.2172 42.4657 40.0679 43.256L37.9659 54.372C37.8802 54.8308 37.6368 55.2452 37.2777 55.5434C36.9187 55.8416 36.4666 56.0048 35.9999 56.0048C35.5332 56.0048 35.0811 55.8416 34.7221 55.5434C34.3631 55.2452 34.1196 54.8308 34.0339 54.372L31.9319 43.256C31.7826 42.4657 31.3986 41.7388 30.8298 41.1701C30.2611 40.6014 29.5342 40.2173 28.7439 40.068L17.6279 37.966C17.1691 37.8803 16.7547 37.6369 16.4565 37.2778C16.1583 36.9188 15.9951 36.4668 15.9951 36C15.9951 35.5333 16.1583 35.0813 16.4565 34.7222C16.7547 34.3632 17.1691 34.1197 17.6279 34.034L28.7439 31.932C29.5342 31.7827 30.2611 31.3987 30.8298 30.83C31.3986 30.2613 31.7826 29.5343 31.9319 28.744L34.0339 17.628Z"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M52 16V24"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M56 20H48"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M20 56C22.2091 56 24 54.2091 24 52C24 49.7909 22.2091 48 20 48C17.7909 48 16 49.7909 16 52C16 54.2091 17.7909 56 20 56Z"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`talent_network_icon`); same frame as
+    // `aboutUsHero`, with the network mark in the primary green.
+    case icons.talentNetwork:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 72 72" fill="none" className={cls}>
+          <rect
+            width="72"
+            height="72"
+            rx="12"
+            fill="var(--waymarks-secondary)"
+            fillOpacity="0.3"
+          />
+          <rect
+            x="0.5"
+            y="0.5"
+            width="71"
+            height="71"
+            rx="11.5"
+            stroke="var(--waymarks-accent)"
+            strokeOpacity="0.2"
+          />
+          <path
+            d="M48 54C48 49.7565 46.3143 45.6869 43.3137 42.6863C40.3131 39.6857 36.2435 38 32 38C27.7565 38 23.6869 39.6857 20.6863 42.6863C17.6857 45.6869 16 49.7565 16 54"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M32 38C37.5228 38 42 33.5228 42 28C42 22.4772 37.5228 18 32 18C26.4772 18 22 22.4772 22 28C22 33.5228 26.4772 38 32 38Z"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M55.9996 52C55.9996 45.26 51.9996 39 47.9996 36C49.3144 35.0136 50.3658 33.7182 51.0607 32.2286C51.7556 30.7389 52.0726 29.101 51.9836 27.4596C51.8947 25.8183 51.4024 24.2242 50.5506 22.8184C49.6987 21.4127 48.5134 20.2385 47.0996 19.4"
+            stroke="var(--waymarks-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
     case icons.highFidelity:
       return (
         <svg aria-hidden="true" viewBox="0 0 48 48" className={cls}>

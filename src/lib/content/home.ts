@@ -934,11 +934,10 @@ export const footer = {
   companyColumn: {
     title: "Company",
     // Design lists About/Our Team/Pricing/Blog here, but the one-pager has no
-    // such sections — dead links never ship. About retargets to the studio
-    // bento; only real section anchors remain (per the Phase 1 wipe). Contact
-    // points at its own route rather than the homepage #contact band.
+    // such sections — dead links never ship. About and Contact point at their
+    // own routes rather than homepage anchors; Our Work stays a section anchor.
     links: [
-      { label: "About", href: sectionAnchors.studio },
+      { label: "About Us", href: routeHref("/about/") },
       { label: "Our Work", href: sectionAnchors.work },
       { label: "Contact", href: routeHref("/contact/") },
     ],

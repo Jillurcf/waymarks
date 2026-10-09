@@ -14,6 +14,12 @@ export interface Route {
 export const staticRoutes: Route[] = [
   { path: "/", title: "Home" },
   {
+    path: "/about/",
+    title: "About Us",
+    description:
+      "Waymarks is a global digital studio headquartered in Dubai, serving disruptive founders and forward-thinking enterprises across North America, Europe, and Asia.",
+  },
+  {
     path: "/services/",
     title: "Services",
     description:

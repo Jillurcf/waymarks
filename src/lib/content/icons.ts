@@ -77,4 +77,8 @@ export const icons = {
   mail: "Mail",
   phone: "Phone",
   mapPin: "MapPin",
+  aboutUs: "AboutUs",
+  aboutUsHero: "AboutUsHero",
+  creativePowerhouse: "CreativePowerhouse",
+  talentNetwork: "TalentNetwork",
 } as const;

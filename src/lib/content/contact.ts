@@ -161,7 +161,73 @@ export const contactForm = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// 4. JSON-LD (FR-18) — ContactPage wrapping the studio's ProfessionalService.
+// 4. What happens after you contact us
+//
+// Sits between the lead form and the shared FAQ band. Four numbered steps run
+// in a single row on desktop (two up on tablet), each framed by a hairline
+// with an outlined accent number.
+// ---------------------------------------------------------------------------
+
+export interface ContactAfterStep {
+  number: string;
+  title: string;
+  body: string;
+}
+
+export const contactAfterProcess = {
+  heading: {
+    lead: "What Happens After You",
+    highlight: "Contact Waymarks?",
+  },
+  steps: [
+    {
+      number: "01",
+      title: "We Review Your Brief",
+      body: "We read your requirements and make sure we understand what you need.",
+    },
+    // SEED: steps 02–04 are placeholder copy awaiting sign-off.
+    {
+      number: "02",
+      title: "We Shape the Approach",
+      body: "We map the scope, timeline, and the right team for what you are building.",
+    },
+    {
+      number: "03",
+      title: "We Send a Proposal",
+      body: "You get a clear plan with deliverables, milestones, and transparent pricing.",
+    },
+    {
+      number: "04",
+      title: "We Start the Work",
+      body: "A short kick-off call sets things moving and we begin building with you.",
+    },
+  ] satisfies readonly ContactAfterStep[],
+} as const;
+
+// ---------------------------------------------------------------------------
+// 5. We're a global team
+//
+// A full-width banner: the two-line headline leads, the studio's team imagery
+// sits directly below it. Copy is brand-voice (content.md) with UK spelling.
+// ---------------------------------------------------------------------------
+
+export const contactGlobalTeam = {
+  heading: {
+    lead: "We're a Global Team",
+    highlight: "Connected by the Places We Call Home.",
+  },
+  // Wide banner (1280 × 700). Plain img: images.unoptimized makes next/image
+  // pure overhead (quality gate C).
+  image: {
+    src: "/images/Contact/global_team.png",
+    alt: "The Waymark team, spread across the places they call home.",
+    width: 1280,
+    height: 700,
+  },
+} as const;
+
+// ---------------------------------------------------------------------------
+// 6. JSON-LD (FR-18) — ContactPage wrapping the studio's ProfessionalService.
 //
 // The FAQ block is deliberately not duplicated here: the contact route reuses
 // the shared `Faq` section, and its FAQPage JSON-LD already ships on the home

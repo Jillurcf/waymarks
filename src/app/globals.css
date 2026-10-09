@@ -556,6 +556,16 @@
   color: transparent;
 }
 
+/*
+ * Outlined step number: transparent glyphs carrying only an accent-green
+ * stroke. Its own rule (like `.waymarks-gradient-text`) so the stroke colour
+ * stays on the brand token and is never hard-coded in a component.
+ */
+.waymarks-outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--waymarks-accent);
+}
+
 /* ==========================================
    Molten Metal Container
    ========================================== */

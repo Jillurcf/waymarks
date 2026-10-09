@@ -9,6 +9,8 @@ import { LeadForm } from "@/components/site/lead-form";
 import { FinalCta } from "@/components/site/final-cta";
 import { Footer } from "@/components/site/footer";
 import { Faq } from "@/components/site/faq";
+import { ContactAfter } from "@/components/site/contact-after";
+import { ContactGlobalTeam } from "@/components/site/contact-global-team";
 
 export const metadata: Metadata = {
   // `absolute` bypasses the layout template, mirroring the home and services
@@ -101,6 +103,8 @@ export default function ContactPage() {
         </div>
       </section>
 
+      <ContactAfter />
+      <ContactGlobalTeam />
       <Faq />
       <FinalCta />
       <Footer />

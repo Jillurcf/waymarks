@@ -17,7 +17,7 @@ export function RecentProductDesign() {
            Product Design
           </h2>
           <p className="mt-4 text-base font-normal leading-relaxed text-white/75 sm:text-lg md:text-xl">
-          A few identity systems we've built recently for startups and growing teams.
+          A few identity systems we&apos;ve built recently for startups and growing teams.
           </p>
         </div>
 

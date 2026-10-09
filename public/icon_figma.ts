@@ -215,3 +215,11 @@ export const QA_testing_icon = `<svg width="48" height="48" viewBox="0 0 48 48" 
 <path d="M18 24L22 28L30 20" stroke="#BDD631" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `
+export const clock_icon = `<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.7493 1.83331H9.16602" stroke="#BDD631" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3.66667 12.375C3.66667 8.07176 7.15512 4.58331 11.4583 4.58331C13.6099 4.58331 15.5579 5.45542 16.9679 6.86544M16.9679 6.86544C18.3779 8.27545 19.25 10.2234 19.25 12.375C19.25 16.6782 15.7615 20.1666 11.4583 20.1666H2.75M16.9679 6.86544L18.3333 5.49998" stroke="#BDD631" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.33333 17.4167H2.75" stroke="#BDD631" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.5 14.6667H2.75" stroke="#BDD631" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.459 12.375L14.6673 9.16669" stroke="#BDD631" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`

@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { Loader2, Send } from "lucide-react";
+import { ArrowRight, Loader2, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { contactForm } from "@/lib/content/contact";
-import { site } from "@/lib/content/site";
+import { bookCallHref, site } from "@/lib/content/site";
 
 /**
  * Lead form (FR-12 / BR-3).
@@ -192,7 +192,7 @@ export function LeadForm() {
   const done = status === "success";
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-card p-6 shadow-card sm:p-8">
+    <div className="rounded-3xl max-w-xl border border-white/10 bg-card p-6 shadow-card sm:p-8">
       <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
         {contactForm.title}
       </h2>
@@ -373,11 +373,11 @@ export function LeadForm() {
             />
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-4">
             <Button
               type="submit"
               disabled={submitting}
-              className="waymarks-cta-gradient h-12 gap-2 rounded-full px-8 text-base font-semibold text-waymarks-dark hover:-translate-y-0.5"
+              className="waymarks-cta-gradient h-12 w-full gap-2 rounded-full px-8 text-base font-semibold text-waymarks-dark hover:-translate-y-0.5"
             >
               {submitting ? (
                 <>
@@ -391,6 +391,17 @@ export function LeadForm() {
                 </>
               )}
             </Button>
+
+            <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-sm text-muted-foreground">
+              <span>{contactForm.preferTalk}</span>
+              <a
+                href={bookCallHref}
+                className="waymarks-gradient-text inline-flex items-center gap-1 font-semibold transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+              >
+                {contactForm.bookCallLabel}
+                <ArrowRight className="size-4 text-waymarks-accent" aria-hidden="true" />
+              </a>
+            </p>
 
             <p
               ref={statusRef}

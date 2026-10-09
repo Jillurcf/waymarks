@@ -1,4 +1,4 @@
-import type { ServiceDetail } from "@/lib/content/service-details";
+import type { ServiceDetail, ServiceDetailImage } from "@/lib/content/service-details";
 
 import { CtaButton } from "./cta";
 
@@ -6,10 +6,18 @@ import { CtaButton } from "./cta";
  * "Who this is for" band: the artwork leads in the left column, and the trailing
  * column names the audience — the headline at display size, one line per audience
  * type, then the CTA. Stacks to a single column below the tablet breakpoint
- * (design-system §3).
+ * (design-system §3). `image` swaps the artwork when a route repeats the band
+ * with a different visual.
  */
-export function ServiceDetailWhoItsFor({ service }: { service: ServiceDetail }) {
-  const { title, points, cta, image } = service.whoItsFor;
+export function ServiceDetailWhoItsFor({
+  service,
+  image: imageOverride,
+}: {
+  service: ServiceDetail;
+  image?: ServiceDetailImage;
+}) {
+  const { title, points, cta, image: serviceImage } = service.whoItsFor;
+  const image = imageOverride ?? serviceImage;
 
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">

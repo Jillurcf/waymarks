@@ -19,12 +19,32 @@ export const contactSeo = {
 export const contactPageHero = {
   label: "Contact",
   // Display headline. Set on the left column at 56px / bold / white, matching
-  // the services hero treatment; the highlight phrase closes the line.
-  title: ["Tell Us What", "You're Building"],
+  // the services hero treatment; the lead form sits opposite it.
+  title: ["Contact Waymarks", "And Let's Build", "Something", "Meaningful"],
   intro:
-    "Share the problem you are trying to solve and we will tell you honestly whether we are the right studio for it.",
-  body: "Every enquiry gets a reply from a senior designer or strategist within one business day. No sales scripts, no auto-responders.",
+    "Have an idea? Need a better website? Building a digital product? Refreshing your brand? Looking for a growth partner?",
+  body: "Have an idea? Need a better website? Building a digital product? Refreshing your brand? Looking for a growth partner?",
+  // Direct contact beats under the intro copy. `href` is omitted for the beat
+  // with no actionable link, rendered as plain text.
+  links: [
+    {
+      icon: icons.mail,
+      value: site.email,
+      href: `mailto:${site.email}`,
+    },
+    {
+      icon: icons.clock3,
+      value: "Pick a time that suits you and talk with our team directly.",
+    },
+  ] as readonly ContactPageLink[],
 } as const;
+
+/** A single icon + text beat under the contact hero copy. */
+interface ContactPageLink {
+  icon: string;
+  value: string;
+  href?: string;
+}
 
 // ---------------------------------------------------------------------------
 // 2. Direct contact details
@@ -81,6 +101,8 @@ export const contactForm = {
     "Six short fields. The more concrete you are, the more useful our first reply will be.",
   submitLabel: "Send message",
   sendingLabel: "Sending…",
+  preferTalk: "Prefer to talk first?",
+  bookCallLabel: "Book a Call Directly",
   successTitle: "Thanks — we've got it.",
   successBody: `Your message is with the studio. Expect a reply at the email you gave us within one business day.`,
   errorTitle: "That didn't send.",

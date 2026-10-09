@@ -8,6 +8,16 @@ import type { Cta } from "./home";
 import { bookCallHref } from "./site";
 import { icons } from "./icons";
 
+// Second "Who This Is For" band on this route: same audience copy as the shared
+// `ServiceDetailWhoItsFor` section, shown again with the web development
+// artwork in place of the default visual.
+export const websiteDesignWhoItsForImage = {
+  src: "/images/services/website_design/web_devlopment.png",
+  alt: "Waymark website design and development artwork",
+  width: 620,
+  height: 500,
+};
+
 export const websiteDesignSeo = {
   title: "Web Design and Development | Waymarks",
   description:

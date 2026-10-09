@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { site } from "@/lib/content/site";
-import { websiteDesignSeo } from "@/lib/content/website-design";
+import { websiteDesignSeo, websiteDesignWhoItsForImage } from "@/lib/content/website-design";
 
 import { FinalCta } from "@/components/site/final-cta";
 import { Footer } from "@/components/site/footer";
@@ -11,6 +11,7 @@ import { WebsiteDesignServices } from "@/components/site/website-design-services
 import { WebsiteDesignStrategy } from "@/components/site/website-design-strategy";
 import { WebsiteDevelopmentServices } from "@/components/site/website-development-services";
 import { WebsiteDesignWhyTogether } from "@/components/site/website-design-why-together";
+import { WebsiteDesignWhoItsFor } from "@/components/site/website-design-who-its-for";
 import { TechnologiesSection } from "@/components/site/technologies-section";
 import { RecentProductDesign } from "@/components/site/recent-product-design";
 import { ServiceDetailWhatYouReceive } from "@/components/site/service-detail-what-you-receive";
@@ -64,7 +65,7 @@ export default function WebsiteDesignServicePage() {
 
           <ServiceDetailWhatYouReceive service={service} />
           <ServiceDetailBrandIdentityProcess service={service} />
-          <ServiceDetailWhoItsFor service={service} />
+          <ServiceDetailWhoItsFor service={service} image={websiteDesignWhoItsForImage} />
 
           <Faq />
           <ServiceDetailClosing service={service} />

@@ -54,15 +54,15 @@ export function RecentProductDesign() {
           <div className="flex flex-col gap-6">
             <figure className="relative overflow-hidden rounded-2xl border border-white/10">
               <Image
-                src="/images/services/website_design/Edible.png"
-                alt="Edible"
+                src="/images/services/website_design/web_design03.png"
+                alt="Web design 03"
                 width={1200}
                 height={1600}
                 className="h-auto w-full object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm font-medium">
-                {titleFrom("Edible.png")}
+                {titleFrom("web_design03.png")}
               </figcaption>
             </figure>
           </div>

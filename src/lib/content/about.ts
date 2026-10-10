@@ -62,7 +62,7 @@ export const aboutUsSection = {
   // Wide banner (1280 × 700). Plain img: images.unoptimized makes next/image
   // pure overhead (quality gate C).
   image: {
-    src: "/images/Contact/aboutus.png",
+    src: "/images/about_us/aboutus.png",
     alt: "The Waymark studio, the people behind the work.",
     width: 1280,
     height: 700,
@@ -140,7 +140,7 @@ export const aboutDifference = {
 
 export const aboutNature = {
   image: {
-    src: "/images/Contact/nature_hill_img.png",
+    src: "/images/about_us/nature_hill_img.png",
     alt: "Rolling green hills under an open sky.",
     width: 1280,
     height: 450,
@@ -206,4 +206,195 @@ export const evolutionTimeline = {
       side: "right",
     },
   ] as readonly EvolutionMilestone[],
+} as const;
+
+// ---------------------------------------------------------------------------
+// Design Thinking image band
+//
+// Sits directly below Evolution & Legacy: a quiet two-column collage with no
+// heading or copy. Two landscape frames stack on the left, one tall frame sits
+// on the right.
+// ---------------------------------------------------------------------------
+
+/** A single frame in the Design Thinking image band. */
+export interface DesignThinkingImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+export const designThinkingImages = {
+  stacked: [
+    {
+      src: "/images/about_us/design_thinking.png",
+      alt: "A design thinking workshop in progress.",
+      width: 624,
+      height: 336,
+    },
+    {
+      src: "/images/about_us/design_thinking01.png",
+      alt: "Design thinking ideation sketches and notes.",
+      width: 624,
+      height: 336,
+    },
+  ] as readonly DesignThinkingImage[],
+  tall: {
+    src: "/images/about_us/design_thinking02.png",
+    alt: "A design thinking board capturing the process.",
+    width: 624,
+    height: 700,
+  } as DesignThinkingImage,
+} as const;
+
+// ---------------------------------------------------------------------------
+// Leadership section
+//
+// Sits directly below the Design Thinking image band: a white eyebrow, a
+// gradient headline, an intro paragraph, one row of two founder cards, and a
+// closing principle statement beside a brand left rule.
+// ---------------------------------------------------------------------------
+
+/** A single founder card in the Leadership section. */
+export interface Founder {
+  name: string;
+  role: string;
+  quote: string;
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+}
+
+export const leadership = {
+  label: "Leadership",
+  heading: "Meet The Founders",
+  intro:
+    "Guided by experience, purpose, and relentless pursuit of excellence.",
+  founders: [
+    {
+      name: "S A M Eiahia Sohel",
+      role: "Founder & Technology Lead",
+      quote:
+        "Great software is built on clarity, collaboration, and high technical standards. At Waymarks, we turn complexity into seamless digital execution.",
+      image: {
+        src: "/images/about_us/Eiahia.png",
+        alt: "Portrait of S A M Eiahia Sohel, Founder & Technology Lead.",
+        width: 80,
+        height: 80,
+      },
+    },
+    {
+      name: "Rasheduzzaman",
+      role: "Co-Founder & COO",
+      quote:
+        "Technology and strategy must serve human experiences. Our vision has always been to build a studio where creativity isn't just aesthetic, but functional and transformative.",
+      image: {
+        src: "/images/about_us/Rashed.png",
+        alt: "Portrait of Rasheduzzaman, Co-Founder & COO.",
+        width: 80,
+        height: 80,
+      },
+    },
+  ] as readonly Founder[],
+} as const;
+
+// ---------------------------------------------------------------------------
+// Standards / Our Principles section
+//
+// Sits directly below the Leadership section: a copy of the
+// `WebsiteDevelopmentServices` band — principle rows lead on the left behind
+// their icons, while the right column carries the headline (white "Standards",
+// gradient "Our Principles") with the body and visual beneath it.
+// SEED — heading, body, image and item labels below are placeholders for the
+// studio to replace with the approved principles line-up.
+// ---------------------------------------------------------------------------
+
+/** A single principle row in the Standards section. */
+export interface Principle {
+  icon: string;
+  label: string;
+}
+
+export const standardsPrinciples = {
+  heading: { lead: "Standards", highlight: "Our Principles" },
+  body: "Guiding principles that define how we operate every day.",
+  image: {
+    src: "/images/about_us/standards_principles.png",
+    alt: "Waymarks principles visual",
+    width: 446,
+    height: 454,
+  },
+  // SEED — placeholder labels copied from the website development line-up.
+  items: [
+    { icon: icons.uniqueApproach, label: "Unique Approach" },
+    { icon: icons.agileProcess, label: "Agile Processes" },
+    { icon: icons.dataDriven, label: "Data Driven Decisions" },
+    { icon: icons.collaborationMindset, label: "Collaborative Mindset" },
+    { icon: icons.clientCentric, label: "Client Centric Focus" },
+    { icon: icons.continuousInnovation, label: "Continuous Innovation" },
+  ] as readonly Principle[],
+} as const;
+
+// ---------------------------------------------------------------------------
+// Philosophy / What We Believe section
+//
+// Sits directly below the Standards section: a copy of the Standards band — the
+// belief rows lead on the left behind their icons, while the right column
+// carries the headline (white "Philosophy", gradient "What We Believe") with the
+// body and visual beneath it.
+// SEED — all copy, image and item labels below are placeholders copied from
+// `standardsPrinciples` for the studio to replace with the approved content.
+// ---------------------------------------------------------------------------
+
+/** A belief row in the Philosophy section; an optional `body` adds a
+ *  supporting paragraph beneath the icon + label row. */
+export interface PhilosophyPrinciple {
+  icon: string;
+  label: string;
+  body?: string;
+}
+
+export const philosophyPrinciples = {
+  heading: { lead: "Philosophy", highlight: "What We Believe" },
+  body: [
+    "The core beliefs driving every pixel,",
+    "line of code, and partnership.",
+  ],
+  image: {
+    src: "/images/about_us/philosophy.png",
+    alt: "Waymarks philosophy visual",
+    width: 446,
+    height: 815,
+  },
+  // SEED — remaining labels are placeholders.
+  items: [
+    {
+      icon: icons.creativeNeeds,
+      label: "Creativity Needs Strategy",
+      body: "Great creative work starts with understanding. We align artistic vision with strategic business objectives from day one.",
+    },
+    {
+      icon: icons.designShouldSolve,
+      label: "Design Should Solve Problems",
+      body: "Good design isn't just visually appealing; it makes something clearer, easier, or more useful for real human users.",
+    },
+    {
+      icon: icons.technologyShouldHave,
+      label: "Technology Should Have A Purpose",
+      body: "We don't build tech for tech's sake. We engineer tailored technology to solve real business and user problems efficiently.",
+    },
+    {
+      icon: icons.collaborationMakes,
+      label: "Collaboration Makes Work Better",
+      body: "Different views create stronger ideas. Diversity of thought and open communication fuel innovation.",
+    },
+    {
+      icon: icons.growthShouldBe,
+      label: "Growth Should Be Measurable",
+      body: "Whenever possible, we connect creative work to real, quantifiable business results that justify your investment and propel momentum.",
+    },
+  ] as readonly PhilosophyPrinciple[],
 } as const;

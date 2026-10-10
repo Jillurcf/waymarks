@@ -146,3 +146,64 @@ export const aboutNature = {
     height: 450,
   },
 } as const;
+
+// ---------------------------------------------------------------------------
+// Evolution & Legacy section
+//
+// Sits directly below the nature hill banner: a two-line headline — white
+// lead, CTA-gradient close — over an alternating timeline of studio
+// milestones. Each marker uses a lucide icon; `side` alternates the card
+// across the centre line.
+// ---------------------------------------------------------------------------
+
+/** A single milestone on the Evolution & Legacy timeline. */
+export interface EvolutionMilestone {
+  year: string;
+  title: string;
+  description: string;
+  icon: "lightbulb" | "handshake" | "compass" | "rocket";
+  side: "left" | "right";
+}
+
+export const evolutionTimeline = {
+  heading: {
+    lead: "Evolution & Legacy",
+    highlight: "Our Story",
+  },
+  lead: "The timeline of patience, learning, and visionary creation.",
+  caption: "~ 15 Years Ago",
+  milestones: [
+    {
+      year: "~ 15 Years Ago",
+      title: "The Spark of Innovation",
+      description:
+        "A small vision emerged, building a venture that brought creativity, design, and digital innovation together into one cohesive force.",
+      icon: "lightbulb",
+      side: "left",
+    },
+    {
+      year: "2022",
+      title: "Meeting of Minds",
+      description:
+        "Sohel met Rasheduzzaman while working together at the same company, discovering a shared passion for exceptional design and engineering standards.",
+      icon: "handshake",
+      side: "right",
+    },
+    {
+      year: "2023",
+      title: "Foundations Laid",
+      description:
+        "Recognising their complementary skills and shared values, they decided to combine forces and officially build Waymarks together.",
+      icon: "compass",
+      side: "left",
+    },
+    {
+      year: "2026",
+      title: "Waymarks Takes Flight",
+      description:
+        "After years of patience, learning, and hard work, Waymarks officially launched its global studio model to empower brands worldwide.",
+      icon: "rocket",
+      side: "right",
+    },
+  ] as readonly EvolutionMilestone[],
+} as const;

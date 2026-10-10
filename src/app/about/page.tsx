@@ -7,6 +7,7 @@ import { AboutDifference } from "@/components/site/about-difference";
 import { AboutHero } from "@/components/site/about-hero";
 import { AboutNature } from "@/components/site/about-nature";
 import { AboutUs } from "@/components/site/about-us";
+import { EvolutionTimeline } from "@/components/site/evolution-timeline";
 import { FinalCta } from "@/components/site/final-cta";
 import { Footer } from "@/components/site/footer";
 import { IdentityCapabilities } from "@/components/site/identity-capabilities";
@@ -29,7 +30,8 @@ export const metadata: Metadata = {
 /**
  * About route: hero (studio belief + global presence panel) → About Us
  * (headline + studio image) → Identity & Capabilities (lead paragraph plus the
- * studio and network cards) → closing CTA → footer. The navbar comes from the
+ * studio and network cards) → Evolution & Legacy (milestone timeline) →
+ * closing CTA → footer. The navbar comes from the
  * root layout; the footer is rendered per page, and the route ends in a
  * contact CTA per BR-2.
  */
@@ -41,6 +43,7 @@ export default function AboutPage() {
       <IdentityCapabilities />
       <AboutDifference />
       <AboutNature />
+      <EvolutionTimeline />
       <FinalCta />
       <Footer />
     </>

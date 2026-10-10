@@ -1,0 +1,115 @@
+/* Evolution & Legacy timeline layout. Colours come from the design tokens only
+ * (design-system §1); typography and surface styling live in the component. */
+
+.timeline {
+  position: relative;
+  isolation: isolate;
+  width: min(78%, 760px);
+  margin: 20px auto 0;
+  padding: 0 0 1px;
+  border: 2px dotted var(--waymarks-accent);
+}
+
+/* One continuous line behind every milestone icon */
+.timeline-line {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--waymarks-primary);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 50px minmax(0, 1fr);
+  align-items: center;
+  min-height: 136px;
+}
+
+/* Keep every icon exactly on the centre line */
+.timeline-marker {
+  position: relative;
+  z-index: 2;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  box-sizing: border-box;
+  color: var(--waymarks-primary);
+  background: var(--waymarks-surface-raised);
+  border: 1px solid var(--waymarks-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--waymarks-primary) 20%, transparent);
+}
+
+/* Highlight the final milestone */
+.timeline-marker-active {
+  color: var(--waymarks-dark);
+  background: var(--waymarks-primary);
+}
+
+/* Alternate cards around the centre line */
+.timeline-left .timeline-card {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+}
+
+.timeline-right .timeline-card {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: left;
+}
+
+.timeline-left .timeline-spacer {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.timeline-right .timeline-spacer {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+@media (max-width: 520px) {
+  .timeline {
+    width: calc(100% - 28px);
+  }
+
+  .timeline-line {
+    left: 24px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 48px minmax(0, 1fr);
+    min-height: 140px;
+    padding: 10px 0;
+  }
+
+  .timeline-marker {
+    grid-column: 1;
+    grid-row: 1;
+    width: 36px;
+    height: 36px;
+  }
+
+  .timeline-left .timeline-card,
+  .timeline-right .timeline-card {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  .timeline-spacer {
+    display: none;
+  }
+}

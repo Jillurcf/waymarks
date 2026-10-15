@@ -10,7 +10,7 @@ import {
 export function Testimonials() {
   return (
     <section className="border-y border-white/10 bg-waymarks-surface py-14 text-white sm:py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <p className="text-center font-bold text-[22px] uppercase tracking-widest text-waymarks-primary">
           {testimonialsSection.eyebrow}
         </p>

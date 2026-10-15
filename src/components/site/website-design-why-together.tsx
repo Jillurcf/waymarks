@@ -11,7 +11,7 @@ import { Icon } from "./icon";
 export function WebsiteDesignWhyTogether() {
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="mx-auto mb-12 max-w-md text-center">
           <div className="mx-auto mb-5 h-[3px] w-6 rounded-full bg-waymarks-primary" />
 

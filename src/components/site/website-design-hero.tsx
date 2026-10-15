@@ -18,7 +18,7 @@ export function WebsiteDesignHero() {
         className="pointer-events-none absolute right-0 size-[34rem] rounded-full bg-waymarks-primary/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pb-24 lg:pt-10">
+      <div className="container relative pb-16 pt-8 lg:pb-24 lg:pt-10">
         <Breadcrumbs pathname={websiteDesignHero.path} />
 
         <p className="mt-10 flex items-center gap-4 text-[22px] font-bold text-waymarks-primary sm:text-2xl">

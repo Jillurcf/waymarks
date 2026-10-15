@@ -19,7 +19,7 @@ export function AboutHero() {
         className="pointer-events-none absolute -top-1/4 right-0 size-[34rem] rounded-full bg-waymarks-primary/10 blur-3xl"
       />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16 lg:grid lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-24">
+      <div className="container relative flex flex-col gap-12 py-16 lg:grid lg:grid-cols-12 lg:gap-8 lg:py-24">
         <div className="col-span-12 lg:col-span-8">
           <p className="flex items-center gap-4 text-[22px] font-bold text-waymarks-primary">
             <Icon name={aboutPageHero.labelIcon} className="size-11" />

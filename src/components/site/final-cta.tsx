@@ -17,7 +17,7 @@ export function FinalCta() {
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-[38rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-waymarks-primary/15 blur-3xl"
       />
-      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-3xl px-4 md:px-6">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {finalCtaSection.title}
         </h2>

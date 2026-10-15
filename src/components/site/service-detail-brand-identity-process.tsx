@@ -11,13 +11,13 @@ export function ServiceDetailBrandIdentityProcess({ service }: { service: Servic
 
   return (
     <section className="border-b border-white/10 bg-waymarks-dark py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <h2 className="mx-auto max-w-md px-5 py-3 text-center text-[28px] font-bold leading-tight tracking-tight text-white sm:text-[32px] lg:text-[40px]">
           {heading.lead}
           <span className="text-white block">{heading.highlight}</span>
         </h2>
 
-        <div className="relative mx-auto mt-16 max-w-5xl px-4 pt-8 pb-10 sm:px-6 lg:px-8">
+        <div className="relative mx-auto mt-16 max-w-5xl pt-8 pb-10">
           {/* Connector line threading the five number markers, plus a soft
               brand glow on the middle of the route (design-system §5.4). */}
 

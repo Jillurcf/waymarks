@@ -21,7 +21,7 @@ export function ServiceDetailWhoItsFor({
 
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           {/* Audience artwork (620 × 500). Plain img: images.unoptimized makes
               next/image pure overhead (quality gate C). */}

@@ -7,7 +7,7 @@ import { capabilitiesSection } from "@/lib/content/home";
 export function Capabilities() {
   return (
     <section className="border-y border-border bg-waymarks-surface py-20 lg:py-24">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 px-4 sm:px-6 lg:flex-row lg:items-stretch lg:gap-16 lg:px-8">
+      <div className="container flex flex-col items-center gap-12 lg:flex-row lg:items-stretch lg:gap-16">
 
         {/* Content */}
         <div className="w-full lg:w-9/12">

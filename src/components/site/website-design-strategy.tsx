@@ -10,7 +10,7 @@ import { websiteDesignStrategy } from "@/lib/content/website-design";
 export function WebsiteDesignStrategy() {
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-6">
           <div>    
 

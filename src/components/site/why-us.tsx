@@ -7,7 +7,7 @@ import { whyUsSection } from "@/lib/content/home";
 export function WhyUs() {
   return (
     <section className="border-y border-border bg-waymarks-surface py-20 lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {whyUsSection.title}
         </h2>

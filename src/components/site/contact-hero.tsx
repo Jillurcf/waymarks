@@ -18,7 +18,7 @@ export function ContactHero() {
         className="pointer-events-none absolute -top-1/4 left-1/2 size-[34rem] -translate-x-1/2 rounded-full bg-waymarks-primary/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
+      <div className="relative mx-auto w-full max-w-3xl px-4 py-20 text-center md:px-6 lg:py-28">
         <p className="flex items-center justify-center gap-4 text-2xl font-bold text-waymarks-primary">
           <Icon name={icons.mail} className="size-7" />
           <span>{contactPageHero.label}</span>

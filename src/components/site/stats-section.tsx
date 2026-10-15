@@ -10,8 +10,8 @@ import { CountUp } from "./count-up";
 export function StatsSection() {
   return (
     <section className="bg-waymarks-dark py-20 lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0">
-      <div className="flex max-w-6xl flex-col sm:px-6 lg:flex-row lg:gap-0 lg:items-stretch"  >
+      <div className="container">
+      <div className="flex flex-col lg:flex-row lg:gap-0 lg:items-stretch"  >
          <div className="max-w-6xL lg:w-8/12 items-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:mt-6">
             {statsSection.title}
@@ -30,7 +30,7 @@ export function StatsSection() {
         </div>
       </div>
 
-       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+       <div>
          <h3 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
           {statsSection.subheading}
         </h3>

@@ -19,7 +19,7 @@ import { CtaButton } from "./cta";
 export function ServiceDetailFaq({ service }: { service: ServiceDetail }) {
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <h2 className="max-w-md text-3xl font-bold tracking-tight text-white sm:text-4xl">

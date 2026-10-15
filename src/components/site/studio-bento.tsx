@@ -544,7 +544,7 @@ export function StudioBento() {
         <div className="absolute -right-32 top-12 size-80 rounded-full bg-waymarks-primary/5 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container relative">
         <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-waymarks-surface-raised px-3.5 py-1.5">
             <span className="size-2 rounded-full bg-waymarks-primary" />

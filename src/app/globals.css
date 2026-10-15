@@ -578,6 +578,35 @@
 }
 
 /* ==========================================
+   Page Container
+   ========================================== */
+
+/*
+ * Single source of truth for horizontal page gutters. Every section wraps
+ * its content in `.container`: max outer width 1280px (padding included —
+ * `box-sizing: border-box`), centred, with 24px inline gutters on tablet and
+ * desktop and 16px on mobile. Section backgrounds stay full-bleed on the
+ * outer <section>; only the inner content is constrained, so decorative
+ * elements and background bands keep their full width.
+ *
+ * Defined unlayered (like the brand utility classes above) so it outranks
+ * Tailwind's built-in `container` utility for these properties.
+ */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-inline: 16px;
+  }
+}
+
+/* ==========================================
    Base Styles
    ========================================== */
 

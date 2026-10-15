@@ -9,7 +9,7 @@ import { Icon } from "./icon";
 export function ServicesNeedMoreThanOne() {
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
           {/* Feature visual (882 × 450). Plain img: images.unoptimized makes
               next/image pure overhead (quality gate C). */}

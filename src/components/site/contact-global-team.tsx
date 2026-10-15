@@ -9,7 +9,7 @@ import { contactGlobalTeam } from "@/lib/content/contact";
 export function ContactGlobalTeam() {
   return (
     <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <h2 className="text-[32px] text-center font-bold leading-[1.15] tracking-tight text-white sm:text-[40px]">
           {contactGlobalTeam.heading.lead}
           <span className="waymarks-gradient-text block">

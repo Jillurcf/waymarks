@@ -6,7 +6,7 @@ import { notFound } from "@/lib/content/site";
 export default function NotFound() {
   return (
     <section className="py-20 sm:py-32">
-      <div className="mx-auto max-w-xl px-4 text-center sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-xl px-4 text-center md:px-6">
         <p className="text-xs font-semibold uppercase tracking-widest text-waymarks-accent">
           {notFound.eyebrow}
         </p>

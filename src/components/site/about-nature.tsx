@@ -9,7 +9,7 @@ import { aboutNature } from "@/lib/content/about";
 export function AboutNature() {
   return (
     <section className="border-b border-white/10 bg-waymarks-dark py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={aboutNature.image.src}

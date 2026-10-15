@@ -8,9 +8,16 @@
 
 .digital-process-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .digital-process-container {
+    padding: 0 16px;
+  }
 }
 
 .digital-process-heading {
@@ -98,10 +105,6 @@
     padding: 35px 0;
   }
 
-  .digital-process-container {
-    padding: 0 24px;
-  }
-
   .digital-process-heading {
     margin-bottom: 35px;
   }
@@ -128,10 +131,6 @@
 @media (max-width: 480px) {
   .digital-process {
     padding: 32px 0;
-  }
-
-  .digital-process-container {
-    padding: 0 20px;
   }
 
   .digital-process-heading h2 {

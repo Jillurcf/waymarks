@@ -69,7 +69,7 @@ inverted spotlight (the case-study showcase card).
 
 - Base spacing unit: **4 px**.
 - Major section padding: `py-20`–`py-32`.
-- Container: `max-w-6xl` with `px-4 sm:px-6 lg:px-8`.
+- Container: the shared `.container` utility (see `globals.css`) — `max-width: 1280px` with padding included (`box-sizing: border-box`), centred, `24px` inline gutters on tablet/desktop and `16px` on mobile. Full-bleed backgrounds live on the outer `<section>`; only inner content is constrained.
 - Grid:
   - Desktop: 12 columns
   - Tablet: 2 columns

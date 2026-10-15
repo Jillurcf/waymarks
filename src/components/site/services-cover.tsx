@@ -9,7 +9,7 @@ import { servicesCover } from "@/lib/content/services";
 export function ServicesCover() {
   return (
     <section className="border-y border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-3xl px-4 md:px-6">
         <h2 className="max-w-3xl text-center text-[40px] font-bold tracking-tight sm:text-4xl lg:text-5xl">
           {servicesCover.heading.lead}{" "}
           <span className="waymarks-gradient-text">

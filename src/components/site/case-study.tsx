@@ -13,7 +13,7 @@ export function CaseStudy() {
       id="work"
       className="scroll-mt-24 border-y border-white/10 bg-waymarks-surface py-20 text-white lg:py-24"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
           {caseStudySection.title}
         </h2>

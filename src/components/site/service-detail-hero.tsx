@@ -55,7 +55,7 @@ export function ServiceDetailHero({ service }: { service: ServiceDetail }) {
         className="pointer-events-none absolute right-0 size-[34rem] rounded-full bg-waymarks-primary/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pb-4 lg:pt-10">
+      <div className="container relative pb-16 pt-8 lg:pb-4 lg:pt-10">
         <Breadcrumbs pathname={service.path} />
 
         <div className="mt-10 flex flex-col items-center gap-10 lg:flex-row lg:gap-2">

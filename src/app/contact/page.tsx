@@ -60,7 +60,7 @@ export default function ContactPage() {
           aria-hidden="true"
           className="pointer-events-none absolute -top-1/4 right-0 size-[34rem] rounded-full bg-waymarks-primary/10 blur-3xl"
         />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-2 lg:px-8">
+        <div className="container relative grid gap-10 lg:grid-cols-12 lg:gap-2">
           <div className="lg:col-span-6">
             <p className="flex items-center gap-4 text-2xl font-bold text-waymarks-primary">
               <Icon name={icons.mail} className="size-7" />

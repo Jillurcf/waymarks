@@ -80,7 +80,7 @@ const lucideGlyphs: Record<string, ComponentType<{ className?: string }>> = {
 export function TechnologiesSection() {
   return (
     <section className="border-b border-white/10 bg-waymarks-dark py-20 text-white lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
           <div className="mx-auto mb-5 h-[3px] w-6 rounded-full bg-waymarks-primary" />
 

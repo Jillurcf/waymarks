@@ -286,7 +286,7 @@ export function Navbar() {
         "sticky top-0 z-50 w-full border-b border-white/10 bg-waymarks-dark/80 text-white backdrop-blur-md",
       )}
     >
-      <div className="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto] items-center gap-x-4 px-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8">
+      <div className="container grid h-16 grid-cols-[1fr_auto] items-center gap-x-4 md:grid-cols-[1fr_auto_1fr]">
         <div className="flex min-w-0 items-center gap-2">
           <MobileNav />
           <Brand />

@@ -81,7 +81,7 @@ function NewsletterForm() {
 export function Footer() {
   return (
     <footer className="bg-waymarks-dark pb-8 pt-16 text-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr]">
           <div>
             <Link href="/" aria-label={`${footer.about.title} — home`}>

@@ -18,7 +18,7 @@ export function ServicesPageHero() {
         className="pointer-events-none absolute -top-1/4 right-0 size-[34rem] rounded-full bg-waymarks-primary/10 blur-3xl"
       />
 
-      <div className="container relative flex items-center py-20 lg:grid-cols-2 lg:gap-8 lg:py-24">
+      <div className="container relative flex items-center py-20 lg:grid-cols-2 lg:gap-24 lg:py-24">
         <div className="animate-fade-up">
           <p className="flex items-center gap-4 text-[22px] font-bold text-waymarks-primary sm:text-2xl">
             <ServiceIcon />
@@ -53,7 +53,7 @@ export function ServicesPageHero() {
             height={700}
             loading="eager"
             fetchPriority="high"
-            className="mx-auto w-full max-w-md rounded-3xl border border-white/10 object-cover"
+            className="mx-auto w-full rounded-3xl border border-white/10 object-cover"
           />
         </div>
       </div>

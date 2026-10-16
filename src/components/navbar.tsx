@@ -34,8 +34,9 @@ import {
   navCtaLabel,
 } from "@/lib/content/site";
 
-import { sectionAnchors } from "@/lib/content/home";
+import { sectionAnchors, servicesSection } from "@/lib/content/home";
 import { routeHref } from "@/lib/routes";
+import { Icon } from "./site/icon";
 
 // Nav items: real routes come from the route map (src/lib/routes.ts) so nav,
 // footer and sitemap can never drift; the rest are in-page anchors into the
@@ -53,23 +54,189 @@ const navItems = [
 // primitive is deliberately avoided (quality gate C: ≤200 KB route JS).
 function DesktopNav() {
   const isActive = useIsActive();
+  const [servicesOpen, setServicesOpen] = React.useState(false);
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleServicesEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 150);
+  };
+
+  const handleDropdownEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
+  const handleDropdownLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 150);
+  };
+
+  const isServicesActive = isActive(routeHref("/services/"));
+
+  const serviceDetailLinks = [
+    {
+      icon: servicesSection.items[0].icon,
+      title: "Brand Design & Identity",
+      body: "Build a brand people recognise, trust, and remember.",
+      href: routeHref("/services/brand-design/"),
+    },
+    {
+      icon: servicesSection.items[1].icon,
+      title: "UI/UX Design",
+      body: "Create digital experiences that feel simple, useful, and natural.",
+      href: routeHref("/services/ui-ux-design/"),
+    },
+    {
+      icon: servicesSection.items[2].icon,
+      title: "Website Design & Development",
+      body: "Design websites that look sharp and guide people to take action.",
+      href: routeHref("/services/website-design/"),
+    },
+    {
+      icon: servicesSection.items[3].icon,
+      title: "SaaS & Product Design",
+      body: "Turn complicated workflows into simple, useful digital products.",
+      href: "/services/#saas-product-design",
+    },
+    {
+      icon: servicesSection.items[4].icon,
+      title: "MVP Development",
+      body: "Turn an idea into a working product you can test, learn from, and improve.",
+      href: "/services/#mvp-development",
+    },
+    {
+      icon: servicesSection.items[5].icon,
+      title: "Mobile App Design",
+      body: "Create mobile experiences that feel natural and match your brand.",
+      href: "/services/#mobile-app-design",
+    },
+    {
+      icon: servicesSection.items[6].icon,
+      title: "Digital Growth",
+      body: "Use SEO, content, social media, email, and analytics to build steady momentum.",
+      href: "/services/#digital-growth",
+    },
+  ];
+
   return (
     <nav className="hidden md:flex" aria-label="Main">
       <ul className="flex items-center gap-6">
-        {navItems.map((item) => (
-          <li key={item.title}>
-            <Link
-              href={item.href}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              className={cn(
-                "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
-                isActive(item.href) && "text-waymarks-accent",
-              )}
+        <li>
+          <Link
+            href={navItems[0].href}
+            aria-current={isActive(navItems[0].href) ? "page" : undefined}
+            className={cn(
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              isActive(navItems[0].href) && "text-waymarks-accent",
+            )}
+          >
+            {navItems[0].title}
+          </Link>
+        </li>
+        <li
+          className="relative"
+          onMouseEnter={handleServicesEnter}
+          onMouseLeave={handleServicesLeave}
+        >
+          <Link
+            href={navItems[1].href}
+            aria-current={isServicesActive ? "page" : undefined}
+            className={cn(
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              isServicesActive && "text-waymarks-accent",
+            )}
+          >
+            {navItems[1].title}
+          </Link>
+          {servicesOpen ? (
+            <div
+              className="absolute left-1/2 top-full z-50 mt-2 w-[min(52rem,95vw)] -translate-x-1/2"
+              onMouseEnter={handleDropdownEnter}
+              onMouseLeave={handleDropdownLeave}
             >
-              {item.title}
-            </Link>
-          </li>
-        ))}
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-waymarks-surface-raised shadow-card">
+                <div className="grid grid-cols-1 gap-1 p-4 md:grid-cols-2">
+                  {serviceDetailLinks.map((service) => (
+                    <Link
+                      key={service.title}
+                      href={service.href}
+                      className="group flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-white/5"
+                    >
+                      <span className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-lg bg-waymarks-primary/15 text-waymarks-primary">
+                        <Icon name={service.icon} className="size-5" aria-hidden="true" />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-sm font-medium text-foreground group-hover:text-waymarks-accent">
+                          {service.title}
+                        </span>
+                        <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                          {service.body}
+                        </span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <div className="border-t border-white/10 bg-white/5 px-4 py-3">
+                  <Link
+                    href={routeHref("/services/")}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-waymarks-accent transition-colors hover:text-waymarks-primary"
+                  >
+                    View all services
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </li>
+        <li>
+          <Link
+            href={navItems[2].href}
+            aria-current={isActive(navItems[2].href) ? "page" : undefined}
+            className={cn(
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              isActive(navItems[2].href) && "text-waymarks-accent",
+            )}
+          >
+            {navItems[2].title}
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={navItems[3].href}
+            aria-current={isActive(navItems[3].href) ? "page" : undefined}
+            className={cn(
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              isActive(navItems[3].href) && "text-waymarks-accent",
+            )}
+          >
+            {navItems[3].title}
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={navItems[4].href}
+            aria-current={isActive(navItems[4].href) ? "page" : undefined}
+            className={cn(
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              isActive(navItems[4].href) && "text-waymarks-accent",
+            )}
+          >
+            {navItems[4].title}
+          </Link>
+        </li>
       </ul>
     </nav>
   );

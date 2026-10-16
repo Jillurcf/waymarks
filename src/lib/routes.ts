@@ -32,6 +32,12 @@ export const staticRoutes: Route[] = [
       "Web design and development built for more than looks — clear, smooth-working websites that explain your value and turn visitors into customers.",
   },
   {
+    path: "/blog/",
+    title: "Blog",
+    description:
+      "Digital design blog with ideas, insights, and digital thinking from Waymarks.",
+  },
+  {
     path: "/contact/",
     title: "Contact",
     description:

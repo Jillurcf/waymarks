@@ -933,11 +933,12 @@ export const footer = {
   },
   companyColumn: {
     title: "Company",
-    // Design lists About/Our Team/Pricing/Blog here, but the one-pager has no
-    // such sections — dead links never ship. About and Contact point at their
-    // own routes rather than homepage anchors; Our Work stays a section anchor.
+    // Design lists About/Our Team/Pricing/Blog here. About, Blog and Contact
+    // point at their real routes; Our Work stays a homepage section anchor —
+    // dead links never ship.
     links: [
       { label: "About Us", href: routeHref("/about/") },
+      { label: "Blog", href: routeHref("/blog/") },
       { label: "Our Work", href: sectionAnchors.work },
       { label: "Contact", href: routeHref("/contact/") },
     ],

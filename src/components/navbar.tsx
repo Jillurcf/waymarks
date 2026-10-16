@@ -45,7 +45,7 @@ const navItems = [
   { title: "About Us", href: routeHref("/about/") },
   { title: "Services", href: routeHref("/services/") },
   { title: "Work", href: sectionAnchors.work },
-  { title: "Blog", href: sectionAnchors.blog },
+  { title: "Blog", href: routeHref("/blog/") },
   { title: "Contact", href: routeHref("/contact/") },
 ];
 
@@ -189,15 +189,7 @@ function DesktopNav() {
                     </Link>
                   ))}
                 </div>
-                <div className="border-t border-white/10 bg-white/5 px-4 py-3">
-                  <Link
-                    href={routeHref("/services/")}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-waymarks-accent transition-colors hover:text-waymarks-primary"
-                  >
-                    View all services
-                  </Link>
-                </div>
-              </div>
+               </div>
             </div>
           ) : null}
         </li>
@@ -460,7 +452,7 @@ export function Navbar() {
         </div>
         <DesktopNav />
         <div className="flex items-center justify-end gap-2">
-  
+
           <a href={bookCallHref} className={ctaClass("primary")}>
             {navCtaLabel}
           </a>

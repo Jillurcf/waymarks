@@ -5,8 +5,11 @@ import { blogPageHero, blogSeo } from "@/lib/content/blog";
 import { site } from "@/lib/content/site";
 
 import { BlogIcon } from "@/components/site/blog-icon";
+import { BlogTopPicks } from "@/components/site/blog-top-picks";
+import { BlogTopics } from "@/components/site/blog-topics";
 import { FinalCta } from "@/components/site/final-cta";
 import { Footer } from "@/components/site/footer";
+import { Faq } from "@/components/site/faq";
 
 export const metadata: Metadata = {
   // `absolute` bypasses the layout template, mirroring the home, services,
@@ -30,9 +33,10 @@ export const metadata: Metadata = {
 
 /**
  * Blog route: the hero band (mark + "Blog" eyebrow beside the display
- * headline and hero illustration, lit by a single top-right glow) → closing
- * CTA → footer. The navbar comes from the root layout; the footer is rendered
- * per page, and the route ends in a contact CTA per BR-2.
+ * headline and hero illustration, lit by a single top-right glow) → "Top Picks"
+ * featured-article band → "Explore Our Digital / Design Blog By Topic" band →
+ * closing CTA → footer. The navbar comes from the root layout; the footer is
+ * rendered per page, and the route ends in a contact CTA per BR-2.
  */
 export default function BlogPage() {
   return (
@@ -76,6 +80,10 @@ export default function BlogPage() {
         </div>
       </section>
 
+      <BlogTopPicks />
+
+      <BlogTopics />
+      <Faq />
       <FinalCta />
       <Footer />
     </>

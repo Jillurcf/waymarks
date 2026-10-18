@@ -100,7 +100,8 @@ export default async function ServiceDetailPage({
       <ServiceDetailRecentWork service={service} />
       <ServiceDetailWhatYouReceive service={service} />
       <ServiceDetailBrandIdentityProcess service={service} />
-      <ServiceDetailWhoItsFor service={service} />
+      {/* <ServiceDetailWhoItsFor service={service} /> */}
+      
 
       <Faq />
       <ServiceDetailClosing service={service} />

@@ -70,7 +70,15 @@ export default function UiUxDesignServicePage() {
 
       <ServiceDetailWhatYouReceive service={service} />
       <ServiceDetailBrandIdentityProcess service={service} />
-      <ServiceDetailWhoItsFor service={service} />
+      <ServiceDetailWhoItsFor
+        service={service}
+        image={{
+          src: "/images/services/UIUX/ui-ux-whoIsFor.png",
+          alt: "UI/UX design who this is for",
+          width: 620,
+          height: 500,
+        }}
+      />
 
       <Faq />
       <ServiceDetailClosing service={service} />

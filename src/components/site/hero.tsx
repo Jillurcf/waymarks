@@ -10,13 +10,10 @@ import { CtaButton } from "./cta";
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-waymarks-dark text-white">
-      {/* Radial brand glow (design: circle at 80% 20%, primary at 8%) —
-          token-based, no raw gradients in components. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-1/4 right-0 size-[34rem] rounded-full bg-waymarks-primary/10 blur-3xl"
-      />
+    <section className="relative overflow-hidden bg-waymarks-dark bg-waymarks-radial text-white">
+      {/* Radial band fill (design: "BDD631 — Radial", circle at 80% 20%,
+          primary at 8%) comes from the `bg-waymarks-radial` token — no raw
+          gradients in components. */}
 
       <div className="container relative grid items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
         <div className="animate-fade-up">

@@ -139,7 +139,7 @@ function DesktopNav() {
             href={navItems[0].href}
             aria-current={isActive(navItems[0].href) ? "page" : undefined}
             className={cn(
-              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-base font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
               isActive(navItems[0].href) && "text-waymarks-accent",
             )}
           >
@@ -155,7 +155,7 @@ function DesktopNav() {
             href={navItems[1].href}
             aria-current={isServicesActive ? "page" : undefined}
             className={cn(
-              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-base font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
               isServicesActive && "text-waymarks-accent",
             )}
           >
@@ -198,7 +198,7 @@ function DesktopNav() {
             href={navItems[2].href}
             aria-current={isActive(navItems[2].href) ? "page" : undefined}
             className={cn(
-              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-base font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
               isActive(navItems[2].href) && "text-waymarks-accent",
             )}
           >
@@ -210,7 +210,7 @@ function DesktopNav() {
             href={navItems[3].href}
             aria-current={isActive(navItems[3].href) ? "page" : undefined}
             className={cn(
-              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-base font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
               isActive(navItems[3].href) && "text-waymarks-accent",
             )}
           >
@@ -222,7 +222,7 @@ function DesktopNav() {
             href={navItems[4].href}
             aria-current={isActive(navItems[4].href) ? "page" : undefined}
             className={cn(
-              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+              "inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 text-base font-medium transition-colors hover:text-waymarks-accent focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
               isActive(navItems[4].href) && "text-waymarks-accent",
             )}
           >
@@ -249,10 +249,10 @@ function Brand() {
         src="/logo_white.png"
         alt="Waymark logo"
         width={158}
-        height={24}
+        height={30}
         loading="eager"
         fetchPriority="high"
-        className="h-7 w-auto"
+        className="h-7.5 w-auto"
       />
     </Link>
   );
@@ -442,10 +442,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-white/10 bg-waymarks-dark/80 text-white backdrop-blur-md",
+        "sticky top-0 z-50 w-full border-b border-white/12 bg-waymarks-dark/85 text-white backdrop-blur-md",
       )}
     >
-      <div className="container grid h-16 grid-cols-[1fr_auto] items-center gap-x-4 md:grid-cols-[1fr_auto_1fr]">
+      <div className="container grid h-20 grid-cols-[1fr_auto] items-center gap-x-4 md:grid-cols-[1fr_auto_1fr]">
         <div className="flex min-w-0 items-center gap-2">
           <MobileNav />
           <Brand />
@@ -453,7 +453,10 @@ export function Navbar() {
         <DesktopNav />
         <div className="flex items-center justify-end gap-2">
 
-          <a href={bookCallHref} className={ctaClass("primary")}>
+          <a
+            href={bookCallHref}
+            className={cn(ctaClass("primary"), "h-[50px] w-[190px] px-0")}
+          >
             {navCtaLabel}
           </a>
         </div>

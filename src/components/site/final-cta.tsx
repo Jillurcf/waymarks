@@ -11,7 +11,7 @@ export function FinalCta() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-waymarks-surface py-20 text-center text-white"
+      className="relative scroll-mt-24 overflow-hidden border-y border-border bg-white/2 py-20 text-center text-white"
     >
       <div
         aria-hidden="true"

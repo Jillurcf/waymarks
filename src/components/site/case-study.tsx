@@ -11,7 +11,7 @@ export function CaseStudy() {
   return (
     <section
       id="work"
-      className="scroll-mt-24 border-y border-white/10 bg-waymarks-surface py-20 text-white lg:py-24"
+      className="scroll-mt-24 border-y border-border bg-white/2 py-20 text-white lg:py-24"
     >
       <div className="container">
         <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
@@ -21,7 +21,7 @@ export function CaseStudy() {
           {caseStudySection.intro}
         </p>
 
-        <div className="mt-12 grid items-center gap-10 rounded-3xl border border-white/10 bg-waymarks-dark p-8 shadow-card lg:grid-cols-2 lg:gap-14 lg:p-12">
+        <div className="mt-12 grid items-center gap-10 rounded-3xl border border-white/12 bg-white/3 p-8 shadow-card lg:grid-cols-2 lg:gap-14 lg:p-12">
           <div>
             <h3 className="text-2xl font-bold text-white">{caseStudySection.client}</h3>
             <p className="mt-4 text-base leading-relaxed text-white/75">

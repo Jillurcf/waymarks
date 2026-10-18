@@ -534,7 +534,7 @@ export function StudioBento() {
   return (
     <section
       id="studio"
-      className="relative scroll-mt-24 border-y border-white/10 bg-waymarks-dark py-20 text-white lg:py-24"
+      className="relative scroll-mt-24 bg-waymarks-dark bg-waymarks-radial py-20 text-white lg:py-24"
     >
       <div
         aria-hidden="true"

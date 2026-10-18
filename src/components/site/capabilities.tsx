@@ -6,7 +6,7 @@ import { capabilitiesSection } from "@/lib/content/home";
  */
 export function Capabilities() {
   return (
-    <section className="border-y border-border bg-waymarks-surface py-20 lg:py-24">
+    <section className="border-y border-border bg-white/2 py-20 lg:py-24">
       <div className="container flex flex-col items-center gap-12 lg:flex-row lg:items-stretch lg:gap-16">
 
         {/* Content */}

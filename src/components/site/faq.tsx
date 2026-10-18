@@ -13,7 +13,7 @@ import { CtaButton } from "./cta";
  */
 export function Faq() {
   return (
-    <section className="bg-waymarks-dark py-20 lg:py-24">
+    <section className="bg-waymarks-dark bg-waymarks-radial py-20 lg:py-24">
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">

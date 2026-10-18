@@ -9,7 +9,7 @@ import { CountUp } from "./count-up";
  */
 export function StatsSection() {
   return (
-    <section className="bg-waymarks-dark py-20 lg:py-24">
+    <section className="bg-waymarks-dark bg-waymarks-radial py-20 lg:py-24">
       <div className="container">
       <div className="flex flex-col lg:flex-row lg:gap-0 lg:items-stretch"  >
          <div className="max-w-6xL lg:w-8/12 items-center">
@@ -36,14 +36,14 @@ export function StatsSection() {
         </h3>
         <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
           {statsSection.items.map((stat) => (
-            <div key={stat.label} className="border-l-2 border-waymarks-accent pl-5">
+            <div key={stat.label} className="border-l-4 border-waymarks-primary pl-5">
               <div className="text-4xl font-extrabold leading-none text-waymarks-primary lg:text-5xl">
                 <CountUp value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="mt-3 text-base font-semibold text-white">
+              <p className="mt-3 text-base font-semibold text-waymarks-primary">
                 {stat.label}
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-1 text-sm leading-relaxed text-waymarks-primary/30">
                 {stat.description}
               </p>
             </div>

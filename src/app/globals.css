@@ -33,6 +33,22 @@
       var(--waymarks-accent) 100%
     );
 
+  /*
+   * Radial band fill — the design's "BDD631 Radial" section spec: primary
+   * blooming from the top-right at 8%, clearing to transparent by 50% (the
+   * same wash as the hero reference, circle at 80% 20%). RGBA literal mirrors
+   * `--waymarks-primary` (#BDD631) — pre-mixed so the value survives as one
+   * gradient everywhere (no color-mix fallback divergence). Pair with
+   * `bg-waymarks-dark`; background-image only, so the band colour survives.
+   * Section bands only — never a full-strength fill (design-system §5).
+   */
+  --background-image-waymarks-radial:
+    radial-gradient(
+      circle at 80% 20%,
+      rgb(189 214 49 / 8%) 0%,
+      rgb(189 214 49 / 0%) 50%
+    );
+
   /* ========================================
      Application Colors
      ======================================== */
@@ -488,7 +504,7 @@
 
   --destructive: oklch(0.704 0.191 22.216);
 
-  --border: rgb(255 255 255 / 10%);
+  --border: rgb(255 255 255 / 12%);
   --input: rgb(255 255 255 / 15%);
 
   --ring: var(--waymarks-accent);

@@ -9,7 +9,7 @@ import {
  */
 export function Testimonials() {
   return (
-    <section className="border-y border-white/10 bg-waymarks-surface py-14 text-white sm:py-16">
+    <section className="border-y border-border bg-white/2 py-14 text-white sm:py-16">
       <div className="container">
         <p className="text-center font-bold text-[22px] uppercase tracking-widest text-waymarks-primary">
           {testimonialsSection.eyebrow}
@@ -18,7 +18,7 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <figure
               key={item.author}
-              className="flex flex-col rounded-2xl border border-border bg-card p-6"
+              className="flex flex-col rounded-2xl border border-border bg-white/3 p-6"
             >
               <blockquote className="text-base leading-relaxed text-white/85">
                 &ldquo;{item.quote}&rdquo;

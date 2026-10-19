@@ -645,7 +645,7 @@ export function StudioBento() {
                 <div className="lg:col-span-5">
                   <SlideDetails slide={slide} />
                 </div>
-                <div className="lg:col-span-7">
+                <div className="lg:col-span-7 bg-white/3">
                   <StudioVisualPanel visual={slide.visual} />
                 </div>
               </div>

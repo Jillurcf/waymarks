@@ -23,7 +23,7 @@ export function Segments() {
               key={segment.title}
               className="rounded-2xl border border-border bg-white/3 p-8 transition-all duration-200 hover:-translate-y-1 hover:border-waymarks-accent hover:shadow-card-hover"
             >
-              <h3 className="flex items-center gap-3 text-xl font-bold text-white">
+              <h3 className="flex items-center gap-3 text-xl font-bold text-waymarks-primary">
                 <Icon name={segment.icon} className="size-6 text-waymarks-primary" />
                 {segment.title}
               </h3>

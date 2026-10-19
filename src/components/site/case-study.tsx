@@ -14,7 +14,7 @@ export function CaseStudy() {
       className="scroll-mt-24 border-y border-border bg-white/2 py-20 text-white lg:py-24"
     >
       <div className="container">
-        <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {caseStudySection.title}
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">

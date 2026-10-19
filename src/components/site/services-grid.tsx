@@ -26,7 +26,7 @@ export function ServicesGrid() {
             >
               <div>
                 <Icon name={service.icon} className="size-8 text-waymarks-primary" />
-                <h3 className="mt-4 text-xl font-bold text-white">
+                <h3 className="mt-4 text-xl font-bold text-waymarks-primary">
                   {service.title}
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">
@@ -45,7 +45,7 @@ export function ServicesGrid() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <CtaButton cta={servicesSection.exploreAll} variant="outline" />
+          <CtaButton cta={servicesSection.exploreAll} variant="primary" />
         </div>
       </div>
     </section>

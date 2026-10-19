@@ -955,10 +955,9 @@ export const footer = {
     contactIcon: icons.mail,
     email: site.email,
   },
-  // Static-safe newsletter (FR-23): hidden until a static-compatible endpoint
-  // exists, matching the shared site.ts newsletter flag.
+  // Newsletter signup shown in the footer (FR-23).
   newsletter: {
-    enabled: false,
+    enabled: true,
     title: "Subscribe to our newsletter",
     placeholder: "Enter your email",
     submitLabel: "Join",

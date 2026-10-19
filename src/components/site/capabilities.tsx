@@ -42,7 +42,7 @@ export function Capabilities() {
         {/* Image */}
         <div className="lg:flex lg:w-4/12 lg:items-center">
           <img
-            src="/images/3DLogo_capabilities.png"
+            src="/images/3DLogo_capabilities.jpg"
             // alt={capabilitiesSection.image.alt}
             className="h-auto w-full rounded-3xl lg:h-full lg:w-full "
           />

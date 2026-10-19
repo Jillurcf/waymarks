@@ -53,7 +53,7 @@ export function Hero() {
                 (quality gate C); eager + high priority keeps LCP behaviour. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/3DLogo_Waymarks1.png"
+              src="/images/3DLogo_Waymarks1.jpg"
               alt={hero.logo.alt}
               width={480}
               height={480}

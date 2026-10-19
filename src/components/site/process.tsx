@@ -27,7 +27,7 @@ export function Process() {
                 <Icon name={step.icon} className="size-4" />
                 <span>STEP {step.step}</span>
               </div>
-              <h3 className="mt-4 text-xl font-bold text-white">
+              <h3 className="mt-4 text-xl font-bold text-waymarks-primary">
                 {step.title}
               </h3>
               <p className="mt-2 text-base leading-relaxed text-muted-foreground">

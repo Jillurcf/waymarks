@@ -61,7 +61,8 @@ function getStudioScrollTimeline(
   const trackTop = track.getBoundingClientRect().top + window.scrollY;
 
   if (stickyStyles.position === "sticky" && scrollSpacer) {
-    const stickyOffset = Number.parseFloat(stickyStyles.top) || 0;
+    const stickyOffset =
+      Number.parseFloat(stickyStyles.top) * (stickyStyles.top.endsWith("rem") ? 16 : 1) || 0;
     return {
       start: trackTop - stickyOffset,
       distance: scrollSpacer.offsetHeight,
@@ -537,11 +538,13 @@ export function StudioBento() {
     const stickyContent = stickyContentRef.current;
 
     if (!track || !stickyContent) return;
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
     let animationFrame: number | undefined;
 
     const updateActiveSlide = () => {
+      if (!desktopQuery.matches) return;
+
       if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame);
 
       animationFrame = window.requestAnimationFrame(() => {
@@ -566,6 +569,7 @@ export function StudioBento() {
     updateActiveSlide();
     window.addEventListener("scroll", updateActiveSlide, { passive: true });
     window.addEventListener("resize", updateActiveSlide);
+    desktopQuery.addEventListener("change", updateActiveSlide);
 
     const resizeObserver = new ResizeObserver(updateActiveSlide);
     resizeObserver.observe(track);
@@ -575,6 +579,7 @@ export function StudioBento() {
     return () => {
       window.removeEventListener("scroll", updateActiveSlide);
       window.removeEventListener("resize", updateActiveSlide);
+      desktopQuery.removeEventListener("change", updateActiveSlide);
       if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame);
       resizeObserver.disconnect();
     };

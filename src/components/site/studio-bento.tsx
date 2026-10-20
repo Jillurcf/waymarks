@@ -27,6 +27,11 @@ const strategyNodePositions = [
   "left-1/2 top-[10%] -translate-x-1/2",
   "right-[16%] top-[48%] translate-x-1/2",
 ];
+const mobileStrategyNodePositions = [
+  "left-[18%] top-[58%]",
+  "left-1/2 top-[12%]",
+  "left-[82%] top-[48%]",
+];
 
 function subscribeToReducedMotion(onStoreChange: () => void) {
   const mediaQuery = window.matchMedia(reducedMotionQuery);
@@ -98,7 +103,7 @@ function StrategyCanvas({ visual }: { visual: StudioStrategyVisual }) {
 
   return (
     <VisualFrame title={visual.title} aside={<span>{visual.hint}</span>}>
-      <div className="relative my-5 min-h-64 flex-1">
+      <div className="relative my-5 hidden min-h-64 flex-1 md:block">
         <svg
           aria-hidden="true"
           viewBox="0 0 500 240"
@@ -146,6 +151,77 @@ function StrategyCanvas({ visual }: { visual: StudioStrategyVisual }) {
               className={cn(
                 "absolute flex min-h-16 min-w-16 flex-col items-center gap-2 rounded-lg text-xs outline-none transition-colors duration-200 hover:text-waymarks-primary focus-visible:ring-3 focus-visible:ring-waymarks-accent/50",
                 strategyNodePositions[index],
+                selected ? "text-waymarks-primary" : "text-white/75",
+              )}
+            >
+              <span
+                className={cn(
+                  "flex size-8 items-center justify-center rounded-full border-2 bg-waymarks-surface-raised transition-transform duration-200 motion-safe:hover:scale-110",
+                  selected
+                    ? "border-waymarks-primary shadow-[0_0_18px_var(--waymarks-primary)]"
+                    : "border-waymarks-primary/60",
+                )}
+              >
+                <span
+                  className={cn(
+                    "size-2.5 rounded-full",
+                    selected ? "bg-waymarks-primary" : "bg-waymarks-accent",
+                  )}
+                />
+              </span>
+              <span className="mt-1 font-semibold">{item.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      <div className="relative my-5 flex min-h-40 flex-1 flex-col justify-center md:hidden">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 500 240"
+          preserveAspectRatio="none"
+          className="absolute inset-0 size-full text-white/5"
+        >
+          <path
+            d="M0 40H500M0 120H500M0 200H500"
+            fill="none"
+            stroke="currentColor"
+            strokeDasharray="2 6"
+          />
+          <path
+            d="M100 0V240M250 0V240M400 0V240"
+            fill="none"
+            stroke="currentColor"
+            strokeDasharray="2 6"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 500 240"
+          preserveAspectRatio="none"
+          className="absolute inset-0 size-full overflow-visible"
+        >
+          <path
+            d="M60 180C140 180 160 60 250 60S360 140 440 140"
+            fill="none"
+            className="text-waymarks-primary"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeDasharray="1 10"
+          />
+        </svg>
+        {visual.nodes.map((item, index) => {
+          const selected = selectedNode === index;
+
+          return (
+            <button
+              key={item.label}
+              type="button"
+              aria-pressed={selected}
+              onClick={() => setSelectedNode(index)}
+              className={cn(
+                "absolute flex min-h-16 min-w-16 -translate-x-1/2 flex-col items-center gap-1 rounded-lg text-xs outline-none transition-colors duration-200 hover:text-waymarks-primary focus-visible:ring-3 focus-visible:ring-waymarks-accent/50",
+                mobileStrategyNodePositions[index],
                 selected ? "text-waymarks-primary" : "text-white/75",
               )}
             >
@@ -461,6 +537,7 @@ export function StudioBento() {
     const stickyContent = stickyContentRef.current;
 
     if (!track || !stickyContent) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
     let animationFrame: number | undefined;
 
@@ -508,6 +585,11 @@ export function StudioBento() {
     const stickyContent = stickyContentRef.current;
 
     if (!track || !stickyContent) return;
+
+    if (!window.matchMedia("(min-width: 1024px)").matches) {
+      setActiveSlide(index);
+      return;
+    }
 
     const timeline = getStudioScrollTimeline(
       track,
@@ -570,14 +652,14 @@ export function StudioBento() {
         <div ref={trackRef} className="relative">
           <div
             ref={stickyContentRef}
-            className="relative z-10 lg:sticky lg:top-20"
+            className="relative z-10 hidden lg:sticky lg:top-20 lg:block"
           >
             <div className="rounded-full border border-white/10 bg-waymarks-surface-raised/80 p-2 backdrop-blur-xl">
-              <div className="flex flex-col items-stretch justify-between gap-4 lg:flex-row lg:items-center">
+              <div className="flex items-center justify-between gap-4">
                 <div
                   role="group"
                   aria-label={studioSection.controls.groupLabel}
-                  className="grid w-full grid-cols-2 gap-1.5 sm:grid-cols-4 lg:w-auto"
+                  className="flex gap-1.5"
                 >
                   {studioSection.slides.map((item, index) => {
                     const active = index === activeSlide;
@@ -592,22 +674,22 @@ export function StudioBento() {
                         aria-controls={`studio-panel-${item.id}`}
                         onClick={() => goToSlide(index)}
                         className={cn(
-                          "min-h-11 w-full rounded-xl text-xs font-semibold sm:rounded-full sm:px-5 sm:text-sm",
+                          "min-h-11 rounded-full px-5 text-sm font-semibold",
                           active
                             ? "bg-waymarks-primary text-waymarks-dark shadow-card hover:bg-waymarks-primary hover:text-waymarks-dark"
                             : "text-white/60 hover:bg-white/5 hover:text-white",
                         )}
                       >
-                       <div className="flex items-center gap-1 px-14">
+                        <span className="flex items-center gap-1">
                           <Icon name={item.icon} className="size-4" />
-                          <span className="">{item.label}</span>
-                        </div>
+                          <span>{item.label}</span>
+                        </span>
                       </Button>
                     );
                   })}
                 </div>
 
-                <div className="flex w-full items-center justify-end gap-3 px-2 sm:px-0">
+                <div className="flex items-center justify-end gap-3 px-2">
                   <Button
                     type="button"
                     variant="outline"
@@ -638,22 +720,36 @@ export function StudioBento() {
               </div>
             </div>
 
-            <div className="relative mt-8 min-h-[36rem] overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised p-5 shadow-card sm:p-8 lg:min-h-[34rem] lg:p-10">
+            <div className="relative mt-8 min-h-[34rem] overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised p-10 shadow-card">
               <div
                 key={slide.id}
                 id={`studio-panel-${slide.id}`}
                 role="region"
                 aria-labelledby={`studio-tab-${slide.id}`}
-                className="relative z-10 grid grid-cols-1 items-center gap-8 motion-safe:animate-fade-up lg:grid-cols-12 lg:gap-12"
+                className="relative z-10 grid grid-cols-12 items-center gap-12 motion-safe:animate-fade-up"
               >
-                <div className="lg:col-span-5">
+                <div className="col-span-5">
                   <SlideDetails slide={slide} />
                 </div>
-                <div className="lg:col-span-7 bg-white/3">
+                <div className="col-span-7 bg-white/3">
                   <StudioVisualPanel visual={slide.visual} />
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="flex flex-col gap-6 lg:hidden">
+            {studioSection.slides.map((item) => (
+              <article
+                key={item.id}
+                className="overflow-hidden rounded-3xl border border-white/10 bg-waymarks-surface-raised p-5 shadow-card sm:p-6"
+              >
+                <div className="mb-6">
+                  <SlideDetails slide={item} />
+                </div>
+                <StudioVisualPanel visual={item.visual} />
+              </article>
+            ))}
           </div>
 
           <div

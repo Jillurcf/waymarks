@@ -105,8 +105,18 @@ function StrategyCanvas({ visual }: { visual: StudioStrategyVisual }) {
           preserveAspectRatio="none"
           className="absolute inset-0 size-full text-white/5"
         >
-          <path d="M0 40H500M0 120H500M0 200H500" stroke="currentColor" />
-          <path d="M100 0V240M250 0V240M400 0V240" stroke="currentColor" />
+          <path
+            d="M0 40H500M0 120H500M0 200H500"
+            fill="none"
+            stroke="currentColor"
+            strokeDasharray="2 6"
+          />
+          <path
+            d="M100 0V240M250 0V240M400 0V240"
+            fill="none"
+            stroke="currentColor"
+            strokeDasharray="2 6"
+          />
         </svg>
         <svg
           aria-hidden="true"
@@ -116,18 +126,12 @@ function StrategyCanvas({ visual }: { visual: StudioStrategyVisual }) {
         >
           <path
             d="M60 180C140 180 160 60 250 60S360 140 440 140"
-            className="text-waymarks-accent"
-            stroke="currentColor"
-            strokeWidth="10"
-            strokeLinecap="round"
-            opacity="0.16"
-          />
-          <path
-            d="M60 180C140 180 160 60 250 60S360 140 440 140"
+            fill="none"
             className="text-waymarks-primary"
             stroke="currentColor"
             strokeWidth="3"
             strokeLinecap="round"
+            strokeDasharray="1 10"
           />
         </svg>
         {visual.nodes.map((item, index) => {

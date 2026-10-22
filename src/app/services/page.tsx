@@ -14,6 +14,7 @@ import { ServicesSaasProduct } from "@/components/site/service-saas-product";
 import { ServicesMvpDevelopment } from "@/components/site/services-mvp-development";
 import { ServicesMobileAppDesign } from "@/components/site/services-mobile-app-design";
 import { ServicesDigitalGrowth } from "@/components/site/services-digital-growth";
+import { ServicesProjectManagement } from "@/components/site/services-project-management";
 import { ServicesNeedMoreThanOne } from "@/components/site/services-need-more-than-one";
 import DigitalDesignProcess from "@/components/site/services-digital-design-process";
 import { Faq } from "@/components/site/faq";
@@ -51,6 +52,7 @@ export default function ServicesPage() {
       <ServicesMvpDevelopment />
       <ServicesMobileAppDesign />
       <ServicesDigitalGrowth />
+      <ServicesProjectManagement />
       <ServicesNeedMoreThanOne />
       <DigitalDesignProcess />
       <Faq />

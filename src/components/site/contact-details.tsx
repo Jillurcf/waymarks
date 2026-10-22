@@ -4,6 +4,7 @@ import { contactDetails } from "@/lib/content/contact";
 import { icons } from "@/lib/content/home";
 
 import { Icon } from "./icon";
+import { SocialIcon } from "./social-icon";
 
 /**
  * Direct contact panel: phone, email and studio on the contact route. Sits
@@ -69,8 +70,9 @@ export function ContactDetails() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-waymarks-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-waymarks-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
               >
+                <SocialIcon platform={social.platform} className="size-6" />
                 {social.label}
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />
               </a>

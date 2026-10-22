@@ -37,6 +37,7 @@ import {
 import { sectionAnchors, servicesSection } from "@/lib/content/home";
 import { routeHref } from "@/lib/routes";
 import { Icon } from "./site/icon";
+import { SocialIcon } from "./site/social-icon";
 
 // Nav items: real routes come from the route map (src/lib/routes.ts) so nav,
 // footer and sitemap can never drift; the rest are in-page anchors into the
@@ -416,8 +417,9 @@ function ContactPanel() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-6 items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-waymarks-accent"
+                    className="inline-flex min-h-6 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-waymarks-accent"
                   >
+                    <SocialIcon platform={link.platform} className="size-6" />
                     {link.label}
                     <ArrowUpRight className="size-3.5" aria-hidden="true" />
                   </a>

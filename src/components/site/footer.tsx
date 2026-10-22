@@ -3,6 +3,7 @@ import Link from "next/link";
 import { footer } from "@/lib/content/home";
 
 import { Icon } from "./icon";
+import { SocialIcon } from "./social-icon";
 
 function SocialLinks() {
   const socials = footer.about.socials;
@@ -15,9 +16,9 @@ function SocialLinks() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={social.label}
-            className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-semibold text-white transition-colors duration-200 hover:bg-waymarks-cta hover:text-waymarks-dark"
+            className="inline-flex rounded-full text-white/70 transition-colors duration-200 hover:text-waymarks-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
           >
-            {social.label.slice(0, 2).toUpperCase()}
+            <SocialIcon platform={social.platform} className="size-9" />
           </a>
         </li>
       ))}

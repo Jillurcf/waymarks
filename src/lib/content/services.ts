@@ -129,6 +129,20 @@ export const servicesDigitalGrowth = {
   },
 } as const;
 
+export const servicesProjectManagement = {
+  image: {
+    src: "/images/project_mangement/project_management.png",
+    alt: "Waymark project management services",
+  },
+  title: "Project Management Services",
+  body: "Tailored structures designed to keep your digital workflows predictable and efficient.",
+  cta: {
+    label: "Explore Project Management Services",
+    href: `${routeHref("/services/")}#project-management-services`,
+    icon: icons.arrowRight,
+  },
+} as const;
+
 export const servicesNeedMoreThanOne = {
   image: {
     src: "/images/services/service_need_more_than_one_container.png",

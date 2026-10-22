@@ -19,12 +19,27 @@ export const bookCallHref = `mailto:${site.email}?subject=${encodeURIComponent(
 // Primary navbar CTA label (design file header: "Start a Project").
 export const navCtaLabel = "Start a Project";
 
+export type SocialPlatform =
+  | "behance"
+  | "linkedin"
+  | "instagram"
+  | "twitter"
+  | "facebook";
+
+export interface SocialLink {
+  label: string;
+  href: string;
+  platform: SocialPlatform;
+}
+
+// SEED: replace the generic profile URLs with the studio's real accounts.
 export const socialLinks = [
-  { label: "Dribbble", href: "https://dribbble.com" },
-  { label: "Behance", href: "https://behance.net" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Instagram", href: "https://instagram.com" },
-];
+  { label: "Behance", href: "https://www.behance.net/waymarks_agency", platform: "behance" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/waymarks_agency", platform: "linkedin" },
+  { label: "Instagram", href: "https://www.instagram.com/waymarks_agency", platform: "instagram" },
+  { label: "Twitter", href: "https://twitter.com", platform: "twitter" },
+  { label: "Facebook", href: "https://www.facebook.com/waymarks.agency", platform: "facebook" },
+] as const satisfies readonly SocialLink[];
 
 // Shared shell blocks (M1). Copy follows .skill/waymark-ui-ux/content.md.
 

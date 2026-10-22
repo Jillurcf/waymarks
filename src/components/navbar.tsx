@@ -34,7 +34,7 @@ import {
   navCtaLabel,
 } from "@/lib/content/site";
 
-import { sectionAnchors, servicesSection } from "@/lib/content/home";
+import { icons, sectionAnchors, servicesSection } from "@/lib/content/home";
 import { routeHref } from "@/lib/routes";
 import { Icon } from "./site/icon";
 import { SocialIcon } from "./site/social-icon";
@@ -129,6 +129,12 @@ function DesktopNav() {
       title: "Digital Growth",
       body: "Use SEO, content, social media, email, and analytics to build steady momentum.",
       href: "/services/#digital-growth",
+    },
+    {
+      icon: icons.projectManagement,
+      title: "Project Management Services",
+      body: "Tailored structures designed to keep your digital workflows predictable and efficient.",
+      href: "/services/#project-management-services",
     },
   ];
 

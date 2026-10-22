@@ -10,6 +10,7 @@ import {
   Cpu,
   Diamond,
   Eye,
+  FolderKanban,
   Layers,
   LayoutDashboard,
   Lightbulb,
@@ -122,6 +123,8 @@ export function Icon({
       return <Smartphone aria-hidden="true" className={cls} />;
     case icons.digitalGrowth:
       return <ChartPie aria-hidden="true" className={cls} />;
+    case icons.projectManagement:
+      return <FolderKanban aria-hidden="true" className={cls} />;
     case icons.startups:
       return <Zap aria-hidden="true" className={cls} />;
     case icons.growingBusinesses:

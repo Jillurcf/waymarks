@@ -59,6 +59,7 @@ export const icons = {
   mvp: "Rocket",
   mobileApp: "Smartphone",
   digitalGrowth: "ChartPie",
+  projectManagement: "FolderKanban",
   startups: "Zap",
   growingBusinesses: "ChartBar",
   saasTeams: "Layers",

@@ -93,4 +93,7 @@ export const icons = {
   technologyShouldHave: "TechnologyShouldHave",
   collaborationMakes: "CollaborationMakes",
   growthShouldBe: "GrowthShouldBe",
+  softwareDelivery: "SoftwareDelivery",
+  remoteTeams: "RemoteTeams",
+  biOperations: "BiOperations",
 } as const;

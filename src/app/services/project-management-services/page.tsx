@@ -8,14 +8,10 @@ import {
 } from "@/lib/content/service-details";
 
 import { Footer } from "@/components/site/footer";
-import { ServiceDetailBrandIdentityProcess } from "@/components/site/service-detail-brand-identity-process";
 import { ServiceDetailClosing } from "@/components/site/service-detail-closing";
 import { ServiceDetailHero } from "@/components/site/service-detail-hero";
-import { ServiceDetailRecentWork } from "@/components/site/service-detail-recent-work";
-import { ServiceDetailWhatYouReceive } from "@/components/site/service-detail-what-you-receive";
-import { ServiceDetailWhoItsFor } from "@/components/site/service-detail-who-its-for";
-import { ServiceDetailWhyMatters } from "@/components/site/service-detail-why-matters";
 import { Faq } from "@/components/site/faq";
+import { ProjectManagementExperience } from "@/components/site/project-management-experience";
 
 const service = findServiceDetail("project-management-services")!;
 
@@ -49,6 +45,7 @@ export default function ProjectManagementServicePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ServiceDetailHero service={service} />
+      <ProjectManagementExperience />
       <Faq />
       <ServiceDetailClosing service={service} />
       <Footer />

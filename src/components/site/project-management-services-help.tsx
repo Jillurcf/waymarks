@@ -15,17 +15,17 @@ export function ProjectManagementServicesHelp() {
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
           <div>
-            <h2 className="text-[32px] font-bold leading-[1.15] tracking-tight text-white sm:text-[40px] lg:text-[40px]">
+            <h2 className="text-[32px] font-bold leading-[1.01] tracking-tight text-white sm:text-[40px] lg:text-[40px]">
               {services.heading.lead}{" "}
             </h2>
-            <h2 className="text-[32px] font-bold leading-[1.15] tracking-tight waymarks-gradient-text sm:text-[40px] lg:text-[40px]">
+            <h2 className="text-[32px] font-bold leading-[1.01] tracking-tight waymarks-gradient-text sm:text-[40px] lg:text-[40px]">
               {services.heading.highlight}
             </h2>
 
-            <p className="mt-6 text-[20px] font-normal leading-relaxed text-white">
+            <p className="mt-2 text-[20px] font-normal leading-[1.01] text-white">
               {services.body.lead}
             </p>
-            <p className="mt-4 text-base font-normal leading-relaxed text-white/75">
+            <p className="mt-2 text-base font-normal leading-relaxed text-white/75">
               {services.body.note}
             </p>
 
@@ -37,14 +37,14 @@ export function ProjectManagementServicesHelp() {
               alt={services.image.alt}
               width={services.image.width}
               height={services.image.height}
-              className="mt-8 h-auto w-full max-w-md rounded-2xl border border-white/10"
+              className="mt-4 h-auto w-full max-w-md rounded-2xl border border-white/10"
             />
           </div>
           <ul className="space-y-5">
             {services.items.map((item) => (
               <li
                 key={item.label}
-                className="flex gap-8 rounded-xl border border-white/12 p-8 shadow-card"
+                className="flex gap-8 rounded-xl border border-white/12 p-10 shadow-card"
               >
                 <span
                   className={

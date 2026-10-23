@@ -98,5 +98,7 @@ export const icons = {
   teamCoordination: "TeamCoordination",
   clientReviews: "ClientReviews",
   intakeApprovals: "IntakeApprovals",
+  statusWorkload: "StatusWorkload",
+  riskDependency: "RiskDependency",
   biOperations: "BiOperations",
 } as const;

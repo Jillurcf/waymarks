@@ -1318,6 +1318,28 @@ export function Icon({
           />
         </svg>
       );
+    // Converted from the Figma export (`status_workload`); fills are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.statusWorkload:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" fill="none" className={cls}>
+          <path
+            d="M3 3C4.65938 3 6 4.34062 6 6V37.5C6 38.325 6.675 39 7.5 39H45C46.6594 39 48 40.3406 48 42C48 43.6594 46.6594 45 45 45H7.5C3.35625 45 0 41.6437 0 37.5V6C0 4.34062 1.34062 3 3 3ZM15 21C16.6594 21 18 22.3406 18 24V30C18 31.6594 16.6594 33 15 33C13.3406 33 12 31.6594 12 30V24C12 22.3406 13.3406 21 15 21ZM27 15V30C27 31.6594 25.6594 33 24 33C22.3406 33 21 31.6594 21 30V15C21 13.3406 22.3406 12 24 12C25.6594 12 27 13.3406 27 15ZM33 18C34.6594 18 36 19.3406 36 21V30C36 31.6594 34.6594 33 33 33C31.3406 33 30 31.6594 30 30V21C30 19.3406 31.3406 18 33 18ZM45 9V30C45 31.6594 43.6594 33 42 33C40.3406 33 39 31.6594 39 30V9C39 7.34062 40.3406 6 42 6C43.6594 6 45 7.34062 45 9Z"
+            fill="currentColor"
+          />
+        </svg>
+      );
+    // Converted from the Figma export (`risk_dependency`); fills are
+    // `currentColor` so the mark inherits the row colour (quality gate A).
+    case icons.riskDependency:
+      return (
+        <svg aria-hidden="true" viewBox="0 0 48 48" fill="none" className={cls}>
+          <path
+            d="M24 0C24.4313 0 24.8625 0.09375 25.2563 0.271875L42.9094 7.7625C44.9719 8.63438 46.5094 10.6688 46.5 13.125C46.4532 22.425 42.6282 39.4406 26.475 47.175C24.9094 47.925 23.0907 47.925 21.525 47.175C5.37192 39.4406 1.54692 22.425 1.50004 13.125C1.49067 10.6688 3.02817 8.63438 5.09067 7.7625L22.7532 0.271875C23.1375 0.09375 23.5688 0 24 0ZM24 6.2625V41.7C36.9375 35.4375 40.4157 21.5719 40.5 13.2563L24 6.2625Z"
+            fill="currentColor"
+          />
+        </svg>
+      );
     case icons.biOperations:
       return (
         <svg aria-hidden="true" viewBox="0 0 36 36" fill="none" className={cls}>

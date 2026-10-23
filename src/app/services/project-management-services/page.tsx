@@ -11,8 +11,10 @@ import { Footer } from "@/components/site/footer";
 import { ServiceDetailClosing } from "@/components/site/service-detail-closing";
 import { ServiceDetailHero } from "@/components/site/service-detail-hero";
 import { Faq } from "@/components/site/faq";
+import { OurProjectManagement } from "@/components/site/our-project-management";
 import { ProjectManagementExperience } from "@/components/site/project-management-experience";
 import { ProjectManagementServicesHelp } from "@/components/site/project-management-services-help";
+import { WhyWorkWithProjectManagement } from "@/components/site/why-work-with-project-management";
 
 const service = findServiceDetail("project-management-services")!;
 
@@ -48,6 +50,8 @@ export default function ProjectManagementServicePage() {
       <ServiceDetailHero service={service} />
       <ProjectManagementExperience />
       <ProjectManagementServicesHelp />
+      <OurProjectManagement />
+      <WhyWorkWithProjectManagement />
       <Faq />
       <ServiceDetailClosing service={service} />
       <Footer />

@@ -16,6 +16,13 @@ export type ProjectManagementExperience = {
   items: ProjectManagementExperienceItem[];
 };
 
+export type ProjectManagementServicesHelp = {
+  heading: { lead: string; highlight: string };
+  body: { lead: string; note: string };
+  image: { src: string; alt: string; width: number; height: number };
+  items: { icon: string; label: string; size?: "original"; description?: string }[];
+};
+
 export const projectManagementExperience: ProjectManagementExperience = {
   years: "14+",
   yearsLabel: "Years",
@@ -39,5 +46,43 @@ export const projectManagementExperience: ProjectManagementExperience = {
       title: "BI & Operations",
       description: "Reporting, data checks, and management updates.",
     },
+  ],
+};
+
+// "Where our project management services can help" band: mirrors the website
+// design services layout, listing the project types the service covers.
+// SEED — body and item labels to confirm against the approved service line-up.
+export const projectManagementServicesHelp: ProjectManagementServicesHelp = {
+  heading: {
+    lead: "Where Our Project Management",
+    highlight: "Services Can Help",
+  },
+  body: {
+    lead: "Pick the part of our project management services that matches your need today.",
+    note: "Automation works best when the process is clear first, so our project management services map the steps before we automate them.",
+  },
+  image: {
+    src: "/images/project_mangement/where_our_project.png",
+    alt: "Waymark project management services",
+    width: 450,
+    height: 782,
+  },
+  items: [
+    {
+      icon: icons.teamCoordination,
+      label: "Team Coordination",
+      size: "original",
+      description: "Designer, developer, and QA synchronization across all development sprints.",
+    },
+    {
+      icon: icons.clientReviews,
+      label: "Client Reviews & Releases",
+       size: "original",
+      description: "Structured client reviews, transparent updates, and rigorous release checks.",
+    },
+    { icon: icons.launch, label: "Digital Product Launches" },
+    { icon: icons.remoteTeams, label: "Multi-Stakeholder Teams" },
+    { icon: icons.arrowRight, label: "Design & Development Handoffs" },
+    { icon: icons.clock3, label: "Ongoing Delivery" },
   ],
 };

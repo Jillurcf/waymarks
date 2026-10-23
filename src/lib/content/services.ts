@@ -138,7 +138,7 @@ export const servicesProjectManagement = {
   body: "Tailored structures designed to keep your digital workflows predictable and efficient.",
   cta: {
     label: "Explore Project Management Services",
-    href: `${routeHref("/services/")}#project-management-services`,
+    href: routeHref("/services/project-management-services/"),
     icon: icons.arrowRight,
   },
 } as const;

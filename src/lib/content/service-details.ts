@@ -534,7 +534,7 @@ brandEverywhere: {
       "UI/UX design that makes digital products easier to use — research, planning, design, and testing so users move through your product with less confusion and more confidence.",
     hero: {
       label: "UI/UX Design",
-      title: ["UI/UX Design", "That Makes", "Digital Products", "Easier To Use"],
+      title: ["UI/UX Design That", "Makes Digital Products", "Easier To Use"],
       intro:
         "Good design helps people know what to do next. As a UI/UX design agency, we research, plan, design, and test your product so users move through it with less confusion and more confidence.",
       body: "We make digital experiences easier to understand, easier to navigate, and easier to love.",
@@ -990,6 +990,171 @@ brandEverywhere: {
     closing: {
       title: "Ready to make your product easier to use?",
       body: "Tell us what your users get stuck on today. We will show you exactly what a clearer experience looks like and what it costs.",
+      cta: { label: "Book a discovery call", href: bookCallHref, icon: icons.arrowRight },
+    },
+  },
+  {
+    path: "/services/project-management-services/",
+    slug: "project-management-services",
+    title: "Project Management Services",
+    seoTitle: "Project Management Services | Waymarks",
+    seoDescription:
+      "Project management services for website, software, and digital projects. Clear plans, defined ownership, and predictable delivery from kickoff to launch.",
+    hero: {
+      label: "Project Management Services",
+      title: ["Project Management", "Services That Keep", "Work Moving"],
+      intro:
+        "Good projects rarely fail because of one big mistake. They slip when plans are vague, handoffs are unclear, and nobody owns the next step.",
+      body:
+        "Our project management services bring structure to website, software, and digital projects, so your team and your clients always know what is happening and what comes next.",
+      image: {
+        src: "/images/project_mangement/Background+Border+Shadow.png",
+        alt: "Project management dashboard visual",
+        width: 620,
+        height: 520,
+      },
+      cta: { label: "Plan My Project", href: bookCallHref, icon: icons.arrowRight },
+      secondaryCta: { label: "Explore Our Work", href: "#recent-work" },
+    },
+    whyItMatters: {
+      heading: { lead: "Why Project Management", highlight: "Matters" },
+      lead: "Clarity beats chaos. Without structure, scope creeps and timelines slip.",
+      body: "A defined plan, clear ownership, and regular checkpoints keep work moving and decisions made on time.",
+    },
+    brandEverywhere: {
+      heading: { lead: "Projects Need", highlight: "Clear Coordination" },
+      lead: "Design, development, and stakeholders need one source of truth.",
+      body: "We keep everyone aligned with simple updates and clear next steps.",
+      touchpoints: [
+        { title: "Planning", icon: icons.strategy },
+        { title: "Handoffs", icon: icons.arrowRight },
+        { title: "Reviews", icon: icons.review },
+        { title: "Tracking", icon: icons.clock3 },
+        { title: "Risks", icon: icons.target },
+        { title: "Launch", icon: icons.launch },
+      ],
+    },
+    designServices: {
+      heading: { lead: "How We Keep", highlight: "Projects Moving" },
+      intro: "Simple structure, clear ownership, and consistent follow through.",
+      body: "We bring clarity to complex work so teams can focus on doing their best.",
+      items: [],
+    },
+    recentWork: {
+      heading: { lead: "Project Delivery", highlight: "At A Glance" },
+      body: "A simple approach that keeps stakeholders aligned from kickoff to launch.",
+      items: [
+        {
+          title: "Kickoff Plan",
+          image: {
+            src: "/images/services/recent_brand_work01.png",
+            alt: "Project plan kickoff",
+            width: 757,
+            height: 404,
+          },
+        },
+        {
+          title: "Timeline",
+          image: {
+            src: "/images/services/recent_brand_work02.png",
+            alt: "Project timeline",
+            width: 443,
+            height: 400,
+          },
+        },
+      ],
+    },
+    whatYouReceive: {
+      heading: {
+        lead: "What You Get With",
+        highlight: "Project Management",
+        tail: "Services",
+      },
+      items: [
+        "Clear project plan and timeline",
+        "Defined roles and ownership",
+        "Handoffs tracked and documented",
+        "Regular status updates",
+        "Risk tracking with timely action",
+      ],
+    },
+    designProcess: {
+      heading: { lead: "Our Project Management", highlight: "Approach" },
+      steps: [
+        {
+          number: "01",
+          title: "Kickoff",
+          description: "Align goals, scope, timeline, and success criteria.",
+        },
+        {
+          number: "02",
+          title: "Plan",
+          description: "Break work into tasks, assign owners, and map dependencies.",
+        },
+        {
+          number: "03",
+          title: "Track",
+          description: "Run checkpoints and keep everyone updated on progress.",
+        },
+        {
+          number: "04",
+          title: "Unblock",
+          description: "Resolve blockers quickly with clear decisions.",
+        },
+        {
+          number: "05",
+          title: "Launch",
+          description: "Close out with a clean handoff and next steps.",
+        },
+      ],
+    },
+    whoItsFor: {
+      title: "Who This Is For",
+      points: [
+        "Teams juggling multiple stakeholders.",
+        "Projects that need clear ownership and timelines.",
+        "Businesses launching websites, apps, or digital products.",
+      ],
+      cta: { label: "Talk to our project team", href: bookCallHref, icon: icons.arrowRight },
+      image: {
+        src: "/images/services/who_this_for.png",
+        alt: "Project management team collaboration",
+        width: 620,
+        height: 500,
+      },
+    },
+    process: [
+      {
+        title: "Plan",
+        description: "We turn goals into a concrete plan with milestones and owners.",
+      },
+      {
+        title: "Coordinate",
+        description: "We keep design, dev, and stakeholders aligned on priorities.",
+      },
+      {
+        title: "Deliver",
+        description: "We track to deadline with clear updates and a clean launch.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you manage both design and development?",
+        answer:
+          "Yes. We coordinate across disciplines to keep everything moving under one plan.",
+      },
+      {
+        question: "Will we get regular updates?",
+        answer: "You'll get clear updates at agreed checkpoints with next steps and decisions needed.",
+      },
+      {
+        question: "Can you work with our existing team?",
+        answer: "We can plug into your team and own coordination, or run the project end to end.",
+      },
+    ],
+    closing: {
+      title: "Ready to keep your project moving?",
+      body: "Tell us your goals and timeline. We'll outline a plan to get you there.",
       cta: { label: "Book a discovery call", href: bookCallHref, icon: icons.arrowRight },
     },
   },

@@ -25,38 +25,68 @@ export function ServiceDetailRecentWork({ service }: { service: ServiceDetail })
 
         {/* One flex div per line of two images — no grid. Each row is
             independently styled: change a row's classes, not the layout. */}
-        <div>
-          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
-            <div>
-              <img src={items[0].image.src} alt={items[0].image.alt} />
+        {items && items.length > 0 ? (
+          <div>
+            <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
+              {items[0] ? (
+                <div>
+                  {items[0].image ? (
+                    <img src={items[0].image.src} alt={items[0].image.alt} />
+                  ) : null}
+                  {items[0].title ? <p>{items[0].title}</p> : null}
+                </div>
+              ) : null}
+              {items[1] ? (
+                <div>
+                  {items[1].image ? (
+                    <img src={items[1].image.src} alt={items[1].image.alt} />
+                  ) : null}
+                  {items[1].title ? <p>{items[1].title}</p> : null}
+                </div>
+              ) : null}
             </div>
-            <div>
-              <img src={items[1].image.src} alt={items[1].image.alt} />
-              <p>{items[1].title}</p>
-            </div>
+            {items.length > 2 ? (
+              <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
+                {items[2] ? (
+                  <div>
+                    {items[2].image ? (
+                      <img src={items[2].image.src} alt={items[2].image.alt} />
+                    ) : null}
+                    {items[2].title ? <p>{items[2].title}</p> : null}
+                  </div>
+                ) : null}
+                {items[3] ? (
+                  <div>
+                    {items[3].image ? (
+                      <img src={items[3].image.src} alt={items[3].image.alt} />
+                    ) : null}
+                    {items[3].title ? <p>{items[3].title}</p> : null}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+            {items.length > 4 ? (
+              <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
+                {items[4] ? (
+                  <div>
+                    {items[4].image ? (
+                      <img src={items[4].image.src} alt={items[4].image.alt} />
+                    ) : null}
+                    {items[4].title ? <p>{items[4].title}</p> : null}
+                  </div>
+                ) : null}
+                {items[5] ? (
+                  <div>
+                    {items[5].image ? (
+                      <img src={items[5].image.src} alt={items[5].image.alt} />
+                    ) : null}
+                    {items[5].title ? <p>{items[5].title}</p> : null}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
           </div>
-          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
-            <div>
-              <img src={items[2].image.src} alt={items[2].image.alt} />
-              <p>{items[2].title}</p>
-            </div>
-            <div>
-              <img src={items[3].image.src} alt={items[3].image.alt} />
-              <p>{items[3].title}</p>
-            </div>
-          </div>
-          <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-4">
-            <div>
-              <img src={items[4].image.src} alt={items[4].image.alt} />
-              <p>{items[4].title}</p>
-            </div>
-            <div>
-              <img src={items[5].image.src} alt={items[5].image.alt} />
-              <p>{items[5].title}</p>
-            </div>
-          </div>
-          
-        </div>
+        ) : null}
       </div>
     </section>
   );

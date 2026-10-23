@@ -134,7 +134,7 @@ function DesktopNav() {
       icon: icons.projectManagement,
       title: "Project Management Services",
       body: "Tailored structures designed to keep your digital workflows predictable and efficient.",
-      href: "/services/#project-management-services",
+      href: routeHref("/services/project-management-services/"),
     },
   ];
 

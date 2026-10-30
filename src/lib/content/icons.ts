@@ -60,6 +60,7 @@ export const icons = {
   mobileApp: "Smartphone",
   digitalGrowth: "ChartPie",
   projectManagement: "FolderKanban",
+  projectManagementMark: "ProjectManagementMark",
   startups: "Zap",
   growingBusinesses: "ChartBar",
   saasTeams: "Layers",

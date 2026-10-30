@@ -50,6 +50,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { icons } from "@/lib/content/home";
+import { ProjectManagementMarkIcon } from "./project-management-icon";
 
 function BrandIcon({
   icon,
@@ -125,6 +126,8 @@ export function Icon({
       return <ChartPie aria-hidden="true" className={cls} />;
     case icons.projectManagement:
       return <FolderKanban aria-hidden="true" className={cls} />;
+    case icons.projectManagementMark:
+      return <ProjectManagementMarkIcon className={cls} />;
     case icons.startups:
       return <Zap aria-hidden="true" className={cls} />;
     case icons.growingBusinesses:

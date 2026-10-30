@@ -560,6 +560,13 @@ export const servicesSection = {
         "Use SEO, content, social media, email, and analytics to build steady momentum.",
       cta: { ...learnMoreCta, href: "/services/#digital-growth" },
     },
+    {
+      icon: icons.projectManagementMark,
+      title: "Project Management Services",
+      summary:
+        "Pick the part of our project management services that matches your need today.",
+      cta: { ...learnMoreCta, href: routeHref("/services/project-management-services/") },
+    },
   ],
   exploreAll: exploreAllServicesCta,
 };

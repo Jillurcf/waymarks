@@ -13,7 +13,7 @@
 
 import { icons } from "./icons";
 import type { Cta } from "./home";
-import { bookCallHref, site } from "./site";
+import { bookCallHref, contactHref, site } from "./site";
 
 export interface ServiceDetailFaq {
   question: string;
@@ -545,7 +545,7 @@ brandEverywhere: {
         width: 528,
         height: 604,
       },
-      cta: { label: "Start a project", href: bookCallHref, icon: icons.arrowRight },
+      cta: { label: "Start a project", href: contactHref, icon: icons.arrowRight },
       secondaryCta: { label: "Explore Our Work", href: "#recent-work" },
     },
     whyWorkWithAgency: {

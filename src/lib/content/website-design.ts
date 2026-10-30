@@ -5,7 +5,7 @@
 // .skill/waymark-ui-ux/content.md: calm, concrete, outcome-led.
 
 import type { Cta } from "./home";
-import { bookCallHref } from "./site";
+import { contactHref } from "./site";
 import { icons } from "./icons";
 
 // Second "Who This Is For" band on this route: same audience copy as the shared
@@ -39,7 +39,7 @@ export const websiteDesignHero = {
     width: 528,
     height: 541,
   },
-  cta: { label: "Start a Project", href: bookCallHref, icon: icons.arrowRight } satisfies Cta,
+  cta: { label: "Start a Project", href: contactHref, icon: icons.arrowRight } satisfies Cta,
   secondaryCta: { label: "Explore Our Work", href: "/#work" } satisfies Cta,
 };
 

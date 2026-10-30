@@ -285,7 +285,7 @@ function DesignCanvas({ visual }: { visual: StudioDesignVisual }) {
               className={cn(
                 "min-h-11 rounded-md px-3 text-xs font-semibold",
                 fidelity === mode
-                  ? "bg-waymarks-accent text-waymarks-dark hover:bg-waymarks-accent hover:text-waymarks-dark"
+                  ? "bg-transparent text-waymarks-accent hover:bg-transparent hover:text-waymarks-accent"
                   : "text-white/55 hover:bg-white/5 hover:text-white",
               )}
             >
@@ -371,7 +371,7 @@ function TechnologyCanvas({ visual }: { visual: StudioTechnologyVisual }) {
             className={cn(
               "min-h-11 rounded-md px-3 text-xs font-semibold",
               filter === item.id
-                ? "bg-waymarks-primary text-waymarks-dark hover:bg-waymarks-primary hover:text-waymarks-dark"
+                ? "bg-transparent text-waymarks-primary hover:bg-transparent hover:text-waymarks-primary"
                 : "text-white/55 hover:bg-white/5 hover:text-white",
             )}
           >
@@ -636,18 +636,16 @@ export function StudioBento() {
       </div>
 
       <div className="container relative">
-        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
+        <div className="mb-12 max-w-3xl text-left sm:mb-16">
           {/* <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-waymarks-surface-raised px-3.5 py-1.5">
             <span className="size-2 rounded-full bg-waymarks-primary" />
             <span className="text-xs font-semibold uppercase tracking-widest text-waymarks-primary">
               {studioSection.eyebrow}
             </span>
           </div> */}
-          <h2 className="text-[40px] font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-            {studioSection.title}
-            <span className="text-waymarks-primary">
-              {studioSection.titleAccent}
-            </span>
+          <h2 className="text-[40px] font-bold leading-tight tracking-tight text-white">
+            <span className="block">{studioSection.title}</span>
+            <span className="block">{studioSection.titleAccent}</span>
           </h2>
           <p className="mt-6 text-base leading-relaxed text-white/65 sm:text-lg">
             {studioSection.intro}
@@ -681,7 +679,7 @@ export function StudioBento() {
                         className={cn(
                           "min-h-11 rounded-full px-5 text-sm font-semibold",
                           active
-                            ? "bg-waymarks-primary text-waymarks-dark shadow-card hover:bg-waymarks-primary hover:text-waymarks-dark"
+                            ? "bg-transparent text-waymarks-primary hover:bg-transparent hover:text-waymarks-primary"
                             : "text-white/60 hover:bg-white/5 hover:text-white",
                         )}
                       >

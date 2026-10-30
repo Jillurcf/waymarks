@@ -1,5 +1,5 @@
 import { servicesPageHero } from "@/lib/content/services";
-import { bookCallHref, navCtaLabel } from "@/lib/content/site";
+import { contactHref, navCtaLabel } from "@/lib/content/site";
 import { cn } from "@/lib/utils";
 
 import { ctaClass } from "./cta";
@@ -37,7 +37,7 @@ export function ServicesPageHero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
             {servicesPageHero.body}
           </p>
-          <a href={bookCallHref} className={cn(ctaClass("primary"), "mt-8")}>
+          <a href={contactHref} className={cn(ctaClass("primary"), "mt-8")}>
             {navCtaLabel}
           </a>
         </div>

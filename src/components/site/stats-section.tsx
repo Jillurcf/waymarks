@@ -24,7 +24,7 @@ export function StatsSection() {
           </p>
         </div>
         <div className="lg:flex lg:w-4/12">
-          <img src="/images/logo_global_team.png" className="w-full h-auto rounded-3xl lg:h-full lg:w-full" 
+          <img src="/images/logo_global_team.png" className="w-full h-auto rounded-3xl lg:h-full lg:w-full"
           // alt={statsSection.image.alt}
            />
         </div>
@@ -43,7 +43,7 @@ export function StatsSection() {
               <p className="mt-3 text-base font-semibold text-waymarks-primary">
                 {stat.label}
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-waymarks-primary/30">
+              <p className="mt-1 text-sm leading-relaxed text-[#CBD5E1]">
                 {stat.description}
               </p>
             </div>

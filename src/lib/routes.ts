@@ -4,6 +4,7 @@
 // sitemap and breadcrumbs.
 
 import { serviceDetails } from "./content/service-details";
+import { contactHref } from "./content/site";
 
 export interface Route {
   path: string;
@@ -38,7 +39,7 @@ export const staticRoutes: Route[] = [
       "Digital design blog with ideas, insights, and digital thinking from Waymarks.",
   },
   {
-    path: "/contact/",
+    path: contactHref,
     title: "Contact",
     description:
       "Talk to Waymark about your project — brand, UI/UX, website, SaaS, MVP, mobile app or growth work. Book a free discovery call.",

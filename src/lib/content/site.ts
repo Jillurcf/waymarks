@@ -19,6 +19,9 @@ export const bookCallHref = `mailto:${site.email}?subject=${encodeURIComponent(
 // Primary navbar CTA label (design file header: "Start a Project").
 export const navCtaLabel = "Start a Project";
 
+// Destination for every "Start a Project" call to action.
+export const contactHref = "/contact/";
+
 export type SocialPlatform =
   | "behance"
   | "linkedin"

@@ -11,7 +11,7 @@ import { Icon } from "./icon";
  */
 export function ServicesDigitalGrowth() {
   return (
-    <section className="border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
+    <section id="digital-growth" className="scroll-mt-24 border-b border-white/10 bg-waymarks-surface py-20 text-white lg:py-24">
       <div className="container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
           {/* Feature visual (882 × 450). Plain img: images.unoptimized makes

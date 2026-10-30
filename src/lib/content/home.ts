@@ -7,7 +7,7 @@
 // Structural choices that components make (grid columns, spacing, motion)
 // stay out of this module; copy and link targets stay in.
 
-import { site, socialLinks } from "./site";
+import { contactHref, site, socialLinks } from "./site";
 import { icons } from "./icons";
 import { routeHref } from "../routes";
 
@@ -61,13 +61,7 @@ export interface Cta {
 // design reuses the same labels, so they are shared constants.
 export const startProjectCta: Cta = {
   label: "Start a Project",
-  href: sectionAnchors.contact,
-  icon: icons.arrowRight,
-};
-
-export const startProjectMailtoCta: Cta = {
-  label: "Start a Project",
-  href: `mailto:${site.email}`,
+  href: contactHref,
   icon: icons.arrowRight,
 };
 
@@ -85,7 +79,10 @@ export const learnMoreCta: Cta = {
   icon: icons.arrowRight,
 };
 
-export const exploreAllServicesCta: Cta = { label: "Explore All Services", href: sectionAnchors.services };
+export const exploreAllServicesCta: Cta = {
+  label: "Explore All Services",
+  href: routeHref("/services/"),
+};
 
 // ---------------------------------------------------------------------------
 // 1. Hero
@@ -522,46 +519,46 @@ export const servicesSection = {
       icon: icons.brandIdentity,
       title: "Brand Design & Identity",
       summary: "Create a clear, distinctive brand that people recognise and remember.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: routeHref("/services/brand-design/") },
     },
     {
       icon: icons.uiUx,
       title: "UI/UX Design",
       summary: "Design digital experiences that are simple to understand and easy to use.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: routeHref("/services/ui-ux-design/") },
     },
     {
       icon: icons.website,
       title: "Website Design & Development",
       summary:
         "Build websites that explain your value, load fast, and help visitors take action.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: routeHref("/services/website-design/") },
     },
     {
       icon: icons.saas,
       title: "SaaS & Product Design",
       summary: "Turn complicated workflows into simple, useful digital products.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: "/services/#saas-product-design" },
     },
     {
       icon: icons.mvp,
       title: "MVP Development",
       summary:
         "Turn an idea into a working product you can test, learn from, and improve.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: "/services/#mvp-development" },
     },
     {
       icon: icons.mobileApp,
       title: "Mobile App Design",
       summary: "Create mobile experiences that feel natural and match your brand.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: "/services/#mobile-app-design" },
     },
     {
       icon: icons.digitalGrowth,
       title: "Digital Growth",
       summary:
         "Use SEO, content, social media, email, and analytics to build steady momentum.",
-      cta: learnMoreCta,
+      cta: { ...learnMoreCta, href: "/services/#digital-growth" },
     },
   ],
   exploreAll: exploreAllServicesCta,
@@ -896,7 +893,7 @@ export const homeJsonLd = {
 export const finalCtaSection = {
   title: "Have an Idea? Let's Make It Real.",
   body: "Tell us what you are building, what is not working, or where you want to go next. Our digital product studio will help you find the right next step.",
-  primaryCta: startProjectMailtoCta,
+  primaryCta: startProjectCta,
   secondaryCta: exploreWorkCta,
 };
 

@@ -63,7 +63,7 @@ export function Faq() {
                 <AccordionItem
                   key={item.question}
                   value={`item-${index}`}
-                  className="rounded-2xl border border-border bg-card px-6 transition-colors duration-200 last:border-b hover:border-waymarks-accent data-[state=open]:border-waymarks-accent"
+                  className="rounded-2xl border border-white/12 bg-none px-6 transition-colors duration-200 last:border-b hover:border-waymarks-accent data-[state=open]:border-waymarks-accent"
                 >
                   <AccordionTrigger className="text-left text-base font-semibold text-waymarks-primary">
                     {item.question}

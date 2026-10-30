@@ -31,6 +31,7 @@ import {
   site,
   socialLinks,
   contactPanel,
+  contactHref,
   navCtaLabel,
 } from "@/lib/content/site";
 
@@ -242,9 +243,19 @@ function DesktopNav() {
 }
 
 function Brand() {
+  const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "";
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isHome) return;
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Link
       href="/"
+      onClick={handleClick}
       className="flex items-center gap-2 font-semibold"
       aria-label={`${site.name} — home`}
     >
@@ -321,7 +332,7 @@ function MobileNav() {
           <Button asChild className="w-full" variant="outline">
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </Button>
-          <a href={bookCallHref} className={cn(ctaClass("primary"), "mt-2 w-full")}>
+          <a href={contactHref} className={cn(ctaClass("primary"), "mt-2 w-full")}>
             {navCtaLabel}
           </a>
         </SheetFooter>
@@ -462,7 +473,7 @@ export function Navbar() {
         <div className="flex items-center justify-end gap-2">
 
           <a
-            href={bookCallHref}
+            href={contactHref}
             className={cn(ctaClass("primary"), "h-[50px] w-[190px] px-0")}
           >
             {navCtaLabel}
